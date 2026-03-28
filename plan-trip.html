@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Your Trip — Serendip Go</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ═══════════════════════════════════════
+   PLAN TRIP — REDESIGN
+═══════════════════════════════════════ */
+
+/* HERO */
+.pt-hero {
+  min-height: 48vh;
+  background: var(--deep);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 9rem 5% 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.pt-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('images/tea-plantation.jpg') center/cover no-repeat;
+  opacity: 0.13;
+  transform: scale(1.05);
+}
+.pt-hero > * { position: relative; z-index: 1; }
+.pt-hero-eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.pt-hero-eyebrow::before, .pt-hero-eyebrow::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 36px;
+  background: var(--gold);
+}
+.pt-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  color: white;
+  font-weight: 300;
+  line-height: 1.05;
+  margin-bottom: 1.2rem;
+}
+.pt-hero h1 em { color: var(--gold); font-style: italic; font-weight: 400; }
+.pt-hero-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ═══ SPLIT LAYOUT ═══ */
+.planner-split {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 100vh;
+}
+
+/* LEFT PANEL — dark, sticky */
+.planner-left {
+  background: #0d0500;
+  border-right: 1px solid rgba(201,151,58,0.1);
+  position: sticky;
+  top: 70px;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+  padding: 2.2rem 1.6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
+}
+.planner-left::-webkit-scrollbar { display: none; }
+
+.pl-brand {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(201,151,58,0.1);
+  letter-spacing: 0.5px;
+}
+
+/* Step indicators */
+.pl-steps { margin-bottom: 2rem; }
+.pl-step-row { display: flex; align-items: flex-start; gap: 0.85rem; }
+.pl-step-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,151,58,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: rgba(201,151,58,0.3);
+  flex-shrink: 0;
+  transition: all 0.35s;
+}
+.pl-step-info { padding-top: 0.3rem; }
+.pl-step-name {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.18);
+  transition: color 0.35s;
+}
+.pl-step-hint {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.54rem;
+  color: rgba(255,255,255,0.1);
+  margin-top: 0.15rem;
+  font-style: italic;
+  transition: color 0.35s;
+}
+.pl-step-line {
+  width: 1px;
+  height: 20px;
+  background: rgba(201,151,58,0.1);
+  margin: 0.3rem 0 0.3rem 13px;
+}
+.pl-step-row.active .pl-step-circle { border-color: var(--gold); background: var(--gold); color: #1a0a00; }
+.pl-step-row.active .pl-step-name { color: rgba(255,255,255,0.7); }
+.pl-step-row.active .pl-step-hint { color: rgba(255,255,255,0.28); }
+.pl-step-row.done .pl-step-circle { border-color: rgba(201,151,58,0.5); color: var(--gold); }
+.pl-step-row.done .pl-step-name { color: rgba(255,255,255,0.35); }
+
+/* Map panel */
+.pl-map-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 0;
+}
+.pl-map-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.15);
+  text-align: center;
+  margin-bottom: 0.7rem;
+}
+#sriLankaMap { width: 85%; margin: 0 auto; display: block; }
+.r-fill { fill: rgba(201,151,58,0.07); stroke: rgba(201,151,58,0.15); stroke-width: 1; transition: fill 0.5s; }
+.loc-dot { fill: rgba(201,151,58,0.18); transition: fill 0.4s, r 0.4s; }
+.loc-dot.lit { fill: var(--gold); filter: url(#glow); }
+.loc-lbl { font-family: 'Josefin Sans', sans-serif; font-size: 6px; fill: rgba(201,151,58,0.22); text-anchor: middle; pointer-events: none; transition: fill 0.4s; }
+.loc-lbl.lit { fill: rgba(255,255,255,0.65); }
+.pl-map-hint {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  color: rgba(255,255,255,0.1);
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* Selection chips */
+.pl-chips {
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(201,151,58,0.08);
+}
+.pl-chip {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.52rem;
+  color: rgba(255,255,255,0.38);
+  background: rgba(201,151,58,0.07);
+  border: 1px solid rgba(201,151,58,0.1);
+  padding: 0.2rem 0.55rem;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 0.18rem;
+  transition: all 0.2s;
+}
+
+/* ═══ RIGHT PANEL ═══ */
+.planner-right {
+  background: #f8f5f0;
+  padding: 3.5rem 4rem 6rem;
+}
+.pr-step { display: none; }
+.pr-step.active { display: block; animation: ptFadeUp 0.4s ease both; }
+@keyframes ptFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Step heading */
+.pr-eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.54rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.7rem;
+}
+.pr-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  color: var(--deep);
+  font-weight: 300;
+  line-height: 1.08;
+  margin-bottom: 0.6rem;
+}
+.pr-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+.pr-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  color: rgba(26,10,0,0.38);
+  letter-spacing: 0.2px;
+  margin-bottom: 2.8rem;
+  line-height: 1.7;
+}
+
+.pr-section { margin-bottom: 2.5rem; }
+.pr-section-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(26,10,0,0.4);
+  display: block;
+  margin-bottom: 1.1rem;
+}
+.pr-divider {
+  height: 1px;
+  background: rgba(201,151,58,0.12);
+  margin: 2rem 0;
+}
+
+/* ═══ DATE TOGGLE (CHECKBOX BASED — RELIABLE) ═══ */
+.date-toggle-wrap { margin-bottom: 2rem; }
+.date-toggle-input { position: absolute; opacity: 0; pointer-events: none; }
+.date-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  user-select: none;
+  background: white;
+  border: 1px solid rgba(201,151,58,0.22);
+  border-radius: 50px;
+  padding: 0.75rem 1.4rem;
+  transition: border-color 0.2s;
+}
+.date-toggle-label:hover { border-color: rgba(201,151,58,0.5); }
+.dtl-exact {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem;
+  color: var(--deep);
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.dtl-flex {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem;
+  color: rgba(26,10,0,0.32);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.dtl-sw {
+  width: 48px;
+  height: 26px;
+  background: #ddd;
+  border-radius: 13px;
+  position: relative;
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+.dtl-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+/* Checked state — pure CSS, no JS needed for visuals */
+#dateFlexCb:checked ~ .date-toggle-label .dtl-sw { background: var(--gold); }
+#dateFlexCb:checked ~ .date-toggle-label .dtl-knob { transform: translateX(22px); }
+#dateFlexCb:checked ~ .date-toggle-label .dtl-exact { color: rgba(26,10,0,0.32); font-weight: 400; }
+#dateFlexCb:checked ~ .date-toggle-label .dtl-flex { color: var(--deep); font-weight: 600; }
+#dateFlexCb:checked ~ #exactDatesPanel { display: none; }
+#dateFlexCb:checked ~ #flexDatesPanel { display: block; }
+
+.date-panel { margin-top: 1.2rem; }
+#flexDatesPanel { display: none; }
+
+/* ═══ FORM FIELDS ═══ */
+.fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
+.fg-full { grid-column: 1 / -1; }
+.pt-field { margin-bottom: 1.8rem; }
+.pt-field label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.54rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(26,10,0,0.38);
+  display: block;
+  margin-bottom: 0.55rem;
+}
+.pt-field input,
+.pt-field select,
+.pt-field textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(201,151,58,0.28);
+  background: transparent;
+  padding: 0.55rem 0;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.82rem;
+  color: var(--deep);
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.pt-field input:focus,
+.pt-field select:focus,
+.pt-field textarea:focus { border-bottom-color: var(--gold); }
+.pt-field input.err,
+.pt-field select.err { border-bottom-color: #c0392b; }
+.pt-field input::placeholder { color: rgba(26,10,0,0.2); }
+.pt-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c9973a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.2rem center;
+  padding-right: 1.5rem;
+  cursor: pointer;
+}
+.pt-field textarea { resize: vertical; min-height: 80px; line-height: 1.7; }
+.pt-field-error {
+  display: block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.4px;
+  color: #c0392b;
+  margin-top: 0.3rem;
+  min-height: 1em;
+}
+.pt-field-opt {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.56rem;
+  color: rgba(26,10,0,0.28);
+  font-style: italic;
+  margin-left: 0.3rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Duration badge */
+.dur-badge {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--deep);
+  color: var(--gold);
+  padding: 0.55rem 1.2rem;
+  border-radius: 50px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3px;
+  width: fit-content;
+  margin-top: 0.8rem;
+}
+.dur-badge.show { display: flex; animation: popIn 0.35s cubic-bezier(.34,1.56,.64,1); }
+@keyframes popIn { from { opacity:0; transform:scale(0.75); } to { opacity:1; transform:scale(1); } }
+
+/* ═══ TRAVELER CARDS ═══ */
+.traveler-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+.tt-card {
+  background: white;
+  border: 1px solid rgba(201,151,58,0.18);
+  padding: 1.3rem 0.8rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s;
+  border-radius: 4px;
+}
+.tt-card:hover { border-color: rgba(201,151,58,0.45); transform: translateY(-2px); }
+.tt-card.sel { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); background: white; }
+.tt-emoji { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.tt-name { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--deep); }
+
+/* Number stepper */
+.stepper-row { display: flex; align-items: center; gap: 1.8rem; }
+.stepper-lbl { font-family: 'Josefin Sans', sans-serif; font-size: 0.55rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(26,10,0,0.38); }
+.num-stepper { display: flex; align-items: stretch; border: 1px solid rgba(201,151,58,0.25); background: white; border-radius: 4px; overflow: hidden; }
+.num-stepper button { background: none; border: none; width: 40px; height: 40px; font-size: 1.2rem; cursor: pointer; color: var(--gold); transition: background 0.15s; display: flex; align-items: center; justify-content: center; }
+.num-stepper button:hover { background: #fff8e8; }
+.stepper-val { width: 50px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--deep); border-left: 1px solid rgba(201,151,58,0.18); border-right: 1px solid rgba(201,151,58,0.18); }
+
+/* ═══ INTEREST TILES (landscape, 3-col) ═══ */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+.int-tile {
+  position: relative;
+  height: 88px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.22s, transform 0.22s;
+}
+.int-tile:hover { transform: translateY(-2px); }
+.int-tile.sel { border-color: var(--gold); }
+.int-tile-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s;
+}
+.int-tile:hover .int-tile-bg { transform: scale(1.08); }
+.int-tile-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,3,0,0.72) 0%, rgba(10,3,0,0.22) 100%);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0 1rem;
+}
+.int-emoji { font-size: 1.05rem; flex-shrink: 0; }
+.int-name { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.88); line-height: 1.3; }
+.int-check {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.52rem;
+  font-weight: 900;
+  color: #1a0a00;
+  opacity: 0;
+  transform: scale(0.3);
+  transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+.int-tile.sel .int-check { opacity: 1; transform: scale(1); }
+.int-hint { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; color: rgba(26,10,0,0.3); font-style: italic; margin-top: 0.5rem; }
+
+/* ═══ ACCOMMODATION CARDS ═══ */
+.accomm-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+.ac-card {
+  background: white;
+  border: 1px solid rgba(201,151,58,0.18);
+  border-radius: 4px;
+  padding: 1.3rem 0.9rem 1.1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s;
+}
+.ac-card:hover { border-color: rgba(201,151,58,0.4); transform: translateY(-2px); }
+.ac-card.sel { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+.ac-icon { font-size: 1.7rem; margin-bottom: 0.55rem; }
+.ac-name { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--deep); margin-bottom: 0.35rem; }
+.ac-desc { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; color: rgba(26,10,0,0.38); line-height: 1.55; }
+
+/* ═══ BUDGET OPTIONS ═══ */
+.budget-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+.bg-card {
+  background: white;
+  border: 1px solid rgba(201,151,58,0.18);
+  border-radius: 4px;
+  padding: 1.2rem 0.8rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s;
+}
+.bg-card:hover { border-color: rgba(201,151,58,0.4); }
+.bg-card.sel { border-color: var(--gold); background: #fffcf5; box-shadow: 0 0 0 1px var(--gold); }
+.bg-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+.bg-name { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--deep); margin-bottom: 0.2rem; }
+.bg-desc { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; color: rgba(26,10,0,0.38); }
+
+/* ═══ STEP 3 SUMMARY ═══ */
+.trip-summary-panel {
+  background: var(--deep);
+  border-radius: 5px;
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 2.5rem;
+}
+.tsp-header {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 1.2rem;
+}
+.tsp-items { display: flex; flex-wrap: wrap; gap: 2rem; }
+.tsp-lbl { font-family: 'Josefin Sans', sans-serif; font-size: 0.5rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 0.2rem; }
+.tsp-val { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); line-height: 1.2; }
+.tsp-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem; }
+.tsp-tag { font-family: 'Josefin Sans', sans-serif; font-size: 0.52rem; color: rgba(255,255,255,0.42); background: rgba(255,255,255,0.06); padding: 0.18rem 0.55rem; border-radius: 2px; }
+
+/* ═══ NAV BUTTONS ═══ */
+.step-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(201,151,58,0.12);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.btn-back {
+  background: none;
+  border: none;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(26,10,0,0.35);
+  cursor: pointer;
+  padding: 0.6rem 0;
+  transition: color 0.2s;
+}
+.btn-back:hover { color: var(--deep); }
+.btn-next {
+  background: var(--deep);
+  border: none;
+  color: white;
+  padding: 0.9rem 2.4rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.22s;
+  border-radius: 3px;
+}
+.btn-next:hover { background: var(--gold); color: #1a0a00; }
+.btn-submit {
+  background: var(--gold);
+  border: none;
+  color: #1a0a00;
+  padding: 1rem 2.8rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.63rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.25s;
+}
+.btn-submit:hover { background: var(--deep); color: white; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,151,58,0.28); }
+
+/* ═══ LOADING OVERLAY ═══ */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--deep);
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  padding: 2rem;
+}
+.loading-overlay.active { display: flex; }
+.lo-brand { font-family: 'Dancing Script', cursive; font-size: 2.4rem; color: var(--gold); }
+.lo-spinner { width: 58px; height: 58px; border: 2px solid rgba(201,151,58,0.12); border-top-color: var(--gold); border-radius: 50%; animation: loSpin 0.85s linear infinite; }
+@keyframes loSpin { to { transform: rotate(360deg); } }
+.lo-msg { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem); color: white; font-style: italic; min-height: 2.4rem; }
+.lo-sub { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.22); }
+.lo-bar-wrap { width: 200px; height: 2px; background: rgba(201,151,58,0.12); border-radius: 2px; overflow: hidden; }
+.lo-bar-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.5s ease; width: 0%; }
+
+/* ═══ RESULTS SECTION ═══ */
+#resultSection { display: none; }
+
+.itin-hero {
+  background: var(--deep);
+  padding: 6rem 5% 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.itin-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('images/about-landscape.jpg') center/cover no-repeat;
+  opacity: 0.1;
+}
+.itin-hero > * { position: relative; z-index: 1; }
+.itin-eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.itin-eyebrow::before, .itin-eyebrow::after { content: ''; height: 1px; width: 28px; background: var(--gold); display: block; }
+.itin-hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  color: white;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1.8rem;
+}
+.itin-hero-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+.itin-meta-row { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-bottom: 1.2rem; }
+.itin-meta-chip {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(201,151,58,0.2);
+  padding: 0.3rem 1rem;
+  border-radius: 2px;
+}
+.itin-interests-row { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.itin-interest-pill {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.56rem;
+  letter-spacing: 1px;
+  color: #1a0a00;
+  background: var(--gold);
+  padding: 0.26rem 0.8rem;
+  border-radius: 2px;
+}
+
+/* Day timeline */
+.itin-days-section { background: var(--cream); padding: 5rem 5%; }
+.itin-days-header { text-align: center; margin-bottom: 4.5rem; }
+.itin-days-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); color: var(--deep); font-weight: 600; line-height: 1.1; }
+.itin-days-header h2 em { font-style: italic; color: var(--gold); }
+.itin-days-header p { font-family: 'Josefin Sans', sans-serif; font-size: 0.74rem; color: var(--text-muted); margin-top: 0.7rem; }
+.itin-timeline { max-width: 860px; margin: 0 auto; }
+.day-entry { display: flex; gap: 2rem; }
+.day-left { display: flex; flex-direction: column; align-items: center; width: 58px; flex-shrink: 0; padding-top: 0.4rem; }
+.day-num-big { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: var(--gold); line-height: 1; text-align: center; }
+.day-num-word { font-family: 'Josefin Sans', sans-serif; font-size: 0.48rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(201,151,58,0.45); text-align: center; margin-top: 0.12rem; }
+.day-vert-line { width: 1px; flex: 1; min-height: 40px; background: linear-gradient(to bottom, rgba(201,151,58,0.32), rgba(201,151,58,0.04)); margin-top: 0.6rem; }
+.day-entry:last-child .day-vert-line { display: none; }
+.day-card { flex: 1; background: white; border: 1px solid rgba(201,151,58,0.12); padding: 1.8rem 2rem 1.6rem; margin-bottom: 2rem; transition: box-shadow 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+.day-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); opacity: 0; transition: opacity 0.3s; }
+.day-card:hover { box-shadow: 0 8px 36px rgba(201,151,58,0.09); border-color: rgba(201,151,58,0.26); }
+.day-card:hover::before { opacity: 1; }
+.day-card-top { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.65rem; }
+.day-icon-badge { font-size: 1.2rem; }
+.day-location { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+.day-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--deep); font-weight: 600; line-height: 1.2; margin-bottom: 0.85rem; }
+.day-card-desc { font-family: 'Josefin Sans', sans-serif; font-size: 0.73rem; color: var(--text-muted); line-height: 1.95; margin-bottom: 1.1rem; }
+.day-tags-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.1rem; }
+.day-tag { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; color: var(--text-muted); background: var(--sand); padding: 0.25rem 0.72rem; border-radius: 2px; display: flex; align-items: center; gap: 0.35rem; }
+.day-tag::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 0.58rem; }
+.day-overnight { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; color: var(--text-muted); border-top: 1px solid rgba(201,151,58,0.1); padding-top: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+.day-overnight strong { color: var(--deep); }
+
+/* CTA */
+.itin-cta-section { background: var(--deep); padding: 6rem 5%; text-align: center; position: relative; overflow: hidden; }
+.itin-cta-section::before { content: ''; position: absolute; inset: 0; background: url('images/beach.jpg') center/cover no-repeat; opacity: 0.07; }
+.itin-cta-inner { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
+.itin-confirm-box { background: rgba(201,151,58,0.08); border: 1px solid rgba(201,151,58,0.18); border-radius: 5px; padding: 1.6rem 2rem; margin-bottom: 3rem; text-align: left; }
+.icb-row { display: flex; align-items: flex-start; gap: 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.icb-row:last-child { border-bottom: none; }
+.icb-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+.icb-text { font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+.icb-text strong { color: var(--gold); font-weight: 600; }
+.itin-cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); color: white; font-weight: 300; line-height: 1.1; margin-bottom: 1rem; }
+.itin-cta-title em { font-style: italic; color: var(--gold); }
+.itin-cta-text { font-family: 'Josefin Sans', sans-serif; font-size: 0.74rem; color: rgba(255,255,255,0.36); line-height: 1.9; letter-spacing: 0.3px; margin-bottom: 2.5rem; }
+.itin-cta-actions { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+.btn-cta-ghost { background: none; border: 1px solid rgba(201,151,58,0.35); color: rgba(255,255,255,0.6); padding: 0.88rem 2rem; font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.22s; border-radius: 3px; }
+.btn-cta-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .planner-split { grid-template-columns: 1fr; }
+  .planner-left { position: static; height: auto; }
+  .pl-map-section { display: none; }
+  .planner-right { padding: 2.5rem 1.8rem 4rem; }
+  .interests-grid { grid-template-columns: repeat(2, 1fr); }
+  .accomm-grid { grid-template-columns: repeat(2, 1fr); }
+  .budget-grid { grid-template-columns: repeat(2, 1fr); }
+  .traveler-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+  .fields-grid { grid-template-columns: 1fr; }
+  .interests-grid { grid-template-columns: repeat(2, 1fr); }
+  .traveler-grid { grid-template-columns: repeat(2, 1fr); }
+  .trip-summary-panel { padding: 1.2rem 1.3rem; }
+  .day-left { display: none; }
+  .day-card { margin-bottom: 1.4rem; }
+  .itin-confirm-box { padding: 1.2rem 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<script>
+  // Redirect mobile users to the mobile-optimised version
+  if (window.innerWidth <= 900 && !window.location.search.includes('desktop')) {
+    window.location.replace('plan-trip-mobile.html');
+  }
+</script>
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip.html" class="active">Plan Trip</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<div class="pt-hero">
+  <div class="pt-hero-bg"></div>
+  <div class="pt-hero-eyebrow">Custom Trip Planner</div>
+  <h1>Design Your <em>Perfect</em><br>Sri Lanka Journey</h1>
+  <p class="pt-hero-sub">Three steps · Personalised itinerary · Delivered in 24 hours</p>
+</div>
+
+<!-- PLANNER -->
+<section id="planner">
+  <div class="planner-split">
+
+    <!-- ─── LEFT: Sticky panel ─── -->
+    <div class="planner-left">
+      <div class="pl-brand">Serendip Go</div>
+
+      <div class="pl-steps">
+        <div class="pl-step-row active" id="plbl1">
+          <div class="pl-step-circle">1</div>
+          <div class="pl-step-info">
+            <div class="pl-step-name">The Basics</div>
+            <div class="pl-step-hint">Dates &amp; travellers</div>
+          </div>
+        </div>
+        <div class="pl-step-line"></div>
+        <div class="pl-step-row" id="plbl2">
+          <div class="pl-step-circle">2</div>
+          <div class="pl-step-info">
+            <div class="pl-step-name">Your Vibe</div>
+            <div class="pl-step-hint">Interests &amp; style</div>
+          </div>
+        </div>
+        <div class="pl-step-line"></div>
+        <div class="pl-step-row" id="plbl3">
+          <div class="pl-step-circle">3</div>
+          <div class="pl-step-info">
+            <div class="pl-step-name">Your Details</div>
+            <div class="pl-step-hint">Where to send it</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="pl-map-section">
+        <div class="pl-map-label">Your Journey Map</div>
+        <svg id="sriLankaMap" viewBox="0 0 180 295" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <path class="r-fill" d="M 88,8 C 94,6 101,10 110,19 C 120,30 128,46 133,64 C 138,82 140,102 138,122 C 136,142 130,158 124,172 C 119,184 115,194 115,206 C 115,220 119,234 121,246 C 119,258 112,268 102,274 C 96,278 91,280 88,281 C 85,280 80,278 74,274 C 64,268 57,258 55,246 C 57,234 61,220 61,206 C 61,194 57,184 52,172 C 46,158 40,142 38,122 C 36,102 38,82 43,64 C 48,46 56,30 66,19 C 75,10 82,6 88,8 Z"/>
+          <circle class="loc-dot" id="dot-jaffna" cx="88" cy="22" r="3"/><text class="loc-lbl" id="lbl-jaffna" x="88" y="34">Jaffna</text>
+          <circle class="loc-dot" id="dot-anuradhapura" cx="72" cy="60" r="3"/><text class="loc-lbl" id="lbl-anuradhapura" x="72" y="72">Anuradhapura</text>
+          <circle class="loc-dot" id="dot-trincomalee" cx="130" cy="92" r="3"/><text class="loc-lbl" id="lbl-trincomalee" x="130" y="104">Trincomalee</text>
+          <circle class="loc-dot" id="dot-sigiriya" cx="92" cy="86" r="3"/><text class="loc-lbl" id="lbl-sigiriya" x="92" y="98">Sigiriya</text>
+          <circle class="loc-dot" id="dot-kandy" cx="80" cy="138" r="3"/><text class="loc-lbl" id="lbl-kandy" x="80" y="150">Kandy</text>
+          <circle class="loc-dot" id="dot-colombo" cx="48" cy="162" r="3"/><text class="loc-lbl" id="lbl-colombo" x="48" y="174">Colombo</text>
+          <circle class="loc-dot" id="dot-negombo" cx="46" cy="142" r="3"/><text class="loc-lbl" id="lbl-negombo" x="46" y="132">Negombo</text>
+          <circle class="loc-dot" id="dot-nuwara" cx="88" cy="160" r="3"/><text class="loc-lbl" id="lbl-nuwara" x="88" y="172">Nuwara Eliya</text>
+          <circle class="loc-dot" id="dot-ella" cx="105" cy="178" r="3"/><text class="loc-lbl" id="lbl-ella" x="105" y="190">Ella</text>
+          <circle class="loc-dot" id="dot-arugam" cx="128" cy="182" r="3"/><text class="loc-lbl" id="lbl-arugam" x="128" y="194">Arugam Bay</text>
+          <circle class="loc-dot" id="dot-galle" cx="63" cy="244" r="3"/><text class="loc-lbl" id="lbl-galle" x="63" y="256">Galle</text>
+          <circle class="loc-dot" id="dot-mirissa" cx="78" cy="255" r="3"/><text class="loc-lbl" id="lbl-mirissa" x="78" y="267">Mirissa</text>
+          <circle class="loc-dot" id="dot-yala" cx="114" cy="234" r="3"/><text class="loc-lbl" id="lbl-yala" x="114" y="246">Yala</text>
+        </svg>
+        <div class="pl-map-hint">Highlights appear as you select interests</div>
+        <div class="pl-chips" id="plChips"></div>
+      </div>
+    </div>
+
+    <!-- ─── RIGHT: Form steps ─── -->
+    <div class="planner-right">
+
+      <!-- STEP 1 -->
+      <div class="pr-step active" id="step1">
+        <div class="pr-eyebrow">Step 1 of 3</div>
+        <h2 class="pr-title">Let's Start with <em>The Basics</em></h2>
+        <p class="pr-sub">Tell us when you're visiting and who's coming along.</p>
+
+        <!-- DATE TOGGLE — checkbox-based, always works -->
+        <div class="pr-section">
+          <span class="pr-section-label">Travel Dates</span>
+          <div class="date-toggle-wrap">
+            <input type="checkbox" id="dateFlexCb" class="date-toggle-input">
+            <label for="dateFlexCb" class="date-toggle-label">
+              <span class="dtl-exact">I have exact dates</span>
+              <span class="dtl-sw"><span class="dtl-knob"></span></span>
+              <span class="dtl-flex">I'm flexible — just a month</span>
+            </label>
+            <!-- Exact dates panel -->
+            <div id="exactDatesPanel" class="date-panel">
+              <div class="fields-grid">
+                <div class="pt-field">
+                  <label for="arrDate">Arrival Date</label>
+                  <input type="date" id="arrDate" onchange="calcDuration()">
+                </div>
+                <div class="pt-field">
+                  <label for="depDate">Departure Date</label>
+                  <input type="date" id="depDate" onchange="calcDuration()">
+                </div>
+              </div>
+              <div class="dur-badge" id="durBadge"><span>✈️</span><span id="durText"></span></div>
+            </div>
+            <!-- Flexible dates panel -->
+            <div id="flexDatesPanel" class="date-panel">
+              <div class="fields-grid">
+                <div class="pt-field">
+                  <label for="prefMonth">Preferred Month</label>
+                  <select id="prefMonth">
+                    <option value="">Select a month</option>
+                    <option>January</option><option>February</option><option>March</option>
+                    <option>April</option><option>May</option><option>June</option>
+                    <option>July</option><option>August</option><option>September</option>
+                    <option>October</option><option>November</option><option>December</option>
+                  </select>
+                </div>
+                <div class="pt-field">
+                  <label for="approxDur">Approximate Duration</label>
+                  <select id="approxDur">
+                    <option value="">How long?</option>
+                    <option value="5">Around 5 days</option>
+                    <option value="7">7 – 8 days</option>
+                    <option value="10">10 – 12 days</option>
+                    <option value="14">14+ days</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pr-divider"></div>
+
+        <div class="pr-section">
+          <span class="pr-section-label">Who's Coming?</span>
+          <div class="traveler-grid">
+            <div class="tt-card sel" data-type="couple" onclick="selTT(this)"><div class="tt-emoji">💑</div><div class="tt-name">Couple</div></div>
+            <div class="tt-card" data-type="solo" onclick="selTT(this)"><div class="tt-emoji">🧳</div><div class="tt-name">Solo</div></div>
+            <div class="tt-card" data-type="family" onclick="selTT(this)"><div class="tt-emoji">👨‍👩‍👧‍👦</div><div class="tt-name">Family</div></div>
+            <div class="tt-card" data-type="group" onclick="selTT(this)"><div class="tt-emoji">👥</div><div class="tt-name">Group</div></div>
+          </div>
+          <div class="stepper-row">
+            <span class="stepper-lbl">Number of Travellers</span>
+            <div class="num-stepper">
+              <button onclick="changeTrav(-1)">−</button>
+              <div class="stepper-val" id="travVal">2</div>
+              <button onclick="changeTrav(1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <div></div>
+          <button class="btn-next" onclick="goStep(2)">Continue — Your Vibe &nbsp;→</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="pr-step" id="step2">
+        <div class="pr-eyebrow">Step 2 of 3</div>
+        <h2 class="pr-title">What's Your <em>Vibe?</em></h2>
+        <p class="pr-sub">Select your interests and watch your route appear on the map.</p>
+
+        <div class="pr-section">
+          <span class="pr-section-label">Travel Interests <span class="int-hint">— select all that apply</span></span>
+          <div class="interests-grid" id="intGrid">
+            <div class="int-tile" data-interest="beaches" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/beach.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🏖️</span><span class="int-name">Beaches</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="wildlife" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/yala-leopard.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🦁</span><span class="int-name">Wildlife</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="culture" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/sigiriya.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🏛️</span><span class="int-name">Culture</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="hiking" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/about-landscape.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🏔️</span><span class="int-name">Hiking</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="food" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/sri-lanka-food.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🍛</span><span class="int-name">Food &amp; Cuisine</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="wellness" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/kandy.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🧘</span><span class="int-name">Wellness</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="tea" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/tea-plantation.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🌿</span><span class="int-name">Tea Plantations</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="watersports" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/family-beach.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🚣</span><span class="int-name">Water Sports</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="elephants" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/elephant.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🐘</span><span class="int-name">Elephants</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="romance" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/romantic-beach.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">💑</span><span class="int-name">Romance</span></div><div class="int-check">✓</div></div>
+          </div>
+        </div>
+
+        <div class="pr-divider"></div>
+
+        <div class="pr-section">
+          <span class="pr-section-label">Accommodation Style</span>
+          <div class="accomm-grid">
+            <div class="ac-card" data-accomm="boutique" onclick="selAccomm(this)"><div class="ac-icon">🏰</div><div class="ac-name">Boutique Villas</div><div class="ac-desc">Intimate, design-led properties with character</div></div>
+            <div class="ac-card" data-accomm="eco" onclick="selAccomm(this)"><div class="ac-icon">🌿</div><div class="ac-name">Eco-Lodges</div><div class="ac-desc">Sustainable stays immersed in nature</div></div>
+            <div class="ac-card" data-accomm="hotel" onclick="selAccomm(this)"><div class="ac-icon">🏨</div><div class="ac-name">Standard Hotels</div><div class="ac-desc">Comfortable, reliable, well-located</div></div>
+            <div class="ac-card" data-accomm="homestay" onclick="selAccomm(this)"><div class="ac-icon">🏡</div><div class="ac-name">Homestays</div><div class="ac-desc">Authentic, deeply local experiences</div></div>
+          </div>
+        </div>
+
+        <div class="pr-divider"></div>
+
+        <div class="pr-section">
+          <span class="pr-section-label">Budget Range</span>
+          <div class="budget-grid">
+            <div class="bg-card" data-budget="economy" onclick="selBudget(this)"><div class="bg-icon">🎒</div><div class="bg-name">Economy</div><div class="bg-desc">Smart travel, great value</div></div>
+            <div class="bg-card" data-budget="mid" onclick="selBudget(this)"><div class="bg-icon">✨</div><div class="bg-name">Mid-Range</div><div class="bg-desc">Comfort and quality</div></div>
+            <div class="bg-card" data-budget="luxury" onclick="selBudget(this)"><div class="bg-icon">🌟</div><div class="bg-name">Luxury</div><div class="bg-desc">Premium experiences</div></div>
+            <div class="bg-card" data-budget="ultra" onclick="selBudget(this)"><div class="bg-icon">👑</div><div class="bg-name">Ultra-Luxury</div><div class="bg-desc">Nothing off the table</div></div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-back" onclick="goStep(1)">← Back</button>
+          <button class="btn-next" onclick="goStep(3)">Continue — Your Details &nbsp;→</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="pr-step" id="step3">
+        <div class="pr-eyebrow">Step 3 of 3</div>
+        <h2 class="pr-title">Where Should We Send <em>Your Itinerary?</em></h2>
+        <p class="pr-sub">Your personalised plan will be crafted by our local specialists and sent to you within 24 hours.</p>
+
+        <div class="trip-summary-panel" id="tripSummary"></div>
+
+        <div class="fields-grid">
+          <div class="pt-field">
+            <label for="leadName">Your Name</label>
+            <input type="text" id="leadName" placeholder="e.g. James &amp; Sophie" autocomplete="name" maxlength="100">
+            <span class="pt-field-error" id="leadNameErr"></span>
+          </div>
+          <div class="pt-field">
+            <label for="leadEmail">Email Address</label>
+            <input type="email" id="leadEmail" placeholder="your@email.com" autocomplete="email" maxlength="254">
+            <span class="pt-field-error" id="leadEmailErr"></span>
+          </div>
+          <div class="pt-field">
+            <label for="leadWhatsApp">WhatsApp Number <span class="pt-field-opt">optional</span></label>
+            <input type="tel" id="leadWhatsApp" placeholder="+1 234 567 8900" autocomplete="tel" maxlength="25">
+            <span class="pt-field-error" id="leadWhatsAppErr"></span>
+          </div>
+          <div class="pt-field">
+            <label for="leadNation">Nationality</label>
+            <input type="text" id="leadNation" placeholder="e.g. British, American..." maxlength="60">
+            <span class="pt-field-error" id="leadNationErr"></span>
+          </div>
+          <div class="pt-field fg-full">
+            <label for="leadNotes">Anything else we should know? <span class="pt-field-opt">optional</span></label>
+            <textarea id="leadNotes" placeholder="Dietary needs, mobility requirements, special occasions, must-see places..." maxlength="2000"></textarea>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-back" onclick="goStep(2)">← Back</button>
+          <button class="btn-submit" onclick="submitPlanner()">✦ &nbsp;Generate My Itinerary</button>
+        </div>
+      </div>
+
+    </div><!-- end planner-right -->
+  </div><!-- end planner-split -->
+</section>
+
+<!-- RESULTS -->
+<div id="resultSection">
+  <div class="itin-hero">
+    <div class="itin-eyebrow">Your Personalised Preview</div>
+    <h2 class="itin-hero-title">Your <em id="itinDaysCount">10-Day</em> Sri Lanka Journey</h2>
+    <div class="itin-meta-row" id="itinMetaChips"></div>
+    <div class="itin-interests-row" id="itinInterestTags"></div>
+  </div>
+  <section class="itin-days-section">
+    <div class="itin-days-header">
+      <div class="itin-eyebrow">Day by Day</div>
+      <h2>Your Journey, <em>Unfolded</em></h2>
+      <p id="itinDaysSub">Every day crafted around your interests and travel style.</p>
+    </div>
+    <div class="itin-timeline" id="itinTimeline"></div>
+  </section>
+  <section class="itin-cta-section">
+    <div class="itin-cta-inner">
+      <div class="itin-confirm-box" id="itinConfirmBox"></div>
+      <div class="itin-eyebrow" style="margin-bottom:1rem">What Happens Next</div>
+      <h3 class="itin-cta-title">Your Journey is <em>Being Refined</em></h3>
+      <p class="itin-cta-text">
+        This preview was crafted from your preferences. Our local Sri Lanka specialists will personalise every detail —
+        accommodation, activities, pace, and hidden gems only a local would know —
+        and deliver your complete, refined itinerary within 24 hours.
+      </p>
+      <div class="itin-cta-actions">
+        <a href="packages.html" class="btn-primary">Browse Our Packages</a>
+        <a href="contact.html" class="btn-cta-ghost">Speak to a Specialist</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="lo-brand">Serendip Go</div>
+  <div class="lo-spinner"></div>
+  <div class="lo-msg" id="loMsg">Mapping your dream journey...</div>
+  <div class="lo-bar-wrap"><div class="lo-bar-fill" id="loBar"></div></div>
+  <div class="lo-sub">Building your personalised Sri Lanka experience</div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
+      <div class="social-row" style="margin-top:1.5rem">
+        <a href="#" class="social-btn">📷</a>
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="destinations.html">Sigiriya</a>
+      <a href="destinations.html">Kandy</a>
+      <a href="destinations.html">Ella</a>
+      <a href="destinations.html">Galle</a>
+      <a href="destinations.html">Yala National Park</a>
+      <a href="destinations.html">Nuwara Eliya</a>
+      <a href="destinations.html">Trincomalee</a>
+    </div>
+    <div class="footer-col">
+      <h4>Packages</h4>
+      <a href="packages.html">Luxury Tours</a>
+      <a href="packages.html">Adventure Tours</a>
+      <a href="packages.html">Honeymoon Packages</a>
+      <a href="packages.html">Wildlife Safaris</a>
+      <a href="packages.html">Cultural Tours</a>
+      <a href="packages.html">Family Packages</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog &amp; Travel Guides</a>
+      <a href="contact.html">Testimonials</a>
+      <a href="contact.html">FAQ</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved. SLTDA Reg. No. SLTDA/SQA/T/0123</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
+<script>
+// ════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════
+const state = {
+  flexDates: false, arrDate: '', depDate: '', prefMonth: '', approxDur: '',
+  duration: 0, travelerType: 'couple', numTrav: 2,
+  interests: [], accomm: '', budget: '',
+  name: '', email: '', whatsapp: '', nationality: '', notes: ''
+};
+
+// ════════════════════════════════════════
+//  TOGGLE — checkbox-based (no onclick needed)
+// ════════════════════════════════════════
+document.getElementById('dateFlexCb').addEventListener('change', function() {
+  state.flexDates = this.checked;
+  if (!this.checked) {
+    document.getElementById('durBadge').classList.remove('show');
+    document.getElementById('arrDate').classList.remove('err');
+    document.getElementById('depDate').classList.remove('err');
+  } else {
+    document.getElementById('prefMonth').classList.remove('err');
+  }
+  updateChips();
+});
+
+// ════════════════════════════════════════
+//  MASTER ITINERARY DATA
+// ════════════════════════════════════════
+const masterDays = [
+  {
+    title: 'Arrival in the Pearl of the Indian Ocean',
+    location: 'Colombo / Negombo',
+    desc: 'Your Sri Lanka adventure begins the moment your flight touches down. After a warm airport welcome from your personal driver-guide, transfer to your hotel along the sun-kissed west coast. Spend the first evening at Galle Face Green — Sri Lanka\'s beloved ocean-front promenade — where kite flyers, families, and street food vendors create a joyful scene as the Indian Ocean glows at sunset.',
+    highlights: ['Personal airport welcome', 'Galle Face Green promenade', 'Welcome Sri Lankan dinner', 'First taste of island life'],
+    overnight: 'Negombo or Colombo', icon: '✈️'
+  },
+  {
+    title: 'Elephants & Ancient Cave Temples',
+    location: 'Pinnawala → Dambulla',
+    desc: 'Drive north through Sri Lanka\'s fragrant spice heartland, stopping at Pinnawala Elephant Orphanage to watch rescued elephants bathe and play in the Maha Oya River. Continue to Dambulla and explore the UNESCO-listed Golden Cave Temples — five cave-shrines with 150 ancient Buddha statues and vivid 2,000-year-old frescoes.',
+    highlights: ['Pinnawala Elephant Orphanage', 'Dambulla Cave Temples (UNESCO)', 'Spice garden visit', 'Scenic drive through paddy fields'],
+    overnight: 'Dambulla or Sigiriya', icon: '🐘'
+  },
+  {
+    title: 'Sunrise at the Lion Rock',
+    location: 'Sigiriya & Polonnaruwa',
+    desc: 'Rise before dawn for the legendary climb of Sigiriya Lion Rock — a 5th-century royal palace perched 200 metres above the jungle. Reach the summit as the sun burns gold across the forests below. In the afternoon, explore the extraordinary ruins of Polonnaruwa on bicycle: royal palace remains, enormous reclining Buddhas, and sacred stupas.',
+    highlights: ['Sunrise climb of Sigiriya (UNESCO)', 'Celestial maiden frescoes (5th century)', 'Polonnaruwa bicycle tour (UNESCO)', 'Royal palace & ancient stupas'],
+    overnight: 'Sigiriya or Habarana', icon: '🏰'
+  },
+  {
+    title: 'The Ancient Kingdom of Anuradhapura',
+    location: 'Anuradhapura',
+    desc: 'Journey to Sri Lanka\'s first great capital, founded in the 4th century BC. The Sacred Jaya Sri Maha Bodhi — 2,300 years old, the oldest historically documented living tree on earth — stands here, visited daily by monks bearing flowers and oil lamps. Walk among colossal stupas, ancient moonstone guard-stones, and sacred bathing tanks.',
+    highlights: ['Sacred Bodhi Tree — 2,300 years old (UNESCO)', 'Ruwanwelisaya Great Stupa', 'Abhayagiri Monastery ruins', 'Ancient moonstone carvings'],
+    overnight: 'Habarana or Anuradhapura', icon: '🛕'
+  },
+  {
+    title: 'Kandy — Sacred Heart of the Island',
+    location: 'Kandy',
+    desc: 'Drive through the fragrant Matale spice hills to Sri Lanka\'s most sacred city. The Temple of the Sacred Tooth Relic — a UNESCO World Heritage Site — sits majestically by an emerald lake. Visit the magnificent Royal Botanical Gardens of Peradeniya, then end the evening with an electrifying Kandyan cultural dance performance.',
+    highlights: ['Temple of the Sacred Tooth Relic (UNESCO)', 'Kandy Lake sunset walk', 'Royal Botanical Gardens of Peradeniya', 'Kandyan traditional dance show'],
+    overnight: 'Kandy', icon: '🎭'
+  },
+  {
+    title: 'Into the Mist — Sri Lanka\'s Tea Country',
+    location: 'Nuwara Eliya',
+    desc: 'Board the legendary hill-country train from Kandy as it winds through an emerald tapestry of tea plantations and misty ravines — ranked among the world\'s most scenic rail journeys. Arrive in Nuwara Eliya, Sri Lanka\'s charming colonial hill-town at 1,868 metres. Tour a working tea factory and finish with a private expert-led tasting session.',
+    highlights: ['Iconic hill-country train journey', 'Working tea factory tour & tasting', 'Nuwara Eliya colonial town walk', 'Gregory Lake & Victoria Park'],
+    overnight: 'Nuwara Eliya', icon: '🍵'
+  },
+  {
+    title: 'Ella — Where the Highlands Meet the Sky',
+    location: 'Ella',
+    desc: 'Wind down to the charming village of Ella, perched above a dramatic gap in the hills with views stretching to the distant coast. Visit the iconic Nine Arch Bridge — a 1921 engineering marvel emerging from thick jungle. Hike Ella Rock for sweeping 360-degree panoramas across a world of emerald tea and open sky.',
+    highlights: ['Nine Arch Bridge at sunrise', 'Ella Rock hike & panoramic views', 'Ravana Falls swim', 'Ella\'s café & restaurant scene'],
+    overnight: 'Ella', icon: '🌄'
+  },
+  {
+    title: 'Wild Elephant Herds of the South Plains',
+    location: 'Udawalawe National Park',
+    desc: 'Drive south from the highlands to Udawalawe National Park, home to over 700 wild elephants roaming freely across open grasslands and lake shores. A jeep safari here almost guarantees sightings of large elephant herds, including family groups with tiny calves. Visit the Elephant Transit Home before the park.',
+    highlights: ['Udawalawe jeep safari (700+ elephants)', 'Elephant Transit Home bottle feeding', 'Wild baby elephant calves', 'Water buffalo, crocodiles & endemic birds'],
+    overnight: 'Udawalawe or south coast', icon: '🌿'
+  },
+  {
+    title: 'Blue Whales at Dawn',
+    location: 'Mirissa',
+    desc: 'Leave before sunrise for your whale watching departure from Mirissa harbour. The deep waters off Sri Lanka\'s southern tip are year-round feeding grounds for blue whales — the largest animals ever to have lived on earth. Sperm whales, spinner dolphins, and sometimes orcas join the spectacle. Return for a golden afternoon on Mirissa\'s perfect crescent beach.',
+    highlights: ['Blue whale watching (world\'s largest animal)', 'Spinner dolphins & sperm whale sightings', 'Mirissa crescent beach afternoon', 'Fresh-catch seafood dinner at sunset'],
+    overnight: 'Mirissa or south coast', icon: '🐋'
+  },
+  {
+    title: 'The Fort That Time Forgot',
+    location: 'Galle Fort',
+    desc: 'Drive west along the palm-lined coastal highway to Galle — a perfectly preserved 17th-century Dutch colonial fortified town and UNESCO World Heritage Site. Walk the ocean ramparts at sunset as colourful fishing boats drift into the harbour below. Cobblestone streets inside are lined with boutique hotels, galleries, gem merchants, and centuries-old colonial architecture.',
+    highlights: ['Galle Fort rampart sunset walk (UNESCO)', 'Dutch Reformed Church (1755)', 'National Maritime Museum', 'Boutique galleries, gems & local crafts'],
+    overnight: 'Galle Fort or south coast', icon: '⚓'
+  },
+  {
+    title: 'Sea Turtles & Ocean Breezes',
+    location: 'Unawatuna / Hikkaduwa',
+    desc: 'A day surrendered to the Indian Ocean. Unawatuna\'s sheltered crescent bay offers calm, crystal-clear water perfect for swimming and snorkelling among reef fish and sea turtles. Visit the Kosgoda sea turtle hatchery, where hatchlings are cared for before release. End with a glass-bottom boat ride over Hikkaduwa\'s coral reef.',
+    highlights: ['Unawatuna bay snorkelling & swimming', 'Kosgoda sea turtle hatchery', 'Baby turtle release (seasonal)', 'Hikkaduwa coral reef glass-bottom boat'],
+    overnight: 'South coast', icon: '🐢'
+  },
+  {
+    title: 'Leopards of Yala',
+    location: 'Yala National Park',
+    desc: 'Transfer to Yala — Sri Lanka\'s most celebrated national park and one of the highest-density leopard habitats on earth. The morning game drive takes you deep into dry scrub jungle. Leopards lounge in the forks of palu trees. Elephants wade in ancient lagoons. Sloth bears shuffle between boulders. Stay for the golden-hour evening drive for the best light of the day.',
+    highlights: ['Wild leopard sightings (highest density on earth)', 'Elephant & crocodile lagoons', 'Sloth bear encounters', 'Morning & evening game drives'],
+    overnight: 'Yala area', icon: '🦁'
+  },
+  {
+    title: 'Final Wonders & Farewell',
+    location: 'South Coast → Colombo',
+    desc: 'Your last full day in Sri Lanka. A leisurely morning with coffee and one final coconut sambol breakfast before the northward coastal drive. Stop at a batik workshop or browse a local gem-cutter\'s studio for Ceylon sapphires. Arrive in Colombo for a farewell dinner at one of the capital\'s finest rooftop restaurants.',
+    highlights: ['Leisurely coastal drive north', 'Batik or gem workshop visit', 'Colombo farewell rooftop dinner', 'One last sunset in paradise'],
+    overnight: 'Colombo', icon: '🌅'
+  }
+];
+
+const daySelections = {
+  5:  [0, 1, 2, 4, 6],
+  7:  [0, 1, 2, 4, 5, 6],
+  8:  [0, 1, 2, 4, 5, 6, 7],
+  10: [0, 1, 2, 3, 4, 5, 6, 8, 9],
+  11: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  12: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11],
+  14: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+};
+
+function closestDuration(n) {
+  const opts = [5, 7, 8, 10, 11, 12, 14];
+  return opts.reduce((p, c) => Math.abs(c - n) < Math.abs(p - n) ? c : p);
+}
+function getTripDuration() {
+  if (!state.flexDates && state.duration > 0) return state.duration;
+  const map = { '5': 5, '7': 8, '10': 10, '14': 14 };
+  return map[document.getElementById('approxDur').value] || 7;
+}
+
+// ════════════════════════════════════════
+//  STEP NAVIGATION
+// ════════════════════════════════════════
+let currentStep = 1;
+
+function goStep(n) {
+  if (n > currentStep && !validateStep(currentStep)) return;
+  document.getElementById('step' + currentStep).classList.remove('active');
+  currentStep = n;
+  document.getElementById('step' + currentStep).classList.add('active');
+  ['plbl1','plbl2','plbl3'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+    if (i + 1 < n) el.classList.add('done');
+    if (i + 1 === n) el.classList.add('active');
+  });
+  if (n === 3) buildSummary();
+  window.scrollTo({ top: document.getElementById('planner').offsetTop - 80, behavior: 'smooth' });
+}
+
+function validateStep(s) {
+  if (s === 1) {
+    if (!state.flexDates) {
+      const a = document.getElementById('arrDate'), d = document.getElementById('depDate');
+      const today = new Date(); today.setHours(0,0,0,0);
+      if (!a.value) { a.classList.add('err'); a.focus(); return false; }
+      if (new Date(a.value) < today) { a.classList.add('err'); a.focus(); return false; }
+      if (!d.value) { d.classList.add('err'); d.focus(); return false; }
+      if (new Date(d.value) <= new Date(a.value)) { d.classList.add('err'); d.focus(); return false; }
+    } else {
+      const m = document.getElementById('prefMonth');
+      const dur = document.getElementById('approxDur');
+      if (!m.value) { m.classList.add('err'); m.focus(); return false; }
+      if (!dur.value) { dur.classList.add('err'); dur.focus(); return false; }
+    }
+  }
+  if (s === 2 && state.interests.length === 0) {
+    const g = document.getElementById('intGrid');
+    g.style.outline = '2px solid #c0392b';
+    setTimeout(() => g.style.outline = '', 1800);
+    return false;
+  }
+  return true;
+}
+
+// ─── inline validation helpers ───
+function ptSetErr(inputId, errId, msg) {
+  const el = document.getElementById(inputId);
+  const errEl = document.getElementById(errId);
+  if (el) el.classList.add('err');
+  if (errEl) errEl.textContent = msg;
+}
+function ptClearErr(inputId, errId) {
+  const el = document.getElementById(inputId);
+  const errEl = document.getElementById(errId);
+  if (el) el.classList.remove('err');
+  if (errEl) errEl.textContent = '';
+}
+function ptIsValidEmail(e) {
+  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(e);
+}
+function ptIsValidPhone(p) {
+  const digits = p.replace(/\D/g, '');
+  return /^[+\d\s\-().]+$/.test(p) && digits.length >= 7 && digits.length <= 20;
+}
+function ptIsValidName(n) {
+  return /^[\p{L}\s'\-\.]{2,100}$/u.test(n);
+}
+function ptStripTags(s) {
+  return s.replace(/<[^>]*>/g, '');
+}
+
+// ════════════════════════════════════════
+//  STEP 1
+// ════════════════════════════════════════
+function calcDuration() {
+  const a = document.getElementById('arrDate').value;
+  const d = document.getElementById('depDate').value;
+  document.getElementById('arrDate').classList.remove('err');
+  document.getElementById('depDate').classList.remove('err');
+  if (!a || !d) return;
+  const days = Math.round((new Date(d) - new Date(a)) / 86400000);
+  if (days < 1) return;
+  state.duration = days; state.arrDate = a; state.depDate = d;
+  const msgs = [
+    `Wonderful — a ${days}-day Sri Lanka escape!`,
+    `Amazing — ${days} days of pure adventure!`,
+    `Perfect — ${days} days to fall in love with Sri Lanka!`,
+    `Brilliant — we'll craft ${days} unforgettable days for you!`
+  ];
+  document.getElementById('durText').textContent = msgs[Math.floor(Math.random() * msgs.length)];
+  document.getElementById('durBadge').classList.add('show');
+  updateChips();
+}
+
+function selTT(el) {
+  document.querySelectorAll('.tt-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  state.travelerType = el.dataset.type;
+  updateChips();
+}
+
+function changeTrav(d) {
+  state.numTrav = Math.max(1, Math.min(30, state.numTrav + d));
+  document.getElementById('travVal').textContent = state.numTrav;
+  updateChips();
+}
+
+// ════════════════════════════════════════
+//  STEP 2
+// ════════════════════════════════════════
+const interestMap = {
+  beaches:    ['dot-galle','dot-mirissa','dot-trincomalee','dot-negombo'],
+  wildlife:   ['dot-yala','dot-sigiriya','dot-kandy'],
+  culture:    ['dot-sigiriya','dot-anuradhapura','dot-kandy'],
+  hiking:     ['dot-ella','dot-nuwara','dot-kandy'],
+  food:       ['dot-colombo','dot-kandy'],
+  wellness:   ['dot-nuwara','dot-kandy','dot-ella'],
+  tea:        ['dot-nuwara','dot-ella','dot-kandy'],
+  watersports:['dot-arugam','dot-mirissa','dot-negombo','dot-trincomalee'],
+  elephants:  ['dot-sigiriya','dot-kandy','dot-yala'],
+  romance:    ['dot-galle','dot-mirissa','dot-ella','dot-nuwara']
+};
+
+function toggleInt(el) {
+  el.classList.toggle('sel');
+  const interest = el.dataset.interest;
+  if (el.classList.contains('sel')) {
+    state.interests.push(interest);
+  } else {
+    state.interests = state.interests.filter(i => i !== interest);
+  }
+  updateMap();
+  updateChips();
+}
+
+function updateMap() {
+  document.querySelectorAll('.loc-dot').forEach(d => { d.classList.remove('lit'); d.setAttribute('r','3'); });
+  document.querySelectorAll('.loc-lbl').forEach(l => l.classList.remove('lit'));
+  const active = new Set();
+  state.interests.forEach(i => (interestMap[i] || []).forEach(id => active.add(id)));
+  active.forEach(id => {
+    const dot = document.getElementById(id);
+    const lbl = document.getElementById(id.replace('dot-','lbl-'));
+    if (dot) { dot.classList.add('lit'); dot.setAttribute('r','4'); }
+    if (lbl) lbl.classList.add('lit');
+  });
+}
+
+function selAccomm(el) {
+  document.querySelectorAll('.ac-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  state.accomm = el.dataset.accomm;
+  updateChips();
+}
+
+function selBudget(el) {
+  document.querySelectorAll('.bg-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  state.budget = el.dataset.budget;
+  updateChips();
+}
+
+// ════════════════════════════════════════
+//  CHIPS (left panel updates)
+// ════════════════════════════════════════
+function updateChips() {
+  const chips = [];
+  if (state.travelerType) chips.push(state.travelerType);
+  if (state.numTrav > 1) chips.push(state.numTrav + ' travellers');
+  if (state.duration > 0 && !state.flexDates) chips.push(state.duration + ' days');
+  state.interests.forEach(i => chips.push(i));
+  if (state.accomm) chips.push(state.accomm);
+  if (state.budget) chips.push(state.budget);
+  const container = document.getElementById('plChips');
+  if (container) {
+    container.innerHTML = chips.map(c => `<span class="pl-chip">${c}</span>`).join('');
+  }
+}
+
+// ════════════════════════════════════════
+//  STEP 3 SUMMARY
+// ════════════════════════════════════════
+function buildSummary() {
+  const dur = getTripDuration();
+  const dateStr = state.flexDates
+    ? (document.getElementById('prefMonth').value || '—')
+    : (state.arrDate && state.depDate ? `${state.arrDate} → ${state.depDate}` : '—');
+  const accMap = { boutique: 'Boutique Villas', eco: 'Eco-Lodges', hotel: 'Standard Hotels', homestay: 'Homestays' };
+  const budMap = { economy: 'Economy', mid: 'Mid-Range', luxury: 'Luxury', ultra: 'Ultra-Luxury' };
+  const ttMap = { couple: 'Couple', solo: 'Solo', family: 'Family', group: 'Group' };
+  document.getElementById('tripSummary').innerHTML = `
+    <div class="tsp-header">Your Trip at a Glance</div>
+    <div class="tsp-items">
+      <div><div class="tsp-lbl">Duration</div><div class="tsp-val">${dur} Days</div></div>
+      <div><div class="tsp-lbl">Dates</div><div class="tsp-val">${dateStr}</div></div>
+      <div><div class="tsp-lbl">Travellers</div><div class="tsp-val">${ttMap[state.travelerType] || '—'} · ${state.numTrav}</div></div>
+      ${state.accomm ? `<div><div class="tsp-lbl">Accommodation</div><div class="tsp-val">${accMap[state.accomm]}</div></div>` : ''}
+      ${state.budget ? `<div><div class="tsp-lbl">Budget</div><div class="tsp-val">${budMap[state.budget]}</div></div>` : ''}
+      ${state.interests.length ? `<div class="fg-full"><div class="tsp-lbl">Interests</div><div class="tsp-tags">${state.interests.map(i => `<span class="tsp-tag">${i}</span>`).join('')}</div></div>` : ''}
+    </div>`;
+}
+
+// ════════════════════════════════════════
+//  SUBMIT & LOADING
+// ════════════════════════════════════════
+function submitPlanner() {
+  // Clear previous errors
+  ['leadName','leadEmail','leadWhatsApp','leadNation'].forEach(id => ptClearErr(id, id + 'Err'));
+
+  let valid = true;
+
+  const nameRaw  = ptStripTags(document.getElementById('leadName').value.trim());
+  const emailRaw = document.getElementById('leadEmail').value.trim();
+  const waRaw    = document.getElementById('leadWhatsApp').value.trim();
+  const natRaw   = ptStripTags(document.getElementById('leadNation').value.trim());
+  const notesRaw = ptStripTags(document.getElementById('leadNotes').value.trim());
+
+  if (!nameRaw) {
+    ptSetErr('leadName', 'leadNameErr', 'Please enter your name.');
+    valid = false;
+  } else if (!ptIsValidName(nameRaw)) {
+    ptSetErr('leadName', 'leadNameErr', 'Name may only contain letters, spaces, hyphens or apostrophes.');
+    valid = false;
+  }
+
+  if (!emailRaw) {
+    ptSetErr('leadEmail', 'leadEmailErr', 'Please enter your email address.');
+    valid = false;
+  } else if (!ptIsValidEmail(emailRaw)) {
+    ptSetErr('leadEmail', 'leadEmailErr', 'Please enter a valid email address.');
+    valid = false;
+  }
+
+  if (waRaw && !ptIsValidPhone(waRaw)) {
+    ptSetErr('leadWhatsApp', 'leadWhatsAppErr', 'Please enter a valid phone number including country code.');
+    valid = false;
+  }
+
+  if (!natRaw) {
+    ptSetErr('leadNation', 'leadNationErr', 'Please enter your nationality.');
+    valid = false;
+  } else if (!/^[\p{L}\s'\-,\.]{2,60}$/u.test(natRaw)) {
+    ptSetErr('leadNation', 'leadNationErr', 'Please enter a valid nationality.');
+    valid = false;
+  }
+
+  if (!valid) {
+    const firstErr = document.querySelector('.pt-field input.err, .pt-field select.err');
+    if (firstErr) firstErr.focus();
+    return;
+  }
+
+  state.name        = nameRaw;
+  state.email       = emailRaw;
+  state.whatsapp    = waRaw;
+  state.nationality = natRaw;
+  state.notes       = notesRaw.slice(0, 2000);
+
+  const accMap = { boutique:'Boutique Villas', eco:'Eco-Lodges', hotel:'Standard Hotels', homestay:'Homestays' };
+  const budMap = { economy:'Economy', mid:'Mid-Range', luxury:'Luxury', ultra:'Ultra-Luxury' };
+  const ttMap  = { couple:'Couple', solo:'Solo', family:'Family', group:'Group' };
+  const durMap = {'5':5,'7':8,'10':10,'14':14};
+  const dur    = (!state.flexDates && state.duration > 0) ? state.duration : (durMap[document.getElementById('approxDur').value] || 7);
+  const dateStr = state.flexDates
+    ? (document.getElementById('prefMonth').value || 'Flexible')
+    : (state.arrDate + ' → ' + state.depDate);
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_PLANNER_TMPL, {
+    to_name:        state.name,
+    to_email:       state.email,
+    whatsapp:       state.whatsapp || 'Not provided',
+    nationality:    state.nationality,
+    duration:       dur + ' days',
+    dates:          dateStr,
+    traveler_type:  ttMap[state.travelerType] || state.travelerType,
+    num_travellers: state.numTrav,
+    interests:      state.interests.join(', ') || 'None selected',
+    accommodation:  accMap[state.accomm] || 'Not selected',
+    budget:         budMap[state.budget] || 'Not selected',
+    notes:          state.notes || 'None'
+  }, EMAILJS_PUBLIC_KEY)
+  .catch(() => {
+    // Email failed silently — itinerary still shows; team follows up manually
+  });
+
+  showLoading();
+}
+
+function showLoading() {
+  const overlay = document.getElementById('loadingOverlay');
+  overlay.classList.add('active');
+  const msgs = [
+    'Mapping your dream journey...',
+    'Curating hidden gems just for you...',
+    'Consulting our local experts...',
+    'Selecting perfect experiences...',
+    'Crafting your Sri Lanka story...'
+  ];
+  let i = 0;
+  const bar = document.getElementById('loBar');
+  const msgEl = document.getElementById('loMsg');
+  bar.style.width = '0%';
+  const interval = setInterval(() => {
+    i++;
+    bar.style.width = (i * 20) + '%';
+    if (i < msgs.length) msgEl.textContent = msgs[i];
+    if (i >= msgs.length) {
+      clearInterval(interval);
+      setTimeout(showResults, 600);
+    }
+  }, 700);
+}
+
+function showResults() {
+  document.getElementById('loadingOverlay').classList.remove('active');
+  document.getElementById('planner').style.display = 'none';
+  document.getElementById('resultSection').style.display = 'block';
+  buildItinerary();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ════════════════════════════════════════
+//  BUILD ITINERARY
+// ════════════════════════════════════════
+function buildItinerary() {
+  const dur = getTripDuration();
+  const closest = closestDuration(dur);
+  let indices = [...daySelections[closest]];
+
+  // Swap logic: wildlife preference, no beaches
+  if (state.interests.includes('wildlife') && !state.interests.includes('beaches')) {
+    const beachIdx = indices.indexOf(8); // mirissa/whale
+    if (beachIdx !== -1) indices[beachIdx] = 11; // yala
+  }
+
+  // Departure day
+  const departureDayNum = indices.length + 1;
+  const departureCity = state.interests.includes('beaches') ? 'Mirissa / Galle → Colombo' : 'South Coast → Colombo';
+
+  // Hero
+  document.getElementById('itinDaysCount').textContent = dur + '-Day';
+
+  // Meta chips
+  const accMap = { boutique: 'Boutique Villas', eco: 'Eco-Lodges', hotel: 'Standard Hotels', homestay: 'Homestays' };
+  const budMap = { economy: 'Economy', mid: 'Mid-Range', luxury: 'Luxury', ultra: 'Ultra-Luxury' };
+  const ttMap = { couple: 'Couple', solo: 'Solo Traveller', family: 'Family', group: 'Group' };
+  const dateStr = state.flexDates
+    ? (document.getElementById('prefMonth').value || '')
+    : (state.arrDate ? state.arrDate : '');
+  const chips = [
+    `✈️ ${dur} Days`,
+    `👤 ${ttMap[state.travelerType] || 'Traveller'} · ${state.numTrav}`,
+    state.accomm ? `🏨 ${accMap[state.accomm]}` : null,
+    state.budget ? `💫 ${budMap[state.budget]}` : null,
+    dateStr ? `📅 ${dateStr}` : null
+  ].filter(Boolean);
+  document.getElementById('itinMetaChips').innerHTML = chips.map(c => `<span class="itin-meta-chip">${c}</span>`).join('');
+
+  // Interest pills
+  document.getElementById('itinInterestTags').innerHTML = state.interests
+    .map(i => `<span class="itin-interest-pill">${i}</span>`).join('');
+
+  // Days sub
+  document.getElementById('itinDaysSub').textContent =
+    `${dur} days crafted around your interests: ${state.interests.join(', ') || 'your chosen experiences'}.`;
+
+  // Timeline
+  const timeline = document.getElementById('itinTimeline');
+  timeline.innerHTML = '';
+
+  indices.forEach((masterIdx, dayIdx) => {
+    const d = masterDays[masterIdx];
+    const dayNum = String(dayIdx + 1).padStart(2, '0');
+    timeline.insertAdjacentHTML('beforeend', `
+      <div class="day-entry">
+        <div class="day-left">
+          <div class="day-num-big">${dayNum}</div>
+          <div class="day-num-word">Day</div>
+          <div class="day-vert-line"></div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-top">
+            <span class="day-icon-badge">${d.icon}</span>
+            <span class="day-location">${d.location}</span>
+          </div>
+          <h3 class="day-card-title">${d.title}</h3>
+          <p class="day-card-desc">${d.desc}</p>
+          <div class="day-tags-row">${d.highlights.map(h => `<span class="day-tag">${h}</span>`).join('')}</div>
+          <div class="day-overnight">🌙 <strong>Overnight:</strong> ${d.overnight}</div>
+        </div>
+      </div>`);
+  });
+
+  // Departure day
+  timeline.insertAdjacentHTML('beforeend', `
+    <div class="day-entry">
+      <div class="day-left">
+        <div class="day-num-big">${String(departureDayNum).padStart(2,'0')}</div>
+        <div class="day-num-word">Day</div>
+        <div class="day-vert-line"></div>
+      </div>
+      <div class="day-card">
+        <div class="day-card-top">
+          <span class="day-icon-badge">✈️</span>
+          <span class="day-location">${departureCity}</span>
+        </div>
+        <h3 class="day-card-title">Farewell to the Pearl of the Indian Ocean</h3>
+        <p class="day-card-desc">Your final morning in paradise. A leisurely breakfast, last-minute shopping for Ceylon tea, spices, or gems, and a reflective drive to Bandaranaike International Airport. As the island disappears beneath the clouds, you'll already be planning your return.</p>
+        <div class="day-tags-row">
+          <span class="day-tag">Airport transfer included</span>
+          <span class="day-tag">Last souvenir shopping</span>
+          <span class="day-tag">Farewell breakfast</span>
+        </div>
+        <div class="day-overnight">✈️ <strong>Departure</strong> — safe travels!</div>
+      </div>
+    </div>`);
+
+  // CTA confirm box
+  const wa = state.whatsapp ? `+${state.whatsapp.replace(/\D/g,'')}` : '+94 76 896 7441';
+  document.getElementById('itinConfirmBox').innerHTML = `
+    <div class="icb-row"><div class="icb-icon">📧</div><div class="icb-text">A detailed itinerary will be sent to <strong>${state.email}</strong> within 24 hours.</div></div>
+    <div class="icb-row"><div class="icb-icon">💬</div><div class="icb-text">Prefer to talk? WhatsApp us now at <strong>+94 76 896 7441</strong> — we're here 7 days a week.</div></div>
+    <div class="icb-row"><div class="icb-icon">✦</div><div class="icb-text">This is a complimentary preview. <strong>No payment or commitment required.</strong></div></div>`;
+}
+</script>
+</body>
+</html>

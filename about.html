@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Serendip Go</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip.html">Plan Trip</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+  <div class="about-hero">
+    <div class="eyebrow" style="color:var(--gold);justify-content:center"><span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span> Our Story <span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span></div>
+    <h1>Crafting Extraordinary<br>Sri Lanka Journeys<br><em style="font-style:italic;color:var(--gold)">Since 2003</em></h1>
+    <p>For over two decades, Serendip Go has been introducing the world to the wonder, warmth, and beauty of Sri Lanka — one tailor-made adventure at a time.</p>
+  </div>
+
+  <div class="about-story">
+    <div class="about-story-text">
+      <div class="eyebrow" style="justify-content:flex-start">Our Beginning</div>
+      <h2>Born from a passion for this extraordinary island</h2>
+      <p>Serendip Go was founded in 2003 by Rohan Silva, a Sri Lankan travel enthusiast who believed that the world deserved to experience his home island beyond the tourist brochures. Starting with just three dedicated team members and a single 4x4, we've grown into one of Sri Lanka's most trusted inbound travel companies.</p>
+      <p>Today, our team of 40 passionate travel professionals — all deeply rooted in Sri Lankan culture and geography — craft journeys for thousands of international visitors each year. From honeymooners in boutique Galle hotels to wildlife photographers in Yala, we serve every kind of traveller.</p>
+      <p>We are proud members of the Sri Lanka Tourism Alliance, certified by the Sri Lanka Tourism Development Authority, and winners of the Island's Choice Travel Award for seven consecutive years.</p>
+      <a href="contact.html" class="btn-primary">Plan Your Journey</a>
+    </div>
+    <div class="about-visual">
+      <div style="width:75%;height:380px;background-image:url('images/about-landscape.jpg');background-size:cover;background-position:center;position:absolute;right:0;top:0;"></div>
+      <div style="width:50%;height:220px;background-image:url('images/sigiriya.jpg');background-size:cover;background-position:center;position:absolute;left:0;bottom:0;border:6px solid var(--cream);"></div>
+      <div class="about-badge">
+        <div class="num">20+</div>
+        <div class="lbl">Years of Excellence</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mv-grid">
+    <div class="mv-card">
+      <div style="font-size:2.5rem;margin-bottom:1rem">🌟</div>
+      <h3>Our Mission</h3>
+      <p>To create deeply personal, culturally rich, and responsibly managed travel experiences that reveal the true heart of Sri Lanka — its people, landscapes, wildlife, and ancient heritage — while contributing positively to local communities and conservation.</p>
+    </div>
+    <div class="mv-card">
+      <div style="font-size:2.5rem;margin-bottom:1rem">🔭</div>
+      <h3>Our Vision</h3>
+      <p>To be the most trusted and celebrated gateway to Sri Lanka for international travellers — where every journey is extraordinary, every traveller feels valued, and every experience is designed to create lifelong memories and a lasting love for this pearl of the Indian Ocean.</p>
+    </div>
+  </div>
+
+  <div class="team-section">
+    <div class="section-header">
+      <div class="eyebrow">Meet the Team</div>
+      <h2 class="section-title">The People Behind <em>Your Journey</em></h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div style="width:100%;height:250px;background-image:url('images/team-rohan.jpg');background-size:cover;background-position:center top;"></div>
+        <div class="team-name">Rohan Silva</div>
+        <div class="team-role">Founder & CEO</div>
+      </div>
+      <div class="team-card">
+        <div style="width:100%;height:250px;background-image:url('images/team-priya.jpg');background-size:cover;background-position:center top;"></div>
+        <div class="team-name">Priya Fernando</div>
+        <div class="team-role">Head of Operations</div>
+      </div>
+      <div class="team-card">
+        <div style="width:100%;height:250px;background-image:url('images/team-nimal.jpg');background-size:cover;background-position:center top;"></div>
+        <div class="team-name">Nimal Perera</div>
+        <div class="team-role">Lead Wildlife Guide</div>
+      </div>
+      <div class="team-card">
+        <div style="width:100%;height:250px;background-image:url('images/team-amali.jpg');background-size:cover;background-position:center top;"></div>
+        <div class="team-name">Amali Wickrama</div>
+        <div class="team-role">Senior Travel Consultant</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="why-us" style="background:var(--sand);padding:5rem 8%">
+    <div class="section-header">
+      <div class="eyebrow">Why Choose Us</div>
+      <h2 class="section-title">What Sets Serendip Go <em>Apart</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">🏆</div>
+        <div class="why-title">Award Winning</div>
+        <p class="why-text">Recognised as Sri Lanka's best boutique tour operator for 7 consecutive years by the Island's Choice Travel Awards.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🌍</div>
+        <div class="why-title">5,000+ Happy Clients</div>
+        <p class="why-text">Travellers from over 40 countries trust us to show them the real Sri Lanka, year after year.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🌱</div>
+        <div class="why-title">Responsible Tourism</div>
+        <p class="why-text">We are committed to eco-friendly travel, supporting local communities, and protecting Sri Lanka's natural heritage.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🔒</div>
+        <div class="why-title">Fully Licensed & Insured</div>
+        <p class="why-text">Certified by SLTDA (Sri Lanka Tourism Development Authority) and fully bonded — your travel investment is protected.</p>
+      </div>
+    </div>
+  </section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
+      <div class="social-row" style="margin-top:1.5rem">
+        <a href="#" class="social-btn">📷</a>
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="destinations.html">Sigiriya</a>
+      <a href="destinations.html">Kandy</a>
+      <a href="destinations.html">Ella</a>
+      <a href="destinations.html">Galle</a>
+      <a href="destinations.html">Yala National Park</a>
+      <a href="destinations.html">Nuwara Eliya</a>
+      <a href="destinations.html">Trincomalee</a>
+    </div>
+    <div class="footer-col">
+      <h4>Packages</h4>
+      <a href="packages.html">Luxury Tours</a>
+      <a href="packages.html">Adventure Tours</a>
+      <a href="packages.html">Honeymoon Packages</a>
+      <a href="packages.html">Wildlife Safaris</a>
+      <a href="packages.html">Cultural Tours</a>
+      <a href="packages.html">Family Packages</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog & Travel Guides</a>
+      <a href="contact.html">Testimonials</a>
+      <a href="contact.html">FAQ</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved. SLTDA Reg. No. SLTDA/SQA/T/0123</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

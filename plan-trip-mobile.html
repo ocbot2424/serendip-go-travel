@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Plan Your Trip — Serendip Go</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+
+/* ═══════════════════════════════════════
+   MOBILE TRIP PLANNER
+═══════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: #f5f1eb;
+  min-height: 100vh;
+  overscroll-behavior: none;
+}
+
+/* ── TOP HERO ── */
+.mph-hero {
+  background: var(--deep);
+  padding: 5.5rem 1.4rem 2.2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.mph-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('images/tea-plantation.jpg') center/cover no-repeat;
+  opacity: 0.12;
+}
+.mph-hero > * { position: relative; z-index: 1; }
+.mph-eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.9rem;
+}
+.mph-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  color: white;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 0.7rem;
+}
+.mph-hero h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.mph-hero-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+/* ── STEP PROGRESS BAR ── */
+.mph-progress-wrap {
+  background: var(--deep);
+  padding: 0 1.4rem 1.6rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.mph-steps-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.mph-step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 0.45rem;
+}
+.mph-step-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201,151,58,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: rgba(201,151,58,0.3);
+  transition: all 0.35s;
+  background: transparent;
+}
+.mph-step-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.48rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  transition: color 0.35s;
+  white-space: nowrap;
+}
+.mph-step-connector {
+  flex: 0 0 24px;
+  height: 1px;
+  background: rgba(201,151,58,0.12);
+  margin-bottom: 1.4rem;
+}
+.mph-step-item.active .mph-step-circle {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: #1a0a00;
+}
+.mph-step-item.active .mph-step-label { color: rgba(255,255,255,0.65); }
+.mph-step-item.done .mph-step-circle {
+  border-color: rgba(201,151,58,0.45);
+  color: var(--gold);
+  background: transparent;
+}
+.mph-step-item.done .mph-step-label { color: rgba(255,255,255,0.3); }
+
+/* ── CONTENT AREA ── */
+.mph-content {
+  padding: 0 0 120px;
+}
+
+.mph-step { display: none; }
+.mph-step.active {
+  display: block;
+  animation: mphFadeUp 0.38s ease both;
+}
+@keyframes mphFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTION CARD ── */
+.mph-card {
+  background: white;
+  margin: 1rem 1rem 0;
+  border-radius: 10px;
+  padding: 1.6rem 1.4rem;
+  border: 1px solid rgba(201,151,58,0.1);
+}
+.mph-card-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(26,10,0,0.35);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.mph-card-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(201,151,58,0.12);
+}
+
+/* ── DATE TOGGLE ── */
+.mph-date-toggle {
+  display: flex;
+  border: 1px solid rgba(201,151,58,0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.4rem;
+}
+.mph-dt-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0.85rem 0.5rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(26,10,0,0.4);
+  cursor: pointer;
+  transition: all 0.22s;
+}
+.mph-dt-btn.active {
+  background: var(--deep);
+  color: var(--gold);
+}
+
+/* ── FORM FIELDS ── */
+.mph-field {
+  margin-bottom: 1.6rem;
+}
+.mph-field label {
+  display: block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(26,10,0,0.38);
+  margin-bottom: 0.55rem;
+}
+.mph-field input,
+.mph-field select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(201,151,58,0.25);
+  padding: 0.6rem 0;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--deep);
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+.mph-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c9973a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.3rem center;
+  padding-right: 1.8rem;
+  cursor: pointer;
+}
+.mph-field input:focus,
+.mph-field select:focus { border-bottom-color: var(--gold); }
+.mph-field input.err,
+.mph-field select.err { border-bottom-color: #c0392b; }
+.mph-field input::placeholder { color: rgba(26,10,0,0.22); }
+.mph-field-error {
+  display: block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  color: #c0392b;
+  margin-top: 0.35rem;
+  min-height: 1em;
+  letter-spacing: 0.3px;
+}
+.mph-field textarea {
+  width: 100%;
+  background: transparent;
+  border: 1.5px solid rgba(201,151,58,0.18);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.85rem;
+  color: var(--deep);
+  outline: none;
+  resize: none;
+  min-height: 90px;
+  line-height: 1.7;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.mph-field textarea:focus { border-color: var(--gold); }
+.mph-field textarea::placeholder { color: rgba(26,10,0,0.22); }
+
+/* ── DURATION BADGE ── */
+.mph-dur-badge {
+  display: none;
+  background: var(--deep);
+  color: var(--gold);
+  border-radius: 50px;
+  padding: 0.5rem 1.1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.3px;
+  margin-top: 0.8rem;
+  width: fit-content;
+}
+.mph-dur-badge.show {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: mphPopIn 0.32s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes mphPopIn { from { opacity:0; transform:scale(0.7); } to { opacity:1; transform:scale(1); } }
+
+/* ── TRAVELER TYPE GRID ── */
+.mph-tt-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.mph-tt-card {
+  background: #faf8f4;
+  border: 1.5px solid rgba(201,151,58,0.15);
+  border-radius: 10px;
+  padding: 1.1rem 0.8rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mph-tt-card:active { transform: scale(0.97); }
+.mph-tt-card.sel { border-color: var(--gold); background: #fffcf4; box-shadow: 0 0 0 1px var(--gold); }
+.mph-tt-emoji { font-size: 2rem; margin-bottom: 0.35rem; }
+.mph-tt-name {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--deep);
+}
+
+/* ── TRAVELER STEPPER ── */
+.mph-stepper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+}
+.mph-stepper-lbl {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(26,10,0,0.4);
+}
+.mph-num-stepper {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid rgba(201,151,58,0.25);
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+.mph-num-stepper button {
+  background: none;
+  border: none;
+  width: 46px;
+  height: 46px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.mph-num-stepper button:active { background: #fff8e8; }
+.mph-stepper-val {
+  width: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  color: var(--deep);
+  border-left: 1px solid rgba(201,151,58,0.18);
+  border-right: 1px solid rgba(201,151,58,0.18);
+  font-weight: 600;
+}
+
+/* ── INTEREST TILES ── */
+.mph-int-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+.mph-int-tile {
+  position: relative;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2.5px solid transparent;
+  transition: border-color 0.22s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mph-int-tile.sel { border-color: var(--gold); }
+.mph-int-tile-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.mph-int-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,3,0,0.72) 0%, rgba(10,3,0,0.2) 100%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+.mph-int-emoji { font-size: 1.1rem; flex-shrink: 0; }
+.mph-int-name {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.54rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.3;
+}
+.mph-int-check {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: 900;
+  color: #1a0a00;
+  opacity: 0;
+  transform: scale(0.3);
+  transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+.mph-int-tile.sel .mph-int-check { opacity: 1; transform: scale(1); }
+.mph-int-error {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  color: #c0392b;
+  margin-top: 0.8rem;
+  text-align: center;
+  display: none;
+}
+.mph-int-error.show { display: block; }
+
+/* ── OPTION CARDS (accomm / budget) ── */
+.mph-opt-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+.mph-opt-card {
+  background: #faf8f4;
+  border: 1.5px solid rgba(201,151,58,0.15);
+  border-radius: 10px;
+  padding: 1.2rem 0.8rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mph-opt-card:active { transform: scale(0.97); }
+.mph-opt-card.sel {
+  border-color: var(--gold);
+  background: #fffcf4;
+  box-shadow: 0 0 0 1px var(--gold);
+}
+.mph-opt-icon { font-size: 1.6rem; margin-bottom: 0.4rem; }
+.mph-opt-name {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.56rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--deep);
+  margin-bottom: 0.2rem;
+}
+.mph-opt-desc {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.56rem;
+  color: rgba(26,10,0,0.38);
+  line-height: 1.45;
+}
+
+/* ── TRIP SUMMARY ── */
+.mph-summary {
+  background: var(--deep);
+  margin: 1rem 1rem 0;
+  border-radius: 10px;
+  padding: 1.4rem 1.4rem;
+}
+.mph-summary-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.48rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 1.1rem;
+}
+.mph-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem 1.4rem;
+}
+.mph-summary-item-full {
+  grid-column: 1 / -1;
+}
+.mph-sum-lbl {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.48rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+  margin-bottom: 0.2rem;
+}
+.mph-sum-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--gold);
+  line-height: 1.2;
+}
+.mph-sum-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+.mph-sum-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  color: rgba(255,255,255,0.42);
+  background: rgba(255,255,255,0.06);
+  padding: 0.18rem 0.55rem;
+  border-radius: 2px;
+}
+
+/* ── STEP 1 HEADING ── */
+.mph-step-heading {
+  padding: 1.6rem 1.4rem 0.2rem;
+}
+.mph-step-heading .ey {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.mph-step-heading h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--deep);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+.mph-step-heading h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.mph-step-heading p {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(26,10,0,0.38);
+  line-height: 1.65;
+  letter-spacing: 0.2px;
+}
+
+/* ── STICKY BOTTOM NAV ── */
+.mph-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid rgba(201,151,58,0.15);
+  padding: 0.85rem 1.2rem calc(0.85rem + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 200;
+  gap: 0.8rem;
+}
+.mph-btn-back {
+  background: none;
+  border: 1.5px solid rgba(201,151,58,0.25);
+  color: rgba(26,10,0,0.5);
+  padding: 0 1.2rem;
+  height: 50px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+  min-width: 80px;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.mph-btn-back:active { background: #f5f0e8; }
+.mph-btn-next {
+  flex: 1;
+  background: var(--deep);
+  border: none;
+  color: white;
+  height: 50px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.22s;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.mph-btn-next:active { background: #3a1a00; }
+.mph-btn-submit {
+  flex: 1;
+  background: var(--gold);
+  border: none;
+  color: #1a0a00;
+  height: 50px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.22s;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.mph-btn-submit:active { background: #b88830; }
+
+/* ── LOADING OVERLAY ── */
+.mph-loading {
+  position: fixed;
+  inset: 0;
+  background: var(--deep);
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+  text-align: center;
+  padding: 2rem;
+}
+.mph-loading.active { display: flex; }
+.mph-lo-brand { font-family: 'Dancing Script', cursive; font-size: 2rem; color: var(--gold); }
+.mph-lo-spinner {
+  width: 52px; height: 52px;
+  border: 2px solid rgba(201,151,58,0.12);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: mphSpin 0.85s linear infinite;
+}
+@keyframes mphSpin { to { transform: rotate(360deg); } }
+.mph-lo-msg {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  color: white;
+  font-style: italic;
+  min-height: 2.2rem;
+  padding: 0 1.5rem;
+}
+.mph-lo-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+.mph-lo-bar-wrap {
+  width: 180px; height: 2px;
+  background: rgba(201,151,58,0.12);
+  border-radius: 2px; overflow: hidden;
+}
+.mph-lo-bar {
+  height: 100%; background: var(--gold);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+/* ── RESULTS ── */
+#mphResult { display: none; padding-bottom: 5rem; }
+
+.mph-result-hero {
+  background: var(--deep);
+  padding: 5.5rem 1.4rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.mph-result-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('images/about-landscape.jpg') center/cover no-repeat;
+  opacity: 0.1;
+}
+.mph-result-hero > * { position: relative; z-index: 1; }
+.mph-result-eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+.mph-result-eyebrow::before,
+.mph-result-eyebrow::after { content: ''; height: 1px; width: 24px; background: var(--gold); display: block; }
+.mph-result-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  color: white;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1.4rem;
+}
+.mph-result-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+.mph-result-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+}
+.mph-result-chip {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(201,151,58,0.2);
+  padding: 0.28rem 0.85rem;
+  border-radius: 2px;
+}
+.mph-result-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.mph-result-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.52rem;
+  color: #1a0a00;
+  background: var(--gold);
+  padding: 0.22rem 0.7rem;
+  border-radius: 2px;
+}
+
+/* Day timeline (mobile) */
+.mph-days-section {
+  padding: 2.5rem 1rem 3rem;
+  background: #f5f1eb;
+}
+.mph-days-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+.mph-days-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--deep);
+  font-weight: 600;
+  line-height: 1.1;
+}
+.mph-days-header h2 em { font-style: italic; color: var(--gold); }
+.mph-days-header p {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.66rem;
+  color: rgba(26,10,0,0.4);
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+.mph-day-card {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid rgba(201,151,58,0.12);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+.mph-day-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+}
+.mph-day-card-inner { padding: 1.3rem 1.3rem 1.3rem 1.6rem; }
+.mph-day-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.mph-day-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 2.2rem;
+}
+.mph-day-meta { flex: 1; min-width: 0; }
+.mph-day-location {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.2rem;
+}
+.mph-day-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  color: var(--deep);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.mph-day-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.mph-day-desc {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  color: rgba(26,10,0,0.5);
+  line-height: 1.85;
+  margin-bottom: 0.9rem;
+}
+.mph-day-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+.mph-day-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.55rem;
+  color: rgba(26,10,0,0.45);
+  background: #f5f1eb;
+  padding: 0.22rem 0.65rem;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.mph-day-tag::before { content: '✓'; color: var(--gold); font-weight: 700; }
+.mph-day-overnight {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  color: rgba(26,10,0,0.38);
+  border-top: 1px solid rgba(201,151,58,0.1);
+  padding-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.mph-day-overnight strong { color: var(--deep); }
+
+/* CTA section */
+.mph-cta-section {
+  background: var(--deep);
+  padding: 3rem 1.4rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.mph-cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('images/beach.jpg') center/cover no-repeat;
+  opacity: 0.07;
+}
+.mph-cta-inner { position: relative; z-index: 1; }
+.mph-confirm-box {
+  background: rgba(201,151,58,0.08);
+  border: 1px solid rgba(201,151,58,0.18);
+  border-radius: 8px;
+  padding: 1.3rem 1.3rem;
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+.mph-icb-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.mph-icb-row:last-child { border-bottom: none; }
+.mph-icb-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+.mph-icb-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.66rem;
+  color: rgba(255,255,255,0.42);
+  line-height: 1.6;
+}
+.mph-icb-text strong { color: var(--gold); }
+.mph-cta-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: white;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 0.85rem;
+}
+.mph-cta-title em { font-style: italic; color: var(--gold); }
+.mph-cta-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.32);
+  line-height: 1.9;
+  margin-bottom: 2rem;
+}
+.mph-cta-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.mph-cta-btns a {
+  display: block;
+  text-align: center;
+  padding: 0.95rem 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.22s;
+}
+.mph-cta-btns .btn-primary { background: var(--gold); color: #1a0a00; font-weight: 700; border: none; }
+.mph-cta-btns .mph-btn-ghost {
+  background: none;
+  border: 1px solid rgba(201,151,58,0.3);
+  color: rgba(255,255,255,0.55);
+}
+
+/* optional label */
+.mph-opt-lbl {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.54rem;
+  color: rgba(26,10,0,0.28);
+  font-style: italic;
+  margin-left: 0.3rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* spacer at bottom of last card in each step (above fixed nav) */
+.mph-step-last-spacer { height: 1rem; }
+
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip-mobile.html" class="active">Plan Trip</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip-mobile.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+<!-- ══════════════ PLANNER ══════════════ -->
+<div id="mphPlanner">
+
+  <!-- Hero -->
+  <div class="mph-hero">
+    <div class="mph-hero-bg"></div>
+    <div class="mph-eyebrow">Custom Trip Planner</div>
+    <h1>Design Your <em>Perfect</em> Journey</h1>
+    <p class="mph-hero-sub">Three steps · Personalised itinerary · 24 hours</p>
+  </div>
+
+  <!-- Progress bar (sticky) -->
+  <div class="mph-progress-wrap">
+    <div class="mph-steps-row">
+      <div class="mph-step-item active" id="mplbl1">
+        <div class="mph-step-circle">1</div>
+        <div class="mph-step-label">The Basics</div>
+      </div>
+      <div class="mph-step-connector"></div>
+      <div class="mph-step-item" id="mplbl2">
+        <div class="mph-step-circle">2</div>
+        <div class="mph-step-label">Your Vibe</div>
+      </div>
+      <div class="mph-step-connector"></div>
+      <div class="mph-step-item" id="mplbl3">
+        <div class="mph-step-circle">3</div>
+        <div class="mph-step-label">Your Details</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="mph-content">
+
+    <!-- ─── STEP 1 ─── -->
+    <div class="mph-step active" id="mphStep1">
+      <div class="mph-step-heading">
+        <div class="ey">Step 1 of 3</div>
+        <h2>When Are You <em>Travelling?</em></h2>
+        <p>Tell us your dates and who's joining you on the adventure.</p>
+      </div>
+
+      <!-- Dates card -->
+      <div class="mph-card">
+        <div class="mph-card-title">Travel Dates</div>
+
+        <!-- Date type toggle -->
+        <div class="mph-date-toggle">
+          <button class="mph-dt-btn active" id="mphBtnExact" onclick="mphToggleDates(false)">Exact Dates</button>
+          <button class="mph-dt-btn" id="mphBtnFlex" onclick="mphToggleDates(true)">Flexible</button>
+        </div>
+
+        <!-- Exact dates -->
+        <div id="mphExactPanel">
+          <div class="mph-field">
+            <label for="mphArr">Arrival Date</label>
+            <input type="date" id="mphArr" onchange="mphCalcDuration()">
+            <span class="mph-field-error" id="mphArrErr"></span>
+          </div>
+          <div class="mph-field">
+            <label for="mphDep">Departure Date</label>
+            <input type="date" id="mphDep" onchange="mphCalcDuration()">
+            <span class="mph-field-error" id="mphDepErr"></span>
+          </div>
+          <div class="mph-dur-badge" id="mphDurBadge"><span>✈️</span><span id="mphDurText"></span></div>
+        </div>
+
+        <!-- Flexible dates -->
+        <div id="mphFlexPanel" style="display:none">
+          <div class="mph-field">
+            <label for="mphMonth">Preferred Month</label>
+            <select id="mphMonth">
+              <option value="">Select a month</option>
+              <option>January</option><option>February</option><option>March</option>
+              <option>April</option><option>May</option><option>June</option>
+              <option>July</option><option>August</option><option>September</option>
+              <option>October</option><option>November</option><option>December</option>
+            </select>
+            <span class="mph-field-error" id="mphMonthErr"></span>
+          </div>
+          <div class="mph-field">
+            <label for="mphDur">Approximate Duration</label>
+            <select id="mphDur">
+              <option value="">How long?</option>
+              <option value="5">Around 5 days</option>
+              <option value="7">7 – 8 days</option>
+              <option value="10">10 – 12 days</option>
+              <option value="14">14+ days</option>
+            </select>
+            <span class="mph-field-error" id="mphDurErr"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Who's coming card -->
+      <div class="mph-card">
+        <div class="mph-card-title">Who's Coming?</div>
+        <div class="mph-tt-grid">
+          <div class="mph-tt-card sel" data-type="couple" onclick="mphSelTT(this)">
+            <div class="mph-tt-emoji">💑</div>
+            <div class="mph-tt-name">Couple</div>
+          </div>
+          <div class="mph-tt-card" data-type="solo" onclick="mphSelTT(this)">
+            <div class="mph-tt-emoji">🧳</div>
+            <div class="mph-tt-name">Solo</div>
+          </div>
+          <div class="mph-tt-card" data-type="family" onclick="mphSelTT(this)">
+            <div class="mph-tt-emoji">👨‍👩‍👧‍👦</div>
+            <div class="mph-tt-name">Family</div>
+          </div>
+          <div class="mph-tt-card" data-type="group" onclick="mphSelTT(this)">
+            <div class="mph-tt-emoji">👥</div>
+            <div class="mph-tt-name">Group</div>
+          </div>
+        </div>
+        <div class="mph-stepper-row">
+          <span class="mph-stepper-lbl">Number of Travellers</span>
+          <div class="mph-num-stepper">
+            <button onclick="mphChangeTrav(-1)">−</button>
+            <div class="mph-stepper-val" id="mphTravVal">2</div>
+            <button onclick="mphChangeTrav(1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mph-step-last-spacer"></div>
+    </div>
+
+    <!-- ─── STEP 2 ─── -->
+    <div class="mph-step" id="mphStep2">
+      <div class="mph-step-heading">
+        <div class="ey">Step 2 of 3</div>
+        <h2>What's Your <em>Vibe?</em></h2>
+        <p>Select all the experiences that excite you most.</p>
+      </div>
+
+      <!-- Interests card -->
+      <div class="mph-card">
+        <div class="mph-card-title">Travel Interests</div>
+        <div class="mph-int-grid" id="mphIntGrid">
+          <div class="mph-int-tile" data-interest="beaches" onclick="mphToggleInt(this)">
+            <div class="mph-int-tile-bg" style="background-image:url('images/beach.jpg')"></div>
+            <div class="mph-int-shade"><span class="mph-int-emoji">🏖️</span><span class="mph-int-name">Beaches</span></div>
+            <div class="mph-int-check">✓</div>
+          </div>
+          <div class="mph-int-tile" data-interest="wildlife" onclick="mphToggleInt(this)">
+            <div class="mph-int-tile-bg" style="background-image:url('images/yala-leopard.jpg')"></div>
+            <div class="mph-int-shade"><span class="mph-int-emoji">🦁</span><span class="mph-int-name">Wildlife</span></div>
+            <div class="mph-int-check">✓</div>
+          </div>
+          <div class="mph-int-tile" data-interest="culture" onclick="mphToggleInt(this)">
+            <div class="mph-int-tile-bg" style="background-image:url('images/sigiriya.jpg')"></div>
+            <div class="mph-int-shade"><span class="mph-int-emoji">🏛️</span><span class="mph-int-name">Culture</span></div>
+            <div class="mph-int-check">✓</div>
+          </div>
+          <div class="mph-int-tile" data-interest="hiking" onclick="mphToggleInt(this)">
+            <div class="mph-int-tile-bg" style="background-image:url('images/about-landscape.jpg')"></div>
+            <div class="mph-int-shade"><span class="mph-int-emoji">🏔️</span><span class="mph-int-name">Hiking</span></div>
+            <div class="mph-int-check">✓</div>
+          </div>
+          <div class="mph-int-tile" data-interest="food" onclick="mphToggleInt(this)">
+            <div class="mph-int-tile-bg" style="background-image:url('images/sri-lanka-food.jpg')"></div>
+            <div class="mph-int-shade"><span class="mph-int-emoji">🍛</span><span class="mph-int-name">Food &amp; Cuisine</span></div>
+            <div class="mph-int-check">✓</div>
+          </div>
+          <div class="mph-int-tile" data-interest="wellness" onclick="mphToggleInt(this)">
+            <div class="mph-int-tile-bg" style="background-image:url('images/kandy.jpg')"></div>
+            <div class="mph-int-shade"><span class="mph-int-emoji">🧘</span><span class="mph-int-name">Wellness</span></div>
+            <div class="mph-int-check">✓</div>
+          </div>
+          <div class="mph-int-tile" data-interest="tea" onclick="mphToggleInt(this)">
+            <div class="mph-int-tile-bg" style="background-image:url('images/tea-plantation.jpg')"></div>
+            <div class="mph-int-shade"><span class="mph-int-emoji">🌿</span><span class="mph-int-name">Tea Plantations</span></div>
+            <div class="mph-int-check">✓</div>
+          </div>
+          <div class="mph-int-tile" data-interest="watersports" onclick="mphToggleInt(this)">
+            <div class="mph-int-tile-bg" style="background-image:url('images/family-beach.jpg')"></div>
+            <div class="mph-int-shade"><span class="mph-int-emoji">🚣</span><span class="mph-int-name">Water Sports</span></div>
+            <div class="mph-int-check">✓</div>
+          </div>
+          <div class="mph-int-tile" data-interest="elephants" onclick="mphToggleInt(this)">
+            <div class="mph-int-tile-bg" style="background-image:url('images/elephant.jpg')"></div>
+            <div class="mph-int-shade"><span class="mph-int-emoji">🐘</span><span class="mph-int-name">Elephants</span></div>
+            <div class="mph-int-check">✓</div>
+          </div>
+          <div class="mph-int-tile" data-interest="romance" onclick="mphToggleInt(this)">
+            <div class="mph-int-tile-bg" style="background-image:url('images/romantic-beach.jpg')"></div>
+            <div class="mph-int-shade"><span class="mph-int-emoji">💑</span><span class="mph-int-name">Romance</span></div>
+            <div class="mph-int-check">✓</div>
+          </div>
+        </div>
+        <div class="mph-int-error" id="mphIntErr">Please select at least one interest to continue.</div>
+      </div>
+
+      <!-- Accommodation card -->
+      <div class="mph-card">
+        <div class="mph-card-title">Accommodation Style</div>
+        <div class="mph-opt-grid">
+          <div class="mph-opt-card" data-accomm="boutique" onclick="mphSelAccomm(this)">
+            <div class="mph-opt-icon">🏰</div>
+            <div class="mph-opt-name">Boutique Villas</div>
+            <div class="mph-opt-desc">Intimate, design-led properties</div>
+          </div>
+          <div class="mph-opt-card" data-accomm="eco" onclick="mphSelAccomm(this)">
+            <div class="mph-opt-icon">🌿</div>
+            <div class="mph-opt-name">Eco-Lodges</div>
+            <div class="mph-opt-desc">Sustainable stays in nature</div>
+          </div>
+          <div class="mph-opt-card" data-accomm="hotel" onclick="mphSelAccomm(this)">
+            <div class="mph-opt-icon">🏨</div>
+            <div class="mph-opt-name">Standard Hotels</div>
+            <div class="mph-opt-desc">Comfortable & well-located</div>
+          </div>
+          <div class="mph-opt-card" data-accomm="homestay" onclick="mphSelAccomm(this)">
+            <div class="mph-opt-icon">🏡</div>
+            <div class="mph-opt-name">Homestays</div>
+            <div class="mph-opt-desc">Authentic local experiences</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Budget card -->
+      <div class="mph-card">
+        <div class="mph-card-title">Budget Range</div>
+        <div class="mph-opt-grid">
+          <div class="mph-opt-card" data-budget="economy" onclick="mphSelBudget(this)">
+            <div class="mph-opt-icon">🎒</div>
+            <div class="mph-opt-name">Economy</div>
+            <div class="mph-opt-desc">Smart travel, great value</div>
+          </div>
+          <div class="mph-opt-card" data-budget="mid" onclick="mphSelBudget(this)">
+            <div class="mph-opt-icon">✨</div>
+            <div class="mph-opt-name">Mid-Range</div>
+            <div class="mph-opt-desc">Comfort and quality</div>
+          </div>
+          <div class="mph-opt-card" data-budget="luxury" onclick="mphSelBudget(this)">
+            <div class="mph-opt-icon">🌟</div>
+            <div class="mph-opt-name">Luxury</div>
+            <div class="mph-opt-desc">Premium experiences</div>
+          </div>
+          <div class="mph-opt-card" data-budget="ultra" onclick="mphSelBudget(this)">
+            <div class="mph-opt-icon">👑</div>
+            <div class="mph-opt-name">Ultra-Luxury</div>
+            <div class="mph-opt-desc">Nothing off the table</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mph-step-last-spacer"></div>
+    </div>
+
+    <!-- ─── STEP 3 ─── -->
+    <div class="mph-step" id="mphStep3">
+      <div class="mph-step-heading">
+        <div class="ey">Step 3 of 3</div>
+        <h2>Where Should We Send <em>Your Itinerary?</em></h2>
+        <p>Our specialists will craft and send your personalised plan within 24 hours.</p>
+      </div>
+
+      <!-- Summary -->
+      <div class="mph-summary" id="mphSummary"></div>
+
+      <!-- Details card -->
+      <div class="mph-card">
+        <div class="mph-card-title">Your Details</div>
+        <div class="mph-field">
+          <label for="mphName">Your Name</label>
+          <input type="text" id="mphName" placeholder="e.g. James &amp; Sophie" autocomplete="name" maxlength="100">
+          <span class="mph-field-error" id="mphNameErr"></span>
+        </div>
+        <div class="mph-field">
+          <label for="mphEmail">Email Address</label>
+          <input type="email" id="mphEmail" placeholder="your@email.com" autocomplete="email" maxlength="254">
+          <span class="mph-field-error" id="mphEmailErr"></span>
+        </div>
+        <div class="mph-field">
+          <label for="mphPhone">WhatsApp Number <span class="mph-opt-lbl">optional</span></label>
+          <input type="tel" id="mphPhone" placeholder="+1 234 567 8900" autocomplete="tel" maxlength="25">
+          <span class="mph-field-error" id="mphPhoneErr"></span>
+        </div>
+        <div class="mph-field">
+          <label for="mphNation">Nationality</label>
+          <input type="text" id="mphNation" placeholder="e.g. British, American..." maxlength="60">
+          <span class="mph-field-error" id="mphNationErr"></span>
+        </div>
+        <div class="mph-field">
+          <label for="mphNotes">Anything else we should know? <span class="mph-opt-lbl">optional</span></label>
+          <textarea id="mphNotes" placeholder="Dietary needs, special occasions, mobility requirements, must-see places..." maxlength="2000"></textarea>
+        </div>
+      </div>
+
+      <div class="mph-step-last-spacer"></div>
+    </div>
+
+  </div><!-- end mph-content -->
+
+  <!-- ── STICKY BOTTOM NAV ── -->
+  <div class="mph-bottom-nav" id="mphBottomNav">
+    <button class="mph-btn-back" id="mphBtnBack" onclick="mphGoStep(mphCurrentStep - 1)" style="display:none">← Back</button>
+    <button class="mph-btn-next" id="mphBtnNext" onclick="mphGoStep(mphCurrentStep + 1)">Continue →</button>
+    <button class="mph-btn-submit" id="mphBtnSubmit" onclick="mphSubmit()" style="display:none">✦ Generate My Itinerary</button>
+  </div>
+
+</div><!-- end mphPlanner -->
+
+<!-- ══════════════ LOADING ══════════════ -->
+<div class="mph-loading" id="mphLoading">
+  <div class="mph-lo-brand">Serendip Go</div>
+  <div class="mph-lo-spinner"></div>
+  <div class="mph-lo-msg" id="mphLoMsg">Mapping your dream journey...</div>
+  <div class="mph-lo-bar-wrap"><div class="mph-lo-bar" id="mphLoBar"></div></div>
+  <div class="mph-lo-sub">Building your personalised Sri Lanka experience</div>
+</div>
+
+<!-- ══════════════ RESULTS ══════════════ -->
+<div id="mphResult">
+  <div class="mph-result-hero">
+    <div class="mph-result-eyebrow">Your Personalised Preview</div>
+    <h2 class="mph-result-title">Your <em id="mphItinDays">10-Day</em> Sri Lanka Journey</h2>
+    <div class="mph-result-chips" id="mphMetaChips"></div>
+    <div class="mph-result-tags" id="mphInterestTags"></div>
+  </div>
+
+  <div class="mph-days-section">
+    <div class="mph-days-header">
+      <div class="mph-result-eyebrow" style="justify-content:center;display:flex;gap:.7rem;align-items:center;margin-bottom:.8rem;font-family:'Josefin Sans',sans-serif;font-size:.52rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold)">
+        <span style="height:1px;width:22px;background:var(--gold);display:block"></span>
+        Day by Day
+        <span style="height:1px;width:22px;background:var(--gold);display:block"></span>
+      </div>
+      <h2>Your Journey, <em>Unfolded</em></h2>
+      <p id="mphDaysSub">Every day crafted around your interests and travel style.</p>
+    </div>
+    <div id="mphTimeline"></div>
+  </div>
+
+  <div class="mph-cta-section">
+    <div class="mph-cta-inner">
+      <div class="mph-confirm-box" id="mphConfirmBox"></div>
+      <div style="font-family:'Josefin Sans',sans-serif;font-size:.5rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem">What Happens Next</div>
+      <h3 class="mph-cta-title">Your Journey is <em>Being Refined</em></h3>
+      <p class="mph-cta-text">
+        This preview was crafted from your preferences. Our local Sri Lanka specialists will personalise every detail —
+        accommodation, activities, pace, and hidden gems only a local would know —
+        and deliver your complete itinerary within 24 hours.
+      </p>
+      <div class="mph-cta-btns">
+        <a href="packages.html" class="btn-primary">Browse Our Packages</a>
+        <a href="contact.html" class="mph-btn-ghost">Speak to a Specialist</a>
+      </div>
+    </div>
+  </div>
+</div><!-- end mphResult -->
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="destinations.html">Destinations</a>
+      <a href="packages.html">Tour Packages</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved.</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
+<script>
+// ════════════════════════════════════════
+//  MOBILE PLANNER STATE
+// ════════════════════════════════════════
+const mphState = {
+  flexDates: false,
+  arrDate: '', depDate: '', prefMonth: '', approxDur: '',
+  duration: 0,
+  travelerType: 'couple', numTrav: 2,
+  interests: [], accomm: '', budget: '',
+  name: '', email: '', whatsapp: '', nationality: '', notes: ''
+};
+let mphCurrentStep = 1;
+
+// ════════════════════════════════════════
+//  STEP NAVIGATION
+// ════════════════════════════════════════
+function mphGoStep(n) {
+  if (n < 1 || n > 3) return;
+  if (n > mphCurrentStep && !mphValidateStep(mphCurrentStep)) return;
+
+  document.getElementById('mphStep' + mphCurrentStep).classList.remove('active');
+  mphCurrentStep = n;
+  document.getElementById('mphStep' + mphCurrentStep).classList.add('active');
+
+  // Update progress indicators
+  ['mplbl1','mplbl2','mplbl3'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+    if (i + 1 < n) el.classList.add('done');
+    if (i + 1 === n) el.classList.add('active');
+  });
+
+  // Update bottom nav buttons
+  document.getElementById('mphBtnBack').style.display  = n > 1 ? 'flex' : 'none';
+  document.getElementById('mphBtnNext').style.display   = n < 3 ? 'flex' : 'none';
+  document.getElementById('mphBtnSubmit').style.display = n === 3 ? 'flex' : 'none';
+
+  if (n === 3) mphBuildSummary();
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ════════════════════════════════════════
+//  VALIDATION
+// ════════════════════════════════════════
+function mphValidateStep(s) {
+  if (s === 1) {
+    if (!mphState.flexDates) {
+      const aEl = document.getElementById('mphArr');
+      const dEl = document.getElementById('mphDep');
+      const today = new Date(); today.setHours(0,0,0,0);
+      document.getElementById('mphArrErr').textContent = '';
+      document.getElementById('mphDepErr').textContent = '';
+      aEl.classList.remove('err'); dEl.classList.remove('err');
+      if (!aEl.value) {
+        aEl.classList.add('err');
+        document.getElementById('mphArrErr').textContent = 'Please select your arrival date.';
+        aEl.focus(); return false;
+      }
+      if (new Date(aEl.value) < today) {
+        aEl.classList.add('err');
+        document.getElementById('mphArrErr').textContent = 'Arrival date cannot be in the past.';
+        aEl.focus(); return false;
+      }
+      if (!dEl.value) {
+        dEl.classList.add('err');
+        document.getElementById('mphDepErr').textContent = 'Please select your departure date.';
+        dEl.focus(); return false;
+      }
+      if (new Date(dEl.value) <= new Date(aEl.value)) {
+        dEl.classList.add('err');
+        document.getElementById('mphDepErr').textContent = 'Departure must be after arrival.';
+        dEl.focus(); return false;
+      }
+    } else {
+      const mEl = document.getElementById('mphMonth');
+      const dEl = document.getElementById('mphDur');
+      document.getElementById('mphMonthErr').textContent = '';
+      document.getElementById('mphDurErr').textContent = '';
+      mEl.classList.remove('err'); dEl.classList.remove('err');
+      if (!mEl.value) {
+        mEl.classList.add('err');
+        document.getElementById('mphMonthErr').textContent = 'Please select a preferred month.';
+        mEl.focus(); return false;
+      }
+      if (!dEl.value) {
+        dEl.classList.add('err');
+        document.getElementById('mphDurErr').textContent = 'Please select an approximate duration.';
+        dEl.focus(); return false;
+      }
+    }
+  }
+  if (s === 2 && mphState.interests.length === 0) {
+    const errEl = document.getElementById('mphIntErr');
+    errEl.classList.add('show');
+    setTimeout(() => errEl.classList.remove('show'), 2500);
+    document.getElementById('mphIntGrid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return false;
+  }
+  return true;
+}
+
+// ════════════════════════════════════════
+//  STEP 1 — DATES
+// ════════════════════════════════════════
+function mphToggleDates(flex) {
+  mphState.flexDates = flex;
+  document.getElementById('mphExactPanel').style.display = flex ? 'none' : 'block';
+  document.getElementById('mphFlexPanel').style.display  = flex ? 'block' : 'none';
+  document.getElementById('mphBtnExact').classList.toggle('active', !flex);
+  document.getElementById('mphBtnFlex').classList.toggle('active', flex);
+  document.getElementById('mphDurBadge').classList.remove('show');
+  // clear errors
+  ['mphArr','mphDep','mphMonth','mphDur'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('err');
+  });
+  ['mphArrErr','mphDepErr','mphMonthErr','mphDurErr'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '';
+  });
+}
+
+function mphCalcDuration() {
+  const aEl = document.getElementById('mphArr');
+  const dEl = document.getElementById('mphDep');
+  aEl.classList.remove('err'); dEl.classList.remove('err');
+  document.getElementById('mphArrErr').textContent = '';
+  document.getElementById('mphDepErr').textContent = '';
+  if (!aEl.value || !dEl.value) return;
+  const days = Math.round((new Date(dEl.value) - new Date(aEl.value)) / 86400000);
+  if (days < 1) return;
+  mphState.duration = days;
+  mphState.arrDate = aEl.value;
+  mphState.depDate = dEl.value;
+  const msgs = [
+    `Wonderful — a ${days}-day Sri Lanka escape!`,
+    `Amazing — ${days} days of pure adventure!`,
+    `Perfect — ${days} days to fall in love with Sri Lanka!`,
+    `Brilliant — ${days} unforgettable days await!`
+  ];
+  document.getElementById('mphDurText').textContent = msgs[Math.floor(Math.random() * msgs.length)];
+  document.getElementById('mphDurBadge').classList.add('show');
+}
+
+// ════════════════════════════════════════
+//  STEP 1 — TRAVELLERS
+// ════════════════════════════════════════
+function mphSelTT(el) {
+  document.querySelectorAll('.mph-tt-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  mphState.travelerType = el.dataset.type;
+}
+
+function mphChangeTrav(d) {
+  mphState.numTrav = Math.max(1, Math.min(30, mphState.numTrav + d));
+  document.getElementById('mphTravVal').textContent = mphState.numTrav;
+}
+
+// ════════════════════════════════════════
+//  STEP 2 — INTERESTS / ACCOMM / BUDGET
+// ════════════════════════════════════════
+function mphToggleInt(el) {
+  el.classList.toggle('sel');
+  const interest = el.dataset.interest;
+  if (el.classList.contains('sel')) {
+    mphState.interests.push(interest);
+  } else {
+    mphState.interests = mphState.interests.filter(i => i !== interest);
+  }
+  document.getElementById('mphIntErr').classList.remove('show');
+}
+
+function mphSelAccomm(el) {
+  document.querySelectorAll('.mph-opt-card[data-accomm]').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  mphState.accomm = el.dataset.accomm;
+}
+
+function mphSelBudget(el) {
+  document.querySelectorAll('.mph-opt-card[data-budget]').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  mphState.budget = el.dataset.budget;
+}
+
+// ════════════════════════════════════════
+//  STEP 3 — SUMMARY
+// ════════════════════════════════════════
+function mphBuildSummary() {
+  const durMap = { '5':5, '7':8, '10':10, '14':14 };
+  const dur = !mphState.flexDates && mphState.duration > 0
+    ? mphState.duration
+    : (durMap[document.getElementById('mphDur').value] || 7);
+  const dateStr = mphState.flexDates
+    ? (document.getElementById('mphMonth').value || '—')
+    : (mphState.arrDate && mphState.depDate ? `${mphState.arrDate} → ${mphState.depDate}` : '—');
+  const accMap = { boutique:'Boutique Villas', eco:'Eco-Lodges', hotel:'Standard Hotels', homestay:'Homestays' };
+  const budMap = { economy:'Economy', mid:'Mid-Range', luxury:'Luxury', ultra:'Ultra-Luxury' };
+  const ttMap  = { couple:'Couple', solo:'Solo', family:'Family', group:'Group' };
+
+  let inner = `<div class="mph-summary-title">Your Trip at a Glance</div><div class="mph-summary-grid">`;
+  inner += `<div><div class="mph-sum-lbl">Duration</div><div class="mph-sum-val">${dur} Days</div></div>`;
+  inner += `<div><div class="mph-sum-lbl">Dates</div><div class="mph-sum-val" style="font-size:.78rem">${dateStr}</div></div>`;
+  inner += `<div><div class="mph-sum-lbl">Travellers</div><div class="mph-sum-val">${ttMap[mphState.travelerType]||'—'} · ${mphState.numTrav}</div></div>`;
+  if (mphState.accomm) inner += `<div><div class="mph-sum-lbl">Stay</div><div class="mph-sum-val" style="font-size:.85rem">${accMap[mphState.accomm]}</div></div>`;
+  if (mphState.budget) inner += `<div><div class="mph-sum-lbl">Budget</div><div class="mph-sum-val" style="font-size:.85rem">${budMap[mphState.budget]}</div></div>`;
+  if (mphState.interests.length) {
+    inner += `<div class="mph-summary-item-full"><div class="mph-sum-lbl">Interests</div><div class="mph-sum-tags">${mphState.interests.map(i=>`<span class="mph-sum-tag">${i}</span>`).join('')}</div></div>`;
+  }
+  inner += `</div>`;
+  document.getElementById('mphSummary').innerHTML = inner;
+}
+
+// ════════════════════════════════════════
+//  STEP 3 — SUBMIT
+// ════════════════════════════════════════
+function mphIsValidEmail(e) {
+  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(e);
+}
+function mphIsValidPhone(p) {
+  const digits = p.replace(/\D/g,'');
+  return /^[+\d\s\-().]+$/.test(p) && digits.length >= 7 && digits.length <= 20;
+}
+function mphIsValidName(n) {
+  return /^[\p{L}\s'\-\.]{2,100}$/u.test(n);
+}
+function mphStripTags(s) { return s.replace(/<[^>]*>/g,''); }
+
+function mphSetErr(id, errId, msg) {
+  const el = document.getElementById(id);
+  const er = document.getElementById(errId);
+  if (el) el.classList.add('err');
+  if (er) er.textContent = msg;
+}
+function mphClearErr(id, errId) {
+  const el = document.getElementById(id);
+  const er = document.getElementById(errId);
+  if (el) el.classList.remove('err');
+  if (er) er.textContent = '';
+}
+
+function mphSubmit() {
+  ['mphName','mphEmail','mphPhone','mphNation'].forEach(id => mphClearErr(id, id+'Err'));
+
+  let valid = true;
+  const nameRaw  = mphStripTags(document.getElementById('mphName').value.trim());
+  const emailRaw = document.getElementById('mphEmail').value.trim();
+  const phoneRaw = document.getElementById('mphPhone').value.trim();
+  const natRaw   = mphStripTags(document.getElementById('mphNation').value.trim());
+  const notesRaw = mphStripTags(document.getElementById('mphNotes').value.trim());
+
+  if (!nameRaw) {
+    mphSetErr('mphName','mphNameErr','Please enter your name.'); valid = false;
+  } else if (!mphIsValidName(nameRaw)) {
+    mphSetErr('mphName','mphNameErr','Name may only contain letters, spaces, hyphens or apostrophes.'); valid = false;
+  }
+
+  if (!emailRaw) {
+    mphSetErr('mphEmail','mphEmailErr','Please enter your email address.'); valid = false;
+  } else if (!mphIsValidEmail(emailRaw)) {
+    mphSetErr('mphEmail','mphEmailErr','Please enter a valid email address.'); valid = false;
+  }
+
+  if (phoneRaw && !mphIsValidPhone(phoneRaw)) {
+    mphSetErr('mphPhone','mphPhoneErr','Please enter a valid phone number with country code.'); valid = false;
+  }
+
+  if (!natRaw) {
+    mphSetErr('mphNation','mphNationErr','Please enter your nationality.'); valid = false;
+  } else if (!/^[\p{L}\s'\-,\.]{2,60}$/u.test(natRaw)) {
+    mphSetErr('mphNation','mphNationErr','Please enter a valid nationality.'); valid = false;
+  }
+
+  if (!valid) {
+    const firstErr = document.querySelector('#mphStep3 input.err, #mphStep3 select.err');
+    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  mphState.name        = nameRaw;
+  mphState.email       = emailRaw;
+  mphState.whatsapp    = phoneRaw;
+  mphState.nationality = natRaw;
+  mphState.notes       = notesRaw.slice(0, 2000);
+
+  const accMap = { boutique:'Boutique Villas', eco:'Eco-Lodges', hotel:'Standard Hotels', homestay:'Homestays' };
+  const budMap = { economy:'Economy', mid:'Mid-Range', luxury:'Luxury', ultra:'Ultra-Luxury' };
+  const ttMap  = { couple:'Couple', solo:'Solo', family:'Family', group:'Group' };
+  const durMap = {'5':5,'7':8,'10':10,'14':14};
+  const dur    = (!mphState.flexDates && mphState.duration > 0) ? mphState.duration : (durMap[document.getElementById('mphDur').value] || 7);
+  const dateStr = mphState.flexDates
+    ? (document.getElementById('mphMonth').value || 'Flexible')
+    : (mphState.arrDate + ' → ' + mphState.depDate);
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_PLANNER_TMPL, {
+    to_name:        mphState.name,
+    to_email:       mphState.email,
+    whatsapp:       mphState.whatsapp || 'Not provided',
+    nationality:    mphState.nationality,
+    duration:       dur + ' days',
+    dates:          dateStr,
+    traveler_type:  ttMap[mphState.travelerType] || mphState.travelerType,
+    num_travellers: mphState.numTrav,
+    interests:      mphState.interests.join(', ') || 'None selected',
+    accommodation:  accMap[mphState.accomm] || 'Not selected',
+    budget:         budMap[mphState.budget] || 'Not selected',
+    notes:          mphState.notes || 'None'
+  }, EMAILJS_PUBLIC_KEY)
+  .catch(() => {
+    // Email failed silently — itinerary still shows; team follows up manually
+  });
+
+  mphShowLoading();
+}
+
+// ════════════════════════════════════════
+//  LOADING & RESULTS
+// ════════════════════════════════════════
+function mphShowLoading() {
+  document.getElementById('mphPlanner').style.display = 'none';
+  const overlay = document.getElementById('mphLoading');
+  overlay.classList.add('active');
+  const msgs = [
+    'Mapping your dream journey...',
+    'Curating hidden gems just for you...',
+    'Consulting our local experts...',
+    'Selecting perfect experiences...',
+    'Crafting your Sri Lanka story...'
+  ];
+  let i = 0;
+  const bar = document.getElementById('mphLoBar');
+  const msgEl = document.getElementById('mphLoMsg');
+  bar.style.width = '0%';
+  const interval = setInterval(() => {
+    i++;
+    bar.style.width = (i * 20) + '%';
+    if (i < msgs.length) msgEl.textContent = msgs[i];
+    if (i >= msgs.length) {
+      clearInterval(interval);
+      setTimeout(mphShowResults, 600);
+    }
+  }, 700);
+}
+
+function mphShowResults() {
+  document.getElementById('mphLoading').classList.remove('active');
+  document.getElementById('mphResult').style.display = 'block';
+  mphBuildItinerary();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ════════════════════════════════════════
+//  ITINERARY DATA
+// ════════════════════════════════════════
+const mphMasterDays = [
+  { title:'Arrival in the Pearl of the Indian Ocean', location:'Colombo / Negombo', desc:'Your Sri Lanka adventure begins the moment your flight touches down. After a warm airport welcome from your personal driver-guide, transfer to your hotel along the sun-kissed west coast. Spend the first evening at Galle Face Green — Sri Lanka\'s beloved ocean-front promenade — where kite flyers, families, and street food vendors create a joyful scene as the Indian Ocean glows at sunset.', highlights:['Personal airport welcome','Galle Face Green promenade','Welcome Sri Lankan dinner','First taste of island life'], overnight:'Negombo or Colombo', icon:'✈️' },
+  { title:'Elephants & Ancient Cave Temples', location:'Pinnawala → Dambulla', desc:'Drive north through Sri Lanka\'s fragrant spice heartland, stopping at Pinnawala Elephant Orphanage to watch rescued elephants bathe and play in the Maha Oya River. Continue to Dambulla and explore the UNESCO-listed Golden Cave Temples — five cave-shrines with 150 ancient Buddha statues.', highlights:['Pinnawala Elephant Orphanage','Dambulla Cave Temples (UNESCO)','Spice garden visit','Scenic drive through paddy fields'], overnight:'Dambulla or Sigiriya', icon:'🐘' },
+  { title:'Sunrise at the Lion Rock', location:'Sigiriya & Polonnaruwa', desc:'Rise before dawn for the legendary climb of Sigiriya Lion Rock — a 5th-century royal palace perched 200 metres above the jungle. Reach the summit as the sun burns gold across the forests below. In the afternoon, explore the extraordinary ruins of Polonnaruwa on bicycle.', highlights:['Sunrise climb of Sigiriya (UNESCO)','Celestial maiden frescoes (5th century)','Polonnaruwa bicycle tour (UNESCO)','Royal palace & ancient stupas'], overnight:'Sigiriya or Habarana', icon:'🏰' },
+  { title:'The Ancient Kingdom of Anuradhapura', location:'Anuradhapura', desc:'Journey to Sri Lanka\'s first great capital, founded in the 4th century BC. The Sacred Jaya Sri Maha Bodhi — 2,300 years old, the oldest historically documented living tree on earth — stands here, visited daily by monks bearing flowers and oil lamps.', highlights:['Sacred Bodhi Tree — 2,300 years old (UNESCO)','Ruwanwelisaya Great Stupa','Abhayagiri Monastery ruins','Ancient moonstone carvings'], overnight:'Habarana or Anuradhapura', icon:'🛕' },
+  { title:'Kandy — Sacred Heart of the Island', location:'Kandy', desc:'Drive through the fragrant Matale spice hills to Sri Lanka\'s most sacred city. The Temple of the Sacred Tooth Relic sits majestically by an emerald lake. Visit the magnificent Royal Botanical Gardens of Peradeniya, then end the evening with an electrifying Kandyan cultural dance performance.', highlights:['Temple of the Sacred Tooth Relic (UNESCO)','Kandy Lake sunset walk','Royal Botanical Gardens of Peradeniya','Kandyan traditional dance show'], overnight:'Kandy', icon:'🎭' },
+  { title:'Into the Mist — Sri Lanka\'s Tea Country', location:'Nuwara Eliya', desc:'Board the legendary hill-country train from Kandy as it winds through an emerald tapestry of tea plantations and misty ravines — ranked among the world\'s most scenic rail journeys. Arrive in Nuwara Eliya, Sri Lanka\'s charming colonial hill-town at 1,868 metres.', highlights:['Iconic hill-country train journey','Working tea factory tour & tasting','Nuwara Eliya colonial town walk','Gregory Lake & Victoria Park'], overnight:'Nuwara Eliya', icon:'🍵' },
+  { title:'Ella — Where the Highlands Meet the Sky', location:'Ella', desc:'Wind down to the charming village of Ella, perched above a dramatic gap in the hills with views stretching to the distant coast. Visit the iconic Nine Arch Bridge — a 1921 engineering marvel emerging from thick jungle. Hike Ella Rock for sweeping 360-degree panoramas.', highlights:['Nine Arch Bridge at sunrise','Ella Rock hike & panoramic views','Ravana Falls swim','Ella\'s café & restaurant scene'], overnight:'Ella', icon:'🌄' },
+  { title:'Wild Elephant Herds of the South Plains', location:'Udawalawe National Park', desc:'Drive south from the highlands to Udawalawe National Park, home to over 700 wild elephants roaming freely across open grasslands and lake shores. A jeep safari here almost guarantees sightings of large elephant herds, including family groups with tiny calves.', highlights:['Udawalawe jeep safari (700+ elephants)','Elephant Transit Home bottle feeding','Wild baby elephant calves','Water buffalo, crocodiles & endemic birds'], overnight:'Udawalawe or south coast', icon:'🌿' },
+  { title:'Blue Whales at Dawn', location:'Mirissa', desc:'Leave before sunrise for your whale watching departure from Mirissa harbour. The deep waters off Sri Lanka\'s southern tip are year-round feeding grounds for blue whales — the largest animals ever to have lived on earth. Return for a golden afternoon on Mirissa\'s perfect crescent beach.', highlights:['Blue whale watching (world\'s largest animal)','Spinner dolphins & sperm whale sightings','Mirissa crescent beach afternoon','Fresh-catch seafood dinner at sunset'], overnight:'Mirissa or south coast', icon:'🐋' },
+  { title:'The Fort That Time Forgot', location:'Galle Fort', desc:'Drive west to Galle — a perfectly preserved 17th-century Dutch colonial fortified town and UNESCO World Heritage Site. Walk the ocean ramparts at sunset as colourful fishing boats drift into the harbour below.', highlights:['Galle Fort rampart sunset walk (UNESCO)','Dutch Reformed Church (1755)','National Maritime Museum','Boutique galleries, gems & local crafts'], overnight:'Galle Fort or south coast', icon:'⚓' },
+  { title:'Sea Turtles & Ocean Breezes', location:'Unawatuna / Hikkaduwa', desc:'A day surrendered to the Indian Ocean. Unawatuna\'s sheltered crescent bay offers calm, crystal-clear water perfect for swimming and snorkelling among reef fish and sea turtles. Visit the Kosgoda sea turtle hatchery.', highlights:['Unawatuna bay snorkelling & swimming','Kosgoda sea turtle hatchery','Baby turtle release (seasonal)','Hikkaduwa coral reef glass-bottom boat'], overnight:'South coast', icon:'🐢' },
+  { title:'Leopards of Yala', location:'Yala National Park', desc:'Transfer to Yala — Sri Lanka\'s most celebrated national park and one of the highest-density leopard habitats on earth. The morning game drive takes you deep into dry scrub jungle. Leopards lounge in the forks of palu trees. Elephants wade in ancient lagoons.', highlights:['Wild leopard sightings (highest density on earth)','Elephant & crocodile lagoons','Sloth bear encounters','Morning & evening game drives'], overnight:'Yala area', icon:'🦁' },
+  { title:'Final Wonders & Farewell', location:'South Coast → Colombo', desc:'Your last full day in Sri Lanka. A leisurely morning with coffee and one final coconut sambol breakfast before the northward coastal drive. Arrive in Colombo for a farewell dinner at one of the capital\'s finest rooftop restaurants.', highlights:['Leisurely coastal drive north','Batik or gem workshop visit','Colombo farewell rooftop dinner','One last sunset in paradise'], overnight:'Colombo', icon:'🌅' }
+];
+
+const mphDaySelections = {
+  5:[0,1,2,4,6], 7:[0,1,2,4,5,6], 8:[0,1,2,4,5,6,7],
+  10:[0,1,2,3,4,5,6,8,9], 11:[0,1,2,3,4,5,6,7,8,9],
+  12:[0,1,2,3,4,5,6,7,8,9,11], 14:[0,1,2,3,4,5,6,7,8,9,10,11,12]
+};
+
+function mphClosestDur(n) {
+  const opts = [5,7,8,10,11,12,14];
+  return opts.reduce((p,c) => Math.abs(c-n) < Math.abs(p-n) ? c : p);
+}
+
+function mphGetTripDur() {
+  if (!mphState.flexDates && mphState.duration > 0) return mphState.duration;
+  const map = {'5':5,'7':8,'10':10,'14':14};
+  return map[document.getElementById('mphDur').value] || 7;
+}
+
+function mphBuildItinerary() {
+  const dur = mphGetTripDur();
+  const closest = mphClosestDur(dur);
+  let indices = [...mphDaySelections[closest]];
+
+  if (mphState.interests.includes('wildlife') && !mphState.interests.includes('beaches')) {
+    const bi = indices.indexOf(8);
+    if (bi !== -1) indices[bi] = 11;
+  }
+
+  // Hero
+  document.getElementById('mphItinDays').textContent = dur + '-Day';
+
+  // Meta chips
+  const ttMap = { couple:'Couple',solo:'Solo',family:'Family',group:'Group' };
+  const accMap = { boutique:'Boutique Villas',eco:'Eco-Lodges',hotel:'Standard Hotels',homestay:'Homestays' };
+  const budMap = { economy:'Economy',mid:'Mid-Range',luxury:'Luxury',ultra:'Ultra-Luxury' };
+  const dateStr = mphState.flexDates
+    ? (document.getElementById('mphMonth').value || '')
+    : (mphState.arrDate ? mphState.arrDate + ' → ' + mphState.depDate : '');
+  const chips = [
+    ttMap[mphState.travelerType] + ' · ' + mphState.numTrav + ' traveller' + (mphState.numTrav > 1 ? 's':''),
+    dateStr,
+    mphState.accomm ? accMap[mphState.accomm] : null,
+    mphState.budget ? budMap[mphState.budget] : null
+  ].filter(Boolean);
+  document.getElementById('mphMetaChips').innerHTML = chips.map(c => `<span class="mph-result-chip">${c}</span>`).join('');
+  document.getElementById('mphInterestTags').innerHTML = mphState.interests.map(i => `<span class="mph-result-tag">${i}</span>`).join('');
+
+  // Subtitle
+  document.getElementById('mphDaysSub').textContent = `Every day crafted around your interests: ${mphState.interests.join(', ')}.`;
+
+  // Timeline
+  let html = '';
+  indices.forEach((dayIdx, pos) => {
+    const d = mphMasterDays[dayIdx];
+    html += `<div class="mph-day-card">
+      <div class="mph-day-card-inner">
+        <div class="mph-day-top">
+          <div class="mph-day-num">${pos+1}</div>
+          <div class="mph-day-meta">
+            <div class="mph-day-location">${d.location}</div>
+            <div class="mph-day-title">${d.title}</div>
+          </div>
+          <div class="mph-day-icon">${d.icon}</div>
+        </div>
+        <div class="mph-day-desc">${d.desc}</div>
+        <div class="mph-day-tags">${d.highlights.map(h=>`<span class="mph-day-tag">${h}</span>`).join('')}</div>
+        <div class="mph-day-overnight">🌙 <strong>Overnight:</strong>&nbsp;${d.overnight}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('mphTimeline').innerHTML = html;
+
+  // Confirm box
+  document.getElementById('mphConfirmBox').innerHTML = `
+    <div class="mph-icb-row"><div class="mph-icb-icon">✉️</div><div class="mph-icb-text">Full itinerary sent to <strong>${mphState.email}</strong> within 24 hours</div></div>
+    <div class="mph-icb-row"><div class="mph-icb-icon">📞</div><div class="mph-icb-text">A specialist will call to personalise every detail</div></div>
+    <div class="mph-icb-row"><div class="mph-icb-icon">✦</div><div class="mph-icb-text">No obligation — this is your personalised preview</div></div>`;
+}
+</script>
+</body>
+</html>

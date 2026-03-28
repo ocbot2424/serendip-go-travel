@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(curl -sL -o sigiriya.jpg \"https://images.unsplash.com/photo-r-vUs1jhhLA?auto=format&fit=crop&w=900&q=80\")",
+      "Bash(curl -sL -o kandy.jpg \"https://images.unsplash.com/photo-isdvqf04MDk?auto=format&fit=crop&w=900&q=80\")",
+      "Bash(curl -sL -o ella.jpg \"https://images.unsplash.com/photo-3R50kTNBKiE?auto=format&fit=crop&w=900&q=80\")",
+      "Bash(curl -sL -o galle.jpg \"https://images.unsplash.com/photo-EBxsNaN0mig?auto=format&fit=crop&w=900&q=80\")",
+      "Bash(curl -sL -o yala-leopard.jpg \"https://images.unsplash.com/photo-3TwThGdEUZA?auto=format&fit=crop&w=900&q=80\")",
+      "Bash(curl -sI \"https://unsplash.com/photos/r-vUs1jhhLA/download\")"
+    ]
+  }
+}

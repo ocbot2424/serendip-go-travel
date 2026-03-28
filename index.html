@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serendip Go</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip.html">Plan Trip</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Trusted Since 2003</div>
+      <h1 class="hero-title">Discover the<br><em>Beauty of</em><br>Sri Lanka</h1>
+      <p class="hero-sub">Unforgettable journeys through paradise — beaches, ancient temples,<br>misty highlands, and wildlife unlike anywhere on Earth.</p>
+      <div class="hero-btns">
+        <a href="plan-trip.html" class="btn-primary">Plan Your Trip</a>
+        <a href="packages.html" class="btn-outline">View Packages</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">5K+</div><div class="stat-label">Happy Travellers</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Tour Packages</div></div>
+    </div>
+    <div class="hero-scroll">
+      SCROLL
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <!-- FEATURED TOURS -->
+  <section id="featured">
+    <div class="section-header reveal">
+      <div class="eyebrow">Curated Experiences</div>
+      <h2 class="section-title">Explore Our <em>Signature</em> Journeys</h2>
+      <p class="section-sub">From sun-drenched beaches to ancient rock fortresses, we craft experiences that stay with you forever.</p>
+    </div>
+    <div class="tours-grid reveal">
+      <div class="tour-card" onclick="window.location='packages.html'">
+        <div class="tour-card-img" style="background-image:url('images/beach.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="tour-card-overlay">
+          <span class="tour-tag">Luxury</span>
+          <div class="tour-card-title">Luxury Coastal Escape</div>
+          <div class="tour-card-info">7 Days</div>
+          <div class="tour-card-desc">Private beach villas, candlelit dinners by the ocean, and bespoke whale watching in the warm Indian Ocean.</div>
+          <div class="tour-card-cta">Explore Package →</div>
+        </div>
+      </div>
+      <div class="tour-card" onclick="window.location='packages.html'">
+        <div class="tour-card-img" style="background-image:url('images/elephant.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="tour-card-overlay">
+          <span class="tour-tag">Wildlife</span>
+          <div class="tour-card-title">Wild Safari Adventure</div>
+          <div class="tour-card-info">5 Days</div>
+          <div class="tour-card-desc">Spot leopards, elephants, and exotic birds across Yala, Udawalawe, and Wilpattu national parks.</div>
+          <div class="tour-card-cta">Explore Package →</div>
+        </div>
+      </div>
+      <div class="tour-card" onclick="window.location='packages.html'">
+        <div class="tour-card-img" style="background-image:url('images/romantic-beach.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="tour-card-overlay">
+          <span class="tour-tag">Honeymoon</span>
+          <div class="tour-card-title">Romantic Isle Retreat</div>
+          <div class="tour-card-info">10 Days</div>
+          <div class="tour-card-desc">A dreamlike journey through colonial Galle, misty Ella, and secluded beach hideaways.</div>
+          <div class="tour-card-cta">Explore Package →</div>
+        </div>
+      </div>
+      <div class="tour-card" onclick="window.location='packages.html'">
+        <div class="tour-card-img" style="background-image:url('images/sigiriya.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="tour-card-overlay">
+          <span class="tour-tag">Cultural</span>
+          <div class="tour-card-title">Cultural Heritage Trail</div>
+          <div class="tour-card-info">8 Days</div>
+          <div class="tour-card-desc">Ancient cities, sacred temples, spice gardens, and the legendary Lion Rock of Sigiriya await.</div>
+          <div class="tour-card-cta">Explore Package →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why-us">
+    <div class="section-header reveal">
+      <div class="eyebrow">Why Serendip Go</div>
+      <h2 class="section-title">Tailor-Made <em>Experiences</em></h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-item">
+        <div class="why-icon">🌟</div>
+        <div class="why-title">20+ Years Expertise</div>
+        <p class="why-text">Two decades of crafting exceptional Sri Lanka journeys for discerning travellers from across the globe.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🗺️</div>
+        <div class="why-title">Local Knowledge</div>
+        <p class="why-text">Our team of local experts know every hidden gem, secret beach, and off-the-beaten-path wonder.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">✈️</div>
+        <div class="why-title">End-to-End Service</div>
+        <p class="why-text">From airport transfers to luxury hotels and private guides — everything arranged for you, seamlessly.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">💬</div>
+        <div class="why-title">24/7 Support</div>
+        <p class="why-text">Your dedicated travel concierge is always just a WhatsApp message away, day or night.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="section-header reveal">
+      <div class="eyebrow">Traveller Stories</div>
+      <h2 class="section-title">Words from Our <em>Happy</em> Guests</h2>
+    </div>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Serendip Go completely transformed our honeymoon. Every detail was perfect — from the cliffside hotel in Ella to the private whale-watching at dawn. Truly an unforgettable journey.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sophie & James H.</div>
+            <div class="testi-country">🇬🇧 United Kingdom</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">The wildlife safari was beyond anything I could have imagined. Spotted four leopards in one morning at Yala! Our guide Nimal was incredibly knowledgeable and passionate.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">Michael T.</div>
+            <div class="testi-country">🇺🇸 United States</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Travelling with three kids can be stressful, but Serendip Go made it magical. The family package was perfectly paced — the elephant orphanage and the train through the hills were highlights!</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Anita & Family</div>
+            <div class="testi-country">🇦🇺 Australia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
+      <div class="social-row" style="margin-top:1.5rem">
+        <a href="#" class="social-btn">📷</a>
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="destinations.html">Sigiriya</a>
+      <a href="destinations.html">Kandy</a>
+      <a href="destinations.html">Ella</a>
+      <a href="destinations.html">Galle</a>
+      <a href="destinations.html">Yala National Park</a>
+      <a href="destinations.html">Nuwara Eliya</a>
+      <a href="destinations.html">Trincomalee</a>
+    </div>
+    <div class="footer-col">
+      <h4>Packages</h4>
+      <a href="packages.html">Luxury Tours</a>
+      <a href="packages.html">Adventure Tours</a>
+      <a href="packages.html">Honeymoon Packages</a>
+      <a href="packages.html">Wildlife Safaris</a>
+      <a href="packages.html">Cultural Tours</a>
+      <a href="packages.html">Family Packages</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog & Travel Guides</a>
+      <a href="contact.html">Testimonials</a>
+      <a href="contact.html">FAQ</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved. SLTDA Reg. No. SLTDA/SQA/T/0123</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

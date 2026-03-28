@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destinations — Serendip Go</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ─── DESTINATION MODAL ─── */
+  .dest-modal-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.75);
+    display: flex; align-items: flex-end; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .dest-modal-overlay.open {
+    opacity: 1; pointer-events: all;
+  }
+  .dest-modal {
+    background: var(--cream);
+    width: 100%; max-width: 860px;
+    max-height: 90vh; overflow-y: auto;
+    transform: translateY(60px);
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    border-radius: 4px 4px 0 0;
+  }
+  .dest-modal-overlay.open .dest-modal {
+    transform: translateY(0);
+  }
+  .dest-modal-img {
+    width: 100%; height: 320px;
+    object-fit: cover;
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .dest-modal-close {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(0,0,0,0.5); color: white;
+    border: none; font-size: 1.2rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .dest-modal-close:hover { background: rgba(0,0,0,0.8); }
+  .dest-modal-body { padding: 2.5rem 3rem 3rem; }
+  .dest-modal-tag {
+    font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 0.5rem;
+  }
+  .dest-modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; color: var(--deep);
+    line-height: 1.1; margin-bottom: 1.2rem;
+  }
+  .dest-modal-desc {
+    font-size: 0.88rem; color: var(--text-muted);
+    line-height: 2; margin-bottom: 2rem; max-width: 680px;
+  }
+  .dest-modal-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem; margin-bottom: 2rem;
+  }
+  .dest-modal-fact {
+    background: var(--sand);
+    padding: 1.2rem 1.4rem;
+  }
+  .dest-modal-fact-label {
+    font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.4rem; font-weight: 600;
+  }
+  .dest-modal-fact-value {
+    font-size: 0.82rem; color: var(--deep); line-height: 1.5;
+  }
+  .dest-modal-highlights { margin-bottom: 2rem; }
+  .dest-modal-highlights h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--deep); margin-bottom: 1rem;
+  }
+  .highlight-list {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+  }
+  .highlight-chip {
+    background: white; border: 1px solid var(--sand-dark);
+    padding: 0.4rem 0.9rem;
+    font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.5px;
+  }
+  .dest-modal-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  /* ── Mobile destination cards ── */
+  .mobile-dest-list { display: none; }
+
+  @media (max-width: 768px) {
+    .dest-grid { display: none !important; }
+    .mobile-dest-list {
+      display: flex; flex-direction: column; gap: 10px;
+      padding: 0 0 1rem;
+    }
+    .mobile-dest-card {
+      position: relative; height: 200px;
+      overflow: hidden; cursor: pointer;
+      border-radius: 2px;
+    }
+    .mobile-dest-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.55);
+      display: block;
+    }
+    .mobile-dest-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.2rem 1.5rem;
+      background: linear-gradient(to top, rgba(13,43,31,0.92) 0%, transparent 100%);
+    }
+    .mobile-dest-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; color: white; font-weight: 400; line-height: 1;
+    }
+    .mobile-dest-sub {
+      font-size: 0.62rem; color: var(--gold);
+      letter-spacing: 1.5px; margin-top: 0.3rem;
+    }
+    .mobile-dest-tap {
+      font-size: 0.6rem; color: rgba(255,255,255,0.6);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-top: 0.5rem; display: block;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .dest-modal-body { padding: 1.5rem 1.2rem 2rem; }
+    .dest-modal-grid { grid-template-columns: 1fr 1fr; }
+    .dest-modal-title { font-size: 1.8rem; }
+    .dest-modal-img { height: 200px; }
+    .dest-modal-actions { flex-direction: column; }
+    .dest-modal-actions a { text-align: center; }
+  }
+  @media (max-width: 400px) {
+    .dest-modal-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html" class="active">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip.html">Plan Trip</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span> Explore Sri Lanka <span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span></div>
+  <h1>Iconic <em>Destinations</em></h1>
+  <p>Five breathtaking landscapes that define the Sri Lankan experience — from ancient rock fortresses to wild national parks.</p>
+</div>
+
+<section id="destinations">
+  <div class="section-header reveal">
+    <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span> Top Destinations <span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span></div>
+    <h2 class="section-title">Explore <em>Paradise</em></h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.5)">Click any destination to discover what awaits you.</p>
+  </div>
+  <div class="dest-grid reveal">
+    <div class="dest-card" onclick="openDest('sigiriya')" style="cursor:pointer;">
+      <div class="dest-card-bg" style="background-image:url('images/sigiriya.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-explore">→</div>
+      <div class="dest-info">
+        <div class="dest-name">Sigiriya</div>
+        <div class="dest-act">Rock Fortress · Frescoes · Panoramic Views</div>
+      </div>
+    </div>
+    <div class="dest-card" onclick="openDest('kandy')" style="cursor:pointer;">
+      <div class="dest-card-bg" style="background-image:url('images/kandy.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-explore">→</div>
+      <div class="dest-info">
+        <div class="dest-name">Kandy</div>
+        <div class="dest-act">Temple of Tooth · Cultural Shows · Peradeniya Gardens</div>
+      </div>
+    </div>
+    <div class="dest-card" onclick="openDest('ella')" style="cursor:pointer;">
+      <div class="dest-card-bg" style="background-image:url('images/ella.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-explore">→</div>
+      <div class="dest-info">
+        <div class="dest-name">Ella</div>
+        <div class="dest-act">Nine Arch Bridge · Tea Trails · Hikes</div>
+      </div>
+    </div>
+    <div class="dest-card" onclick="openDest('galle')" style="cursor:pointer;">
+      <div class="dest-card-bg" style="background-image:url('images/galle.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-explore">→</div>
+      <div class="dest-info">
+        <div class="dest-name">Galle</div>
+        <div class="dest-act">Dutch Fort · Boutique Hotels · Sea Turtles</div>
+      </div>
+    </div>
+    <div class="dest-card" onclick="openDest('yala')" style="cursor:pointer;">
+      <div class="dest-card-bg" style="background-image:url('images/yala-leopard.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-explore">→</div>
+      <div class="dest-info">
+        <div class="dest-name">Yala</div>
+        <div class="dest-act">Leopard Safari · Elephants · Birding</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE ONLY CARDS -->
+  <div class="mobile-dest-list">
+    <div class="mobile-dest-card" onclick="openDest('sigiriya')">
+      <img src="images/sigiriya.jpg" alt="Sigiriya">
+      <div class="mobile-dest-overlay">
+        <div class="mobile-dest-name">Sigiriya</div>
+        <div class="mobile-dest-sub">Rock Fortress · Frescoes · Panoramic Views</div>
+        <span class="mobile-dest-tap">Tap to explore →</span>
+      </div>
+    </div>
+    <div class="mobile-dest-card" onclick="openDest('kandy')">
+      <img src="images/kandy.jpg" alt="Kandy">
+      <div class="mobile-dest-overlay">
+        <div class="mobile-dest-name">Kandy</div>
+        <div class="mobile-dest-sub">Temple of Tooth · Cultural Shows · Peradeniya Gardens</div>
+        <span class="mobile-dest-tap">Tap to explore →</span>
+      </div>
+    </div>
+    <div class="mobile-dest-card" onclick="openDest('ella')">
+      <img src="images/ella.jpg" alt="Ella">
+      <div class="mobile-dest-overlay">
+        <div class="mobile-dest-name">Ella</div>
+        <div class="mobile-dest-sub">Nine Arch Bridge · Tea Trails · Hikes</div>
+        <span class="mobile-dest-tap">Tap to explore →</span>
+      </div>
+    </div>
+    <div class="mobile-dest-card" onclick="openDest('galle')">
+      <img src="images/galle.jpg" alt="Galle">
+      <div class="mobile-dest-overlay">
+        <div class="mobile-dest-name">Galle</div>
+        <div class="mobile-dest-sub">Dutch Fort · Boutique Hotels · Sea Turtles</div>
+        <span class="mobile-dest-tap">Tap to explore →</span>
+      </div>
+    </div>
+    <div class="mobile-dest-card" onclick="openDest('yala')">
+      <img src="images/yala-leopard.jpg" alt="Yala">
+      <div class="mobile-dest-overlay">
+        <div class="mobile-dest-name">Yala</div>
+        <div class="mobile-dest-sub">Leopard Safari · Elephants · Birding</div>
+        <span class="mobile-dest-tap">Tap to explore →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATION MODAL -->
+<div class="dest-modal-overlay" id="destModal" onclick="closeDestOnOverlay(event)">
+  <div class="dest-modal" id="destModalBox">
+    <div class="dest-modal-img" id="destModalImg">
+      <button class="dest-modal-close" onclick="closeDest()">✕</button>
+    </div>
+    <div class="dest-modal-body">
+      <div class="dest-modal-tag" id="destModalTag"></div>
+      <div class="dest-modal-title" id="destModalTitle"></div>
+      <p class="dest-modal-desc" id="destModalDesc"></p>
+      <div class="dest-modal-grid" id="destModalFacts"></div>
+      <div class="dest-modal-highlights">
+        <h4>Highlights</h4>
+        <div class="highlight-list" id="destModalHighlights"></div>
+      </div>
+      <div class="dest-modal-actions">
+        <a href="packages.html" class="btn-primary">View Related Packages</a>
+        <a href="plan-trip.html" class="btn-outline" style="color:var(--deep);border-color:var(--sand-dark);">Plan My Trip</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
+      <div class="social-row" style="margin-top:1.5rem">
+        <a href="#" class="social-btn">📷</a>
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="destinations.html">Sigiriya</a>
+      <a href="destinations.html">Kandy</a>
+      <a href="destinations.html">Ella</a>
+      <a href="destinations.html">Galle</a>
+      <a href="destinations.html">Yala National Park</a>
+      <a href="destinations.html">Nuwara Eliya</a>
+      <a href="destinations.html">Trincomalee</a>
+    </div>
+    <div class="footer-col">
+      <h4>Packages</h4>
+      <a href="packages.html">Luxury Tours</a>
+      <a href="packages.html">Adventure Tours</a>
+      <a href="packages.html">Honeymoon Packages</a>
+      <a href="packages.html">Wildlife Safaris</a>
+      <a href="packages.html">Cultural Tours</a>
+      <a href="packages.html">Family Packages</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog &amp; Travel Guides</a>
+      <a href="contact.html">Testimonials</a>
+      <a href="contact.html">FAQ</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved. SLTDA Reg. No. SLTDA/SQA/T/0123</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+<script src="script.js"></script>
+<script>
+const destinations = {
+  sigiriya: {
+    tag: 'UNESCO World Heritage Site',
+    title: 'Sigiriya',
+    image: 'images/sigiriya.jpg',
+    desc: 'Rising 200 metres above the surrounding jungle, Sigiriya — the Lion Rock — is Sri Lanka\'s most iconic landmark. Built in the 5th century by King Kashyapa as a royal palace in the sky, this ancient rock fortress is adorned with remarkable frescoes, a polished mirror wall, and elaborate water gardens at its base. The panoramic views from the summit are simply unforgettable.',
+    facts: [
+      { label: 'Best Time to Visit', value: 'December – April' },
+      { label: 'Recommended Duration', value: '4–5 hours (half day)' },
+      { label: 'Distance from Colombo', value: '~170 km · 3.5 hrs drive' },
+    ],
+    highlights: ['Lion\'s Paw Gateway', 'Ancient Frescoes', 'Mirror Wall', 'Summit Panoramic Views', 'Royal Water Gardens', 'Pidurangala Rock (nearby)']
+  },
+  kandy: {
+    tag: 'Cultural Capital of Sri Lanka',
+    title: 'Kandy',
+    image: 'images/kandy.jpg',
+    desc: 'Nestled among mist-capped hills at the heart of Sri Lanka, Kandy is the island\'s cultural soul and its last royal capital. The city is home to the sacred Temple of the Tooth Relic — one of Buddhism\'s most revered sites — and is encircled by the serene Kandy Lake. Every July or August the streets explode with the spectacular Esala Perahera festival, a procession of decorated elephants and traditional dancers.',
+    facts: [
+      { label: 'Best Time to Visit', value: 'Year-round; July–Aug for Perahera' },
+      { label: 'Recommended Duration', value: '1–2 days' },
+      { label: 'Distance from Colombo', value: '~115 km · 2.5 hrs drive' },
+    ],
+    highlights: ['Temple of the Sacred Tooth Relic', 'Kandy Lake', 'Peradeniya Botanical Gardens', 'Kandyan Dance Performance', 'Udawatta Kele Sanctuary', 'Local Spice Markets']
+  },
+  ella: {
+    tag: 'Hill Country Gem',
+    title: 'Ella',
+    image: 'images/ella.jpg',
+    desc: 'Perched at around 1,000 metres above sea level, Ella is a small mountain town beloved for its dramatic scenery, mist-draped valleys, and wonderfully relaxed pace of life. The legendary Nine Arch Bridge — an elegant colonial-era viaduct framed by tea bushes — is one of Sri Lanka\'s most photographed sights. Arriving by the scenic train from Kandy through rolling tea country is an experience in itself.',
+    facts: [
+      { label: 'Best Time to Visit', value: 'January – April' },
+      { label: 'Recommended Duration', value: '2–3 days' },
+      { label: 'Distance from Kandy', value: '~140 km · scenic train 6 hrs' },
+    ],
+    highlights: ['Nine Arch Bridge', 'Ella Rock Hike', 'Little Adam\'s Peak', 'Scenic Train Journey', 'Ravana Falls', 'Tea Estate Visits']
+  },
+  galle: {
+    tag: 'UNESCO World Heritage Fort',
+    title: 'Galle',
+    image: 'images/galle.jpg',
+    desc: 'Sri Lanka\'s most atmospheric city, Galle Fort is a UNESCO World Heritage Site built by the Portuguese in 1588 and later fortified by the Dutch in the 17th century. Within its ancient ramparts you\'ll find cobblestone streets lined with colonial Dutch townhouses, boutique hotels, galleries, and superb restaurants. The fort walls offer spectacular sunsets over the Indian Ocean, making Galle one of the most romantic spots on the island.',
+    facts: [
+      { label: 'Best Time to Visit', value: 'November – April' },
+      { label: 'Recommended Duration', value: '1–2 days' },
+      { label: 'Distance from Colombo', value: '~120 km · 2 hrs drive' },
+    ],
+    highlights: ['Galle Fort Ramparts', 'Dutch Reformed Church', 'Lighthouse Walk', 'Boutique Galleries & Cafés', 'Turtle Hatchery at Rekawa', 'Jungle Beach']
+  },
+  yala: {
+    tag: 'Premier Wildlife National Park',
+    title: 'Yala National Park',
+    image: 'images/yala-leopard.jpg',
+    desc: 'Yala is Sri Lanka\'s most celebrated national park and home to the world\'s highest density of leopards. Stretching along the island\'s southeastern coast, its diverse landscapes — dry jungle, lagoons, grasslands, and ocean-side scrubland — support a remarkable range of wildlife. A morning game drive here can yield sightings of leopards, wild elephants, sloth bears, mugger crocodiles, and hundreds of bird species.',
+    facts: [
+      { label: 'Best Time to Visit', value: 'February – July' },
+      { label: 'Recommended Duration', value: '1–3 days (2+ game drives)' },
+      { label: 'Distance from Colombo', value: '~300 km · 5 hrs drive' },
+    ],
+    highlights: ['Leopard Sightings', 'Wild Elephant Herds', 'Sloth Bears', 'Mugger Crocodiles', 'Sea Bird Colony at Patanangala', 'Scenic Ocean-side Landscapes']
+  }
+};
+
+function openDest(key) {
+  const d = destinations[key];
+  document.getElementById('destModalTag').textContent = d.tag;
+  document.getElementById('destModalTitle').textContent = d.title;
+  document.getElementById('destModalDesc').textContent = d.desc;
+  document.getElementById('destModalImg').style.backgroundImage = `url('${d.image}')`;
+
+  const facts = document.getElementById('destModalFacts');
+  facts.innerHTML = d.facts.map(f =>
+    `<div class="dest-modal-fact"><div class="dest-modal-fact-label">${f.label}</div><div class="dest-modal-fact-value">${f.value}</div></div>`
+  ).join('');
+
+  const highlights = document.getElementById('destModalHighlights');
+  highlights.innerHTML = d.highlights.map(h =>
+    `<span class="highlight-chip">${h}</span>`
+  ).join('');
+
+  document.getElementById('destModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDest() {
+  document.getElementById('destModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeDestOnOverlay(e) {
+  if (e.target === document.getElementById('destModal')) closeDest();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDest(); });
+</script>
+</body>
+</html>
