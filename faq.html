@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Serendip Go</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip.html">Plan Trip</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<section style="background:var(--deep); padding: 6rem 5% 4rem; text-align:center;">
+  <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span> FAQ <span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span></div>
+  <h1 class="section-title" style="color:var(--cream); margin-top:1rem;">Common <em>Questions</em></h1>
+  <p style="color:rgba(255,255,255,0.5); font-family:'Josefin Sans',sans-serif; font-size:0.88rem; letter-spacing:1px; margin-top:0.5rem;">Everything you need to know before your Sri Lanka adventure.</p>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--cream); padding:5rem 5%;">
+  <div class="faq-list reveal" style="max-width:800px; margin:0 auto;">
+
+    <div style="font-family:'Josefin Sans',sans-serif; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:2rem;">Visas &amp; Entry</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need a visa to visit Sri Lanka? <span>+</span></div>
+      <div class="faq-a">Most nationalities require an Electronic Travel Authorization (ETA) which can be obtained online before arrival. It typically costs USD 35 for tourists and allows a 30-day stay. We're happy to guide you through the process.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How far in advance should I apply for a visa? <span>+</span></div>
+      <div class="faq-a">We recommend applying for your Sri Lanka ETA at least 2–4 weeks before your departure date. The online process is straightforward and approvals are usually issued within a few days, but it's best to have it confirmed well in advance of travel.</div>
+    </div>
+
+    <div style="font-family:'Josefin Sans',sans-serif; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin:2.5rem 0 2rem;">Best Time to Visit</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">When is the best time to visit Sri Lanka? <span>+</span></div>
+      <div class="faq-a">Sri Lanka is a year-round destination. The west and south coast (Galle, Mirissa) are best from November to April. The east coast (Trincomalee, Arugam Bay) shines from May to September. The hill country is pleasant year-round. We'll tailor your itinerary to the optimal time.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is it safe to travel during the monsoon season? <span>+</span></div>
+      <div class="faq-a">Absolutely — Sri Lanka's two monsoons affect different parts of the island at different times, so it's always possible to find great weather somewhere. The rainy season can actually be a wonderful time to visit with fewer crowds and lush green landscapes. We'll plan your route around the best conditions.</div>
+    </div>
+
+    <div style="font-family:'Josefin Sans',sans-serif; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin:2.5rem 0 2rem;">Packages &amp; Bookings</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What's included in your tour packages? <span>+</span></div>
+      <div class="faq-a">Most packages include accommodation, all transfers in an air-conditioned vehicle, an English-speaking guide, entrance fees, and breakfast. Flights are not included but we can recommend and assist with booking. Full details are provided for each specific package.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can you customize the itinerary to our preferences? <span>+</span></div>
+      <div class="faq-a">Absolutely — customization is at the heart of what we do. Our itineraries are starting points. We adjust pace, accommodation style, activities, and destinations completely to your wishes. Use our trip planner or contact us directly.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I confirm my booking? <span>+</span></div>
+      <div class="faq-a">Once your itinerary is agreed upon, we'll send a detailed booking confirmation and invoice. A deposit of 25% secures your dates. The balance is due 60 days before departure. We accept bank transfer, credit card, and PayPal.</div>
+    </div>
+
+    <div style="font-family:'Josefin Sans',sans-serif; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin:2.5rem 0 2rem;">Safety &amp; Health</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is Sri Lanka safe for tourists? <span>+</span></div>
+      <div class="faq-a">Yes, Sri Lanka is generally very safe for tourists and is known for its warm hospitality. The local people are incredibly welcoming. Like any travel destination, standard precautions apply, and our team is always available to advise on safe areas and practices.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need vaccinations before travelling to Sri Lanka? <span>+</span></div>
+      <div class="faq-a">We recommend consulting your doctor or a travel health clinic at least 6–8 weeks before travel. Common recommendations include Hepatitis A, Typhoid, and ensuring routine vaccinations are up to date. Malaria prophylaxis may be advised for some rural areas. Your doctor will advise based on your specific itinerary.</div>
+    </div>
+
+    <div style="font-family:'Josefin Sans',sans-serif; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin:2.5rem 0 2rem;">Cancellations &amp; Changes</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is your cancellation policy? <span>+</span></div>
+      <div class="faq-a">We offer flexible cancellation options. Cancellations made 60+ days before departure receive a full refund less a small admin fee. 30–60 days: 50% refund. Under 30 days: non-refundable but fully transferable to a future date within 12 months. Full details are in our booking terms.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I make changes to my itinerary after booking? <span>+</span></div>
+      <div class="faq-a">Minor changes can usually be accommodated free of charge up to 30 days before departure. Significant changes (duration, destinations) may incur additional fees depending on accommodation and transport pre-bookings. Contact us as soon as possible and we'll do our best to accommodate your needs.</div>
+    </div>
+
+  </div>
+
+  <!-- Still have questions CTA -->
+  <div style="text-align:center; margin-top:4rem; padding:3rem; background:var(--sand); border-radius:12px; max-width:600px; margin-left:auto; margin-right:auto; margin-top:4rem;">
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--deep); margin-bottom:0.5rem;">Still have questions?</h3>
+    <p style="font-family:'Josefin Sans',sans-serif; font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">Our travel specialists are ready to help you plan your perfect Sri Lanka journey.</p>
+    <a href="contact.html" class="btn-primary">Contact Us</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
+      <div class="social-row" style="margin-top:1.5rem">
+        <a href="#" class="social-btn">📷</a>
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="destinations.html#sigiriya">Sigiriya</a>
+      <a href="destinations.html#kandy">Kandy</a>
+      <a href="destinations.html#ella">Ella</a>
+      <a href="destinations.html#galle">Galle</a>
+      <a href="destinations.html#yala">Yala National Park</a>
+      <a href="destinations.html#nuwara">Nuwara Eliya</a>
+      <a href="destinations.html#trincomalee">Trincomalee</a>
+    </div>
+    <div class="footer-col">
+      <h4>Packages</h4>
+      <a href="packages.html#luxury">Luxury Tours</a>
+      <a href="packages.html#adventure">Adventure Tours</a>
+      <a href="packages.html#honeymoon">Honeymoon Packages</a>
+      <a href="packages.html#wildlife">Wildlife Safaris</a>
+      <a href="packages.html#cultural">Cultural Tours</a>
+      <a href="packages.html#family">Family Packages</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog &amp; Travel Guides</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved.</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

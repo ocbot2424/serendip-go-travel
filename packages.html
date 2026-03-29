@@ -329,16 +329,19 @@
 
   <div class="pkg-filters reveal">
     <button class="pkg-filter active" onclick="filterPkg('all',this)">All Packages</button>
+    <button class="pkg-filter" onclick="filterPkg('luxury',this)">Luxury Tours</button>
+    <button class="pkg-filter" onclick="filterPkg('adventure',this)">Adventure Tours</button>
+    <button class="pkg-filter" onclick="filterPkg('honeymoon',this)">Honeymoon</button>
+    <button class="pkg-filter" onclick="filterPkg('wildlife',this)">Wildlife Safaris</button>
+    <button class="pkg-filter" onclick="filterPkg('cultural',this)">Cultural Tours</button>
+    <button class="pkg-filter" onclick="filterPkg('family',this)">Family Packages</button>
     <button class="pkg-filter" onclick="filterPkg('budget',this)">Budget</button>
-    <button class="pkg-filter" onclick="filterPkg('midrange',this)">Mid-Range</button>
-    <button class="pkg-filter" onclick="filterPkg('luxury',this)">Luxury</button>
-    <button class="pkg-filter" onclick="filterPkg('ultra',this)">Ultra-Luxury</button>
   </div>
 
   <div class="pkg-grid reveal" id="pkgGrid">
 
     <!-- 1. BUDGET: Sri Lanka Short Escape -->
-    <div class="pkg-card" data-cat="budget">
+    <div class="pkg-card" data-cat="budget adventure">
       <div class="pkg-img" style="background-image:url('images/sigiriya.jpg');"></div>
       <div class="pkg-body">
         <span class="pkg-tier tier-budget">Budget</span>
@@ -367,7 +370,7 @@
     </div>
 
     <!-- 2. MID-RANGE: Classic Island Explorer (Most Popular) -->
-    <div class="pkg-card" data-cat="midrange" style="position:relative;">
+    <div class="pkg-card" data-cat="midrange adventure" style="position:relative;">
       <div class="pkg-badge-popular">Most Popular</div>
       <div class="pkg-img" style="background-image:url('images/tea-plantation.jpg');"></div>
       <div class="pkg-body">
@@ -397,7 +400,7 @@
     </div>
 
     <!-- 3. MID-RANGE: Family Island Adventure -->
-    <div class="pkg-card" data-cat="midrange">
+    <div class="pkg-card" data-cat="midrange family adventure">
       <div class="pkg-img" style="background-image:url('images/elephant.jpg');"></div>
       <div class="pkg-body">
         <span class="pkg-tier tier-midrange">Mid-Range · Family</span>
@@ -426,7 +429,7 @@
     </div>
 
     <!-- 4. LUXURY: Wild Sri Lanka Safari -->
-    <div class="pkg-card" data-cat="luxury">
+    <div class="pkg-card" data-cat="luxury wildlife adventure">
       <div class="pkg-img" style="background-image:url('images/yala-leopard.jpg');"></div>
       <div class="pkg-body">
         <span class="pkg-tier tier-luxury">Luxury · Wildlife</span>
@@ -455,7 +458,7 @@
     </div>
 
     <!-- 5. LUXURY: Romantic Isle Retreat -->
-    <div class="pkg-card" data-cat="luxury">
+    <div class="pkg-card" data-cat="luxury honeymoon">
       <div class="pkg-img" style="background-image:url('images/romantic-beach.jpg');"></div>
       <div class="pkg-body">
         <span class="pkg-tier tier-luxury">Luxury · Honeymoon</span>
@@ -484,7 +487,7 @@
     </div>
 
     <!-- 6. LUXURY: Sacred Heritage Circuit -->
-    <div class="pkg-card" data-cat="luxury">
+    <div class="pkg-card" data-cat="luxury cultural">
       <div class="pkg-img" style="background-image:url('images/temple.jpg');"></div>
       <div class="pkg-body">
         <span class="pkg-tier tier-luxury">Luxury · Cultural</span>
@@ -513,7 +516,7 @@
     </div>
 
     <!-- 7. ULTRA-LUXURY: Golden Ceylon -->
-    <div class="pkg-card" data-cat="ultra" style="grid-column: 1 / -1; max-width: 700px; margin: 0 auto; width: 100%;">
+    <div class="pkg-card" data-cat="ultra luxury" style="grid-column: 1 / -1; max-width: 700px; margin: 0 auto; width: 100%;">
       <div class="pkg-img" style="background-image:url('images/beach.jpg'); height: 280px;"></div>
       <div class="pkg-body">
         <span class="pkg-tier tier-ultra">Ultra-Luxury · Signature</span>
@@ -605,36 +608,36 @@
     </div>
     <div class="footer-col">
       <h4>Destinations</h4>
-      <a href="destinations.html">Sigiriya</a>
-      <a href="destinations.html">Kandy</a>
-      <a href="destinations.html">Ella</a>
-      <a href="destinations.html">Galle</a>
-      <a href="destinations.html">Yala National Park</a>
-      <a href="destinations.html">Nuwara Eliya</a>
-      <a href="destinations.html">Trincomalee</a>
+      <a href="destinations.html#sigiriya">Sigiriya</a>
+      <a href="destinations.html#kandy">Kandy</a>
+      <a href="destinations.html#ella">Ella</a>
+      <a href="destinations.html#galle">Galle</a>
+      <a href="destinations.html#yala">Yala National Park</a>
+      <a href="destinations.html#nuwara">Nuwara Eliya</a>
+      <a href="destinations.html#trincomalee">Trincomalee</a>
     </div>
     <div class="footer-col">
       <h4>Packages</h4>
       <a href="packages.html">Budget Escapes</a>
       <a href="packages.html">Mid-Range Tours</a>
       <a href="packages.html">Luxury Journeys</a>
-      <a href="packages.html">Honeymoon Packages</a>
-      <a href="packages.html">Wildlife Safaris</a>
-      <a href="packages.html">Family Packages</a>
+      <a href="packages.html#honeymoon">Honeymoon Packages</a>
+      <a href="packages.html#wildlife">Wildlife Safaris</a>
+      <a href="packages.html#family">Family Packages</a>
       <a href="packages.html">Golden Ceylon</a>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
       <a href="about.html">About Us</a>
       <a href="blog.html">Blog & Travel Guides</a>
-      <a href="contact.html">Testimonials</a>
-      <a href="contact.html">FAQ</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms &amp; Conditions</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Serendip Go. All rights reserved. SLTDA Reg. No. SLTDA/SQA/T/0123</span>
+    <span>© 2025 Serendip Go. All rights reserved.</span>
     <span>Designed with ❤️ in Sri Lanka</span>
   </div>
 </footer>
@@ -923,23 +926,38 @@ function closePkgOnOverlay(e) {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closePkg(); });
 
-// Override filterPkg for new categories
+// Filter by category — supports space-separated multi-category data-cat values
 function filterPkg(cat, btn) {
   document.querySelectorAll('.pkg-filter').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.pkg-card').forEach(card => {
-    const show = cat === 'all' || card.dataset.cat === cat;
+    const cats = card.dataset.cat ? card.dataset.cat.split(' ') : [];
+    const show = cat === 'all' || cats.includes(cat);
     card.style.display = show ? 'flex' : 'none';
+    // Reset grid span first
+    card.style.gridColumn = '';
+    card.style.flexDirection = '';
+    card.style.maxWidth = '';
   });
-  // Re-handle golden card full-width
-  document.querySelectorAll('.pkg-card[data-cat="ultra"]').forEach(card => {
-    if (card.style.display !== 'none') {
+  // Re-handle golden card full-width when visible
+  document.querySelectorAll('.pkg-card').forEach(card => {
+    const cats = card.dataset.cat ? card.dataset.cat.split(' ') : [];
+    if (cats.includes('ultra') && card.style.display !== 'none') {
       card.style.gridColumn = '1 / -1';
       card.style.flexDirection = 'row';
       card.style.maxWidth = '100%';
     }
   });
 }
+
+// Auto-filter from URL hash (e.g. packages.html#honeymoon)
+window.addEventListener('load', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && hash !== 'packages') {
+    const btn = document.querySelector(`.pkg-filter[onclick*="'${hash}'"]`);
+    if (btn) filterPkg(hash, btn);
+  }
+});
 </script>
 </body>
 </html>

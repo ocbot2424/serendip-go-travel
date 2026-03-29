@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonials — Serendip Go</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip.html">Plan Trip</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<section style="background:var(--deep); padding: 6rem 5% 4rem; text-align:center;">
+  <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span> Traveller Stories <span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span></div>
+  <h1 class="section-title" style="color:var(--cream); margin-top:1rem;">Words from Our <em>Happy</em> Guests</h1>
+  <p style="color:rgba(255,255,255,0.5); font-family:'Josefin Sans',sans-serif; font-size:0.88rem; letter-spacing:1px; margin-top:0.5rem;">Real experiences from travellers who explored Sri Lanka with Serendip Go.</p>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="background:var(--cream); padding:5rem 5%;">
+  <div class="testi-grid reveal">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">Serendip Go completely transformed our honeymoon. Every detail was perfect — from the cliffside hotel in Ella to the private whale-watching at dawn. Truly an unforgettable journey.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Sophie & James H.</div>
+          <div class="testi-country">🇬🇧 United Kingdom</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">The wildlife safari was beyond anything I could have imagined. Spotted four leopards in one morning at Yala! Our guide Nimal was incredibly knowledgeable and passionate.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">M</div>
+        <div>
+          <div class="testi-name">Michael T.</div>
+          <div class="testi-country">🇺🇸 United States</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">Travelling with three kids can be stressful, but Serendip Go made it magical. The family package was perfectly paced — the elephant orphanage and the train through the hills were highlights!</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div>
+          <div class="testi-name">Anita & Family</div>
+          <div class="testi-country">🇦🇺 Australia</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">We've travelled extensively across Asia but Sri Lanka with Serendip Go was on another level. The attention to detail, the local knowledge, and the warmth of every interaction made this a trip we'll talk about for years.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">L</div>
+        <div>
+          <div class="testi-name">Lena & David K.</div>
+          <div class="testi-country">🇩🇪 Germany</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">From the ancient ruins of Anuradhapura to the surf beaches of Arugam Bay, every day brought something extraordinary. Our guide was like a friend who happened to know everything about the island. Highly recommend!</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div>
+          <div class="testi-name">Ryan O.</div>
+          <div class="testi-country">🇨🇦 Canada</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">The Sacred Heritage Circuit was perfectly tailored to our interest in history and culture. Six UNESCO sites in nine days sounds rushed but the pacing was ideal — we never felt hurried and always felt immersed.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">N</div>
+        <div>
+          <div class="testi-name">Nadia P.</div>
+          <div class="testi-country">🇫🇷 France</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="text-align:center; margin-top:4rem;">
+    <p style="font-family:'Josefin Sans',sans-serif; font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:1.5rem;">Ready to create your own story?</p>
+    <a href="plan-trip.html" class="btn-primary" style="margin-right:1rem;">Plan My Trip</a>
+    <a href="packages.html" class="btn-outline">View Packages</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
+      <div class="social-row" style="margin-top:1.5rem">
+        <a href="#" class="social-btn">📷</a>
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="destinations.html#sigiriya">Sigiriya</a>
+      <a href="destinations.html#kandy">Kandy</a>
+      <a href="destinations.html#ella">Ella</a>
+      <a href="destinations.html#galle">Galle</a>
+      <a href="destinations.html#yala">Yala National Park</a>
+      <a href="destinations.html#nuwara">Nuwara Eliya</a>
+      <a href="destinations.html#trincomalee">Trincomalee</a>
+    </div>
+    <div class="footer-col">
+      <h4>Packages</h4>
+      <a href="packages.html#luxury">Luxury Tours</a>
+      <a href="packages.html#adventure">Adventure Tours</a>
+      <a href="packages.html#honeymoon">Honeymoon Packages</a>
+      <a href="packages.html#wildlife">Wildlife Safaris</a>
+      <a href="packages.html#cultural">Cultural Tours</a>
+      <a href="packages.html#family">Family Packages</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog &amp; Travel Guides</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved.</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

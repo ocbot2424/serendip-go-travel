@@ -185,7 +185,7 @@
     <p class="section-sub" style="color:rgba(255,255,255,0.5)">Click any destination to discover what awaits you.</p>
   </div>
   <div class="dest-grid reveal">
-    <div class="dest-card" onclick="openDest('sigiriya')" style="cursor:pointer;">
+    <div id="dest-sigiriya" class="dest-card" onclick="openDest('sigiriya')" style="cursor:pointer;">
       <div class="dest-card-bg" style="background-image:url('images/sigiriya.jpg'); background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
@@ -193,7 +193,7 @@
         <div class="dest-act">Rock Fortress · Frescoes · Panoramic Views</div>
       </div>
     </div>
-    <div class="dest-card" onclick="openDest('kandy')" style="cursor:pointer;">
+    <div id="dest-kandy" class="dest-card" onclick="openDest('kandy')" style="cursor:pointer;">
       <div class="dest-card-bg" style="background-image:url('images/kandy.jpg'); background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
@@ -201,7 +201,7 @@
         <div class="dest-act">Temple of Tooth · Cultural Shows · Peradeniya Gardens</div>
       </div>
     </div>
-    <div class="dest-card" onclick="openDest('ella')" style="cursor:pointer;">
+    <div id="dest-ella" class="dest-card" onclick="openDest('ella')" style="cursor:pointer;">
       <div class="dest-card-bg" style="background-image:url('images/ella.jpg'); background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
@@ -209,7 +209,7 @@
         <div class="dest-act">Nine Arch Bridge · Tea Trails · Hikes</div>
       </div>
     </div>
-    <div class="dest-card" onclick="openDest('galle')" style="cursor:pointer;">
+    <div id="dest-galle" class="dest-card" onclick="openDest('galle')" style="cursor:pointer;">
       <div class="dest-card-bg" style="background-image:url('images/galle.jpg'); background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
@@ -217,12 +217,28 @@
         <div class="dest-act">Dutch Fort · Boutique Hotels · Sea Turtles</div>
       </div>
     </div>
-    <div class="dest-card" onclick="openDest('yala')" style="cursor:pointer;">
+    <div id="dest-yala" class="dest-card" onclick="openDest('yala')" style="cursor:pointer;">
       <div class="dest-card-bg" style="background-image:url('images/yala-leopard.jpg'); background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
-        <div class="dest-name">Yala</div>
+        <div class="dest-name">Yala National Park</div>
         <div class="dest-act">Leopard Safari · Elephants · Birding</div>
+      </div>
+    </div>
+    <div id="dest-nuwara-eliya" class="dest-card" onclick="openDest('nuwara')" style="cursor:pointer;">
+      <div class="dest-card-bg" style="background-image:url('images/tea-plantation.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-explore">→</div>
+      <div class="dest-info">
+        <div class="dest-name">Nuwara Eliya</div>
+        <div class="dest-act">Tea Estates · Colonial Charm · Misty Highlands</div>
+      </div>
+    </div>
+    <div id="dest-trincomalee" class="dest-card" onclick="openDest('trincomalee')" style="cursor:pointer;">
+      <div class="dest-card-bg" style="background-image:url('images/beach.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-explore">→</div>
+      <div class="dest-info">
+        <div class="dest-name">Trincomalee</div>
+        <div class="dest-act">Pristine Beaches · Whale Watching · Ancient Temples</div>
       </div>
     </div>
   </div>
@@ -264,8 +280,24 @@
     <div class="mobile-dest-card" onclick="openDest('yala')">
       <img src="images/yala-leopard.jpg" alt="Yala">
       <div class="mobile-dest-overlay">
-        <div class="mobile-dest-name">Yala</div>
+        <div class="mobile-dest-name">Yala National Park</div>
         <div class="mobile-dest-sub">Leopard Safari · Elephants · Birding</div>
+        <span class="mobile-dest-tap">Tap to explore →</span>
+      </div>
+    </div>
+    <div class="mobile-dest-card" onclick="openDest('nuwara')">
+      <img src="images/tea-plantation.jpg" alt="Nuwara Eliya">
+      <div class="mobile-dest-overlay">
+        <div class="mobile-dest-name">Nuwara Eliya</div>
+        <div class="mobile-dest-sub">Tea Estates · Colonial Charm · Misty Highlands</div>
+        <span class="mobile-dest-tap">Tap to explore →</span>
+      </div>
+    </div>
+    <div class="mobile-dest-card" onclick="openDest('trincomalee')">
+      <img src="images/beach.jpg" alt="Trincomalee">
+      <div class="mobile-dest-overlay">
+        <div class="mobile-dest-name">Trincomalee</div>
+        <div class="mobile-dest-sub">Pristine Beaches · Whale Watching · Ancient Temples</div>
         <span class="mobile-dest-tap">Tap to explore →</span>
       </div>
     </div>
@@ -308,35 +340,35 @@
     </div>
     <div class="footer-col">
       <h4>Destinations</h4>
-      <a href="destinations.html">Sigiriya</a>
-      <a href="destinations.html">Kandy</a>
-      <a href="destinations.html">Ella</a>
-      <a href="destinations.html">Galle</a>
-      <a href="destinations.html">Yala National Park</a>
-      <a href="destinations.html">Nuwara Eliya</a>
-      <a href="destinations.html">Trincomalee</a>
+      <a href="destinations.html#sigiriya">Sigiriya</a>
+      <a href="destinations.html#kandy">Kandy</a>
+      <a href="destinations.html#ella">Ella</a>
+      <a href="destinations.html#galle">Galle</a>
+      <a href="destinations.html#yala">Yala National Park</a>
+      <a href="destinations.html#nuwara">Nuwara Eliya</a>
+      <a href="destinations.html#trincomalee">Trincomalee</a>
     </div>
     <div class="footer-col">
       <h4>Packages</h4>
-      <a href="packages.html">Luxury Tours</a>
-      <a href="packages.html">Adventure Tours</a>
-      <a href="packages.html">Honeymoon Packages</a>
-      <a href="packages.html">Wildlife Safaris</a>
-      <a href="packages.html">Cultural Tours</a>
-      <a href="packages.html">Family Packages</a>
+      <a href="packages.html#luxury">Luxury Tours</a>
+      <a href="packages.html#adventure">Adventure Tours</a>
+      <a href="packages.html#honeymoon">Honeymoon Packages</a>
+      <a href="packages.html#wildlife">Wildlife Safaris</a>
+      <a href="packages.html#cultural">Cultural Tours</a>
+      <a href="packages.html#family">Family Packages</a>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
       <a href="about.html">About Us</a>
       <a href="blog.html">Blog &amp; Travel Guides</a>
-      <a href="contact.html">Testimonials</a>
-      <a href="contact.html">FAQ</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms &amp; Conditions</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Serendip Go. All rights reserved. SLTDA Reg. No. SLTDA/SQA/T/0123</span>
+    <span>© 2025 Serendip Go. All rights reserved.</span>
     <span>Designed with ❤️ in Sri Lanka</span>
   </div>
 </footer>
@@ -408,6 +440,30 @@ const destinations = {
       { label: 'Distance from Colombo', value: '~300 km · 5 hrs drive' },
     ],
     highlights: ['Leopard Sightings', 'Wild Elephant Herds', 'Sloth Bears', 'Mugger Crocodiles', 'Sea Bird Colony at Patanangala', 'Scenic Ocean-side Landscapes']
+  },
+  nuwara: {
+    tag: 'Little England of Sri Lanka',
+    title: 'Nuwara Eliya',
+    image: 'images/tea-plantation.jpg',
+    desc: 'Perched at 1,868 metres in the heart of Sri Lanka\'s highlands, Nuwara Eliya is known as "Little England" for its colonial-era architecture, manicured gardens, and cool misty climate. Surrounded by rolling tea estates — the source of Ceylon\'s world-famous tea — the town retains a charming Victorian character. Explore lush tea factories, take highland hikes, and sip a perfectly brewed cup overlooking endless emerald hills.',
+    facts: [
+      { label: 'Best Time to Visit', value: 'January – April' },
+      { label: 'Recommended Duration', value: '1–2 days' },
+      { label: 'Distance from Kandy', value: '~75 km · 2 hrs drive' },
+    ],
+    highlights: ['Tea Estate & Factory Tours', 'Gregory Lake', 'Hakgala Botanical Gardens', 'Victoria Park', 'Horton Plains & World\'s End', 'Colonial Architecture & Bungalows']
+  },
+  trincomalee: {
+    tag: 'East Coast Paradise',
+    title: 'Trincomalee',
+    image: 'images/beach.jpg',
+    desc: 'Home to one of the finest natural harbours in the world, Trincomalee on Sri Lanka\'s east coast is a destination of remarkable beauty and diversity. Its powder-white beaches at Nilaveli and Uppuveli are among the most pristine on the island. The warm, crystal-clear waters offer excellent snorkelling and diving, while the bay is renowned for blue whale and sperm whale sightings between May and October.',
+    facts: [
+      { label: 'Best Time to Visit', value: 'May – September' },
+      { label: 'Recommended Duration', value: '2–3 days' },
+      { label: 'Distance from Colombo', value: '~260 km · 5 hrs drive' },
+    ],
+    highlights: ['Nilaveli & Uppuveli Beaches', 'Blue Whale Watching', 'Pigeon Island Snorkelling', 'Koneswaram Temple', 'Fort Frederick', 'Coral Reef Diving']
   }
 };
 
@@ -442,6 +498,14 @@ function closeDestOnOverlay(e) {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDest(); });
+
+// Auto-open destination from URL hash (e.g. destinations.html#sigiriya)
+window.addEventListener('load', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && destinations[hash]) {
+    setTimeout(() => openDest(hash), 300);
+  }
+});
 </script>
 </body>
 </html>

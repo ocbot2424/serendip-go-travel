@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ultimate Guide to Sri Lankan Cuisine — Serendip Go Blog</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .article-featured-img{width:100%;height:500px;background-size:cover;background-position:center}
+  .article-wrap{max-width:860px;margin:0 auto;padding:4rem 5%}
+  .article-meta-bar{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--sand-dark)}
+  .ac-tag{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--coral);font-weight:600;background:rgba(212,96,58,.08);padding:.3rem .8rem}
+  .ac-meta{font-size:.72rem;color:var(--text-muted);letter-spacing:1px}
+  .article-lead{font-size:1.05rem;color:var(--text-muted);line-height:1.9;margin-bottom:2rem;font-style:italic;border-left:3px solid var(--gold);padding-left:1.5rem}
+  .article-body h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--deep);margin:2.5rem 0 1rem;font-weight:400}
+  .article-body h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--teal);margin:1.8rem 0 .7rem;font-weight:600}
+  .article-body p{font-size:.95rem;line-height:1.95;color:var(--text);margin-bottom:1.2rem}
+  .article-body ul,.article-body ol{padding-left:1.5rem;margin-bottom:1.2rem}
+  .article-body li{font-size:.92rem;line-height:1.85;color:var(--text);margin-bottom:.4rem}
+  .article-body strong{color:var(--deep);font-weight:600}
+  .highlight-quote{background:var(--sand);border-left:4px solid var(--gold);padding:1.5rem 2rem;margin:2rem 0;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--deep);line-height:1.7;font-style:italic}
+  .tip-box{background:rgba(26,92,74,.06);border:1px solid rgba(26,92,74,.2);padding:1.5rem 2rem;margin:2rem 0}
+  .tip-box h4{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.8rem;font-weight:600}
+  .tip-box p,.tip-box li{font-size:.88rem;color:var(--text-muted);line-height:1.8}
+  .food-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin:2rem 0}
+  .food-card{background:white;padding:1.5rem;border-top:3px solid var(--gold)}
+  .food-card h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--deep);margin-bottom:.6rem;font-weight:400}
+  .food-card .food-type{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.5rem}
+  .food-card p{font-size:.83rem;color:var(--text-muted);line-height:1.75;margin:0}
+  .related-section{background:var(--sand);padding:4rem 8%}
+  .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:2rem}
+  .rel-card{background:white;text-decoration:none;color:inherit;transition:transform .3s;display:block}
+  .rel-card:hover{transform:translateY(-3px)}
+  .rel-card .rc-img{height:160px;background-size:cover;background-position:center}
+  .rel-card .rc-body{padding:1.2rem}
+  .rc-tag{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--coral);font-weight:600;margin-bottom:.5rem}
+  .rc-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--deep);line-height:1.3}
+  .article-cta-section{background:linear-gradient(135deg,var(--deep) 0%,var(--teal) 100%);padding:5rem 8%;text-align:center;color:white}
+  .article-cta-section h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;margin-bottom:1rem}
+  .article-cta-section h2 em{color:var(--gold);font-style:italic}
+  .article-cta-section p{color:rgba(255,255,255,.7);margin-bottom:2rem;font-size:.9rem}
+  @media(max-width:768px){.article-featured-img{height:280px}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip.html">Plan Trip</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:25px;display:inline-block;margin-right:.8rem"></span> Food &amp; Culture <span style="background:var(--gold);height:1px;width:25px;display:inline-block;margin-left:.8rem"></span></div>
+  <h1>The Ultimate Guide to <em>Sri Lankan Cuisine</em></h1>
+  <p>January 22, 2025 &nbsp;·&nbsp; 8 min read &nbsp;·&nbsp; By Amali Perera</p>
+</div>
+
+<div class="article-featured-img" style="background-image:url('images/sri-lanka-food.jpg')"></div>
+
+<div class="article-wrap">
+  <div class="article-meta-bar">
+    <span class="ac-tag">Food &amp; Culture</span>
+    <span class="ac-meta">January 22, 2025</span>
+    <span class="ac-meta">8 min read</span>
+    <span class="ac-meta">By Amali Perera</span>
+  </div>
+  <p class="article-lead">Sri Lankan food is one of Asia's great undiscovered cuisines. Deeply spiced, coconut-rich, fiery-hot or delicately fragrant, it draws on Sinhalese, Tamil, Malay, Dutch, and Arab influences that have layered over two millennia of culinary history.</p>
+
+  <div class="article-body">
+    <p>Ask any Sri Lankan returning home what they miss most when abroad, and nine times out of ten the answer won't be the beach or the weather. It will be the food. The everyday rice-and-curry — a plate piled with steaming red rice, three or four small dishes of curried vegetables, a fiery sambol, and a piece of fish — is one of the most nourishing and flavour-packed meals you'll find anywhere in Asia.</p>
+    <p>Yet Sri Lanka's food culture extends far beyond the curry plate. From delicate string hoppers eaten at breakfast to the theatrical street spectacle of kottu roti being chopped on a hot griddle at midnight, here is your complete guide to eating your way through the island.</p>
+
+    <h2>The Essentials: Dishes Every Visitor Must Try</h2>
+
+    <div class="food-grid">
+      <div class="food-card">
+        <div class="food-type">Breakfast Staple</div>
+        <h4>Hoppers (Appa)</h4>
+        <p>Bowl-shaped pancakes made from fermented rice flour and coconut milk, cooked in a small wok. The crispy edges give way to a soft, slightly sour centre. Egg hoppers — made with an egg cracked into the centre — are the most satisfying breakfast you'll find. Served with coconut sambol and dhal.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-type">Breakfast Staple</div>
+        <h4>String Hoppers (Indi Appa)</h4>
+        <p>Delicate nests of steamed rice noodles pressed through a mould, eaten with coconut milk, a pungent dhal, and lunu miris (onion and chilli sambol). Subtler in taste than hoppers, their texture — soft and slightly springy — is highly addictive. A quintessential Sri Lankan breakfast.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-type">Lunch &amp; Dinner</div>
+        <h4>Rice &amp; Curry</h4>
+        <p>The national meal. A mound of red or white rice accompanied by three to eight side dishes — typically a fish or meat curry, dhal, a leafy green, a dry-fried vegetable, coconut sambol, and pol (coconut) roti. The complexity of spice combinations in each little dish is extraordinary. Eaten with your right hand in the traditional style.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-type">Street Food</div>
+        <h4>Kottu Roti</h4>
+        <p>The soundtrack of Sri Lankan street food. Sliced roti bread stir-fried on a flat griddle with egg, vegetables, shredded chicken or mutton, and a cascade of spices. The rhythmic chopping of the kottu blades is a sound you'll hear on every busy street corner after dark. Messy, smoky, deeply satisfying.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-type">Curry Classic</div>
+        <h4>Fish Ambul Thiyal</h4>
+        <p>Dry-fried tuna or other fish cooked with goraka (a sour, tamarind-like fruit), black pepper, garlic, and aromatic spices until almost completely dry. Intensely flavoured and naturally preserved — this dish was originally made to last for days without refrigeration. Powerful, pungent, and unlike anything you've eaten before.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-type">Colonial Heritage</div>
+        <h4>Lamprais</h4>
+        <p>A Dutch Burgher speciality — rice cooked in stock, served with a Dutch-influenced curry, frikkadels (meatballs), and blachan (shrimp paste), all wrapped in a banana leaf and baked until fragrant. Served mostly on Sundays in specialist restaurants. A unique fusion of Dutch and Sri Lankan culinary traditions that dates to the colonial era.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-type">Condiment</div>
+        <h4>Coconut Sambol (Pol Sambol)</h4>
+        <p>Fresh grated coconut mixed with red onion, dried chilli flakes, lime juice, and Maldive fish. Served with virtually every meal, it adds crunch, heat, and an irreplaceable freshness. Sri Lankans eat it with rice, hoppers, bread — everything. Making a good pol sambol is considered a core domestic skill.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-type">Snack</div>
+        <h4>Isso Wade (Prawn Fritters)</h4>
+        <p>Crispy deep-fried lentil patties topped with a whole freshwater prawn, eaten with green chilli and coconut sambol. The definitive beach snack of Sri Lanka — best eaten by the ocean at sunset, piping hot from the pan. Found at virtually every beach town and roadside stall.</p>
+      </div>
+    </div>
+
+    <h2>Spice and Heat: Understanding Sri Lankan Flavour</h2>
+    <p>Sri Lankan cooking is spicier than Indian food in many preparations — but it is also more coconut-forward, which tempers the heat. The spice palette relies heavily on <strong>cinnamon</strong> (Sri Lanka is the world's original cinnamon producer), <strong>cardamom, cloves, black pepper</strong> (a pre-colonial Sri Lankan export), <strong>pandan leaves, curry leaves</strong>, and <strong>goraka</strong> — the sour dried fruit unique to Sri Lankan cooking.</p>
+    <p>If you struggle with heat, simply say "<em>thel dala oney nay</em>" (no oil please) or "<em>miris kamak nay</em>" (not too much chilli), and most cooks will happily adjust. Sri Lankans are accustomed to cooking for sensitive palates. However, we strongly encourage you to push your limits — the fire is worth it.</p>
+
+    <h2>Drinks: Ceylon Tea &amp; Beyond</h2>
+    <p><strong>Ceylon Tea</strong> is the drink of Sri Lanka — and it tastes unrecognisably better here than the tea you buy at home. Served strong, very sweet, and with a cloud of condensed milk in a small glass, it is the fuel that keeps the country running. Visit a plantation in Nuwara Eliya for the full experience.</p>
+    <p><strong>Coconut water</strong> is everywhere — fresh king coconuts are sold by roadside vendors across the island and make for a perfect refresher in the heat. <strong>Arrack</strong>, distilled from coconut flower toddy, is Sri Lanka's national spirit — aged versions rival a good whisky. Lion Lager is the local beer, cold and reliable.</p>
+
+    <h2>Where to Eat: From Street to Restaurant</h2>
+
+    <h3>Local Rice &amp; Curry Restaurants (Hotels)</h3>
+    <p>In Sri Lanka, a basic local restaurant is called a "hotel" — a source of great confusion for tourists looking for accommodation. These simple, no-frills establishments serve the best rice and curry on the island at a fraction of tourist-restaurant prices. A full meal for two will rarely exceed USD 4. Look for the places with local workers eating lunch — that's always the quality indicator.</p>
+
+    <h3>Colombo Fine Dining</h3>
+    <p>Colombo's restaurant scene has exploded in recent years. Standout restaurants include <strong>Ministry of Crab</strong> (Colombo 1) — Sri Lanka's most famous restaurant, serving lagoon crabs in extraordinary preparations; <strong>Gallery Café</strong> in Colombo 7; and the rooftop restaurant at <strong>Wallawwa</strong>. For authentic Sri Lankan cuisine, <strong>Nuga Gama</strong> at the Cinnamon Grand serves traditional recipes in a recreated village setting.</p>
+
+    <h3>Galle Fort Restaurants</h3>
+    <p>Within Galle Fort's walls, <strong>Fortaleza</strong> and <strong>Pedlar's Inn</strong> are excellent for fresh seafood. For breakfast, the cafes along Church Street serve wonderful hoppers with a colonial-era backdrop.</p>
+
+    <div class="tip-box">
+      <h4>Eating Tips for Visitors</h4>
+      <ul>
+        <li>Eat with your right hand in the traditional style — it genuinely improves the experience</li>
+        <li>A "short eats" shop sells small snacks (wade, rolls, cutlets) — perfect for a quick bite</li>
+        <li>Buffet lunch at local restaurants is usually served from 11am–2pm and is excellent value</li>
+        <li>Street food is generally safe — just avoid raw salads and unpeeled fruit outside reputable establishments</li>
+        <li>Ceylon tea tastes best drunk black, without milk, at elevation in Nuwara Eliya — ask for "plain tea"</li>
+        <li>Most restaurants are happy to make dishes milder for children or heat-sensitive guests</li>
+      </ul>
+    </div>
+
+    <h2>Sweets &amp; Desserts</h2>
+    <p>Sri Lankan sweets are often made with coconut, jaggery (palm sugar), and rice flour. <strong>Watalappan</strong> — a steamed coconut custard made with jaggery and cardamom — is the island's signature dessert, with Malay origins. <strong>Kavum</strong> are deep-fried oil cakes made for festivals. <strong>Kokis</strong> are crispy rose-shaped deep-fried snacks brought by the Dutch. During Avurudu (Sinhala New Year), every family makes vast quantities of these traditional sweets to share with neighbours.</p>
+
+    <h2>A Note on Vegetarian &amp; Vegan Eating</h2>
+    <p>Sri Lanka is an excellent destination for vegetarians. The Buddhist tradition means vegetarian food is widely available and genuinely delicious. Almost all rice-and-curry restaurants can make a full vegetarian spread — dhal, jak (jackfruit) curry, mallun (stir-fried greens), tempered coconut, and two or three vegetable curries. Vegans should be aware that most dishes contain coconut milk and some use Maldive fish in condiments — simply ask your server to confirm.</p>
+  </div>
+</div>
+
+<div class="related-section">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="eyebrow">Keep Reading</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--deep);margin-top:.5rem">More <em style="font-style:italic;color:var(--teal)">Travel Guides</em></h2>
+    <div class="related-grid">
+      <a href="blog-kandy-perahera.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/kandy.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Festivals</div><div class="rc-title">Kandy Esala Perahera: Sri Lanka's Greatest Festival</div></div>
+      </a>
+      <a href="blog-best-time-visit.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/tea-plantation.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Travel Tips</div><div class="rc-title">Best Time to Visit Sri Lanka</div></div>
+      </a>
+      <a href="blog-nuwara-eliya-tea.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/tea-plantation.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Destinations</div><div class="rc-title">Nuwara Eliya &amp; Sri Lanka's Tea Country</div></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="article-cta-section">
+  <div class="eyebrow" style="color:var(--gold);justify-content:center">Plan Your Trip</div>
+  <h2>Ready to Taste <em>Sri Lanka</em>?</h2>
+  <p>We can include cooking classes, market tours, and food experiences in any custom itinerary.</p>
+  <a href="plan-trip.html" class="btn-primary" style="margin-right:1rem">Plan My Trip</a>
+  <a href="packages.html" class="btn-outline">Browse Packages</a>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003.</p>
+      <div class="social-row" style="margin-top:1.5rem"><a href="#" class="social-btn">📷</a><a href="#" class="social-btn">📘</a><a href="#" class="social-btn">▶️</a></div>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="destinations.html#sigiriya">Sigiriya</a>
+      <a href="destinations.html#kandy">Kandy</a>
+      <a href="destinations.html#ella">Ella</a>
+      <a href="destinations.html#galle">Galle</a>
+      <a href="destinations.html#yala">Yala</a>
+      <a href="destinations.html#nuwara">Nuwara Eliya</a>
+    </div>
+    <div class="footer-col">
+      <h4>Travel Guides</h4>
+      <a href="blog-best-time-visit.html">Best Time to Visit</a>
+      <a href="blog-top10-places.html">Top 10 Places</a>
+      <a href="blog-yala-wildlife.html">Yala Safari Guide</a>
+      <a href="blog-sigiriya-guide.html">Sigiriya Guide</a>
+      <a href="blog-budget-travel.html">Budget Travel Tips</a>
+      <a href="blog.html">All Articles</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved.</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

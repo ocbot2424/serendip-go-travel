@@ -3,11 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog — Serendip Go</title>
+<title>Blog & Travel Guides — Serendip Go</title>
 <link rel="icon" type="image/png" href="images/fav.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  .blog-filter-bar {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    justify-content: center; margin-bottom: 3.5rem;
+  }
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--sand-dark);
+    color: var(--text-muted);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem; letter-spacing: 2px;
+    text-transform: uppercase; padding: 0.55rem 1.3rem;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--teal); border-color: var(--teal);
+    color: white;
+  }
+  .blog-featured {
+    display: grid; grid-template-columns: 1.4fr 1fr;
+    gap: 0; margin-bottom: 1.5px; cursor: pointer;
+    background: var(--deep);
+  }
+  .blog-featured-img {
+    height: 480px;
+    background-size: cover; background-position: center;
+    transition: transform 0.6s ease;
+    overflow: hidden;
+  }
+  .blog-featured:hover .blog-featured-img { transform: scale(1.03); }
+  .blog-featured-body {
+    padding: 3.5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    background: var(--deep); color: white;
+  }
+  .blog-featured-tag {
+    font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .blog-featured-tag::before { content: ''; width: 25px; height: 1px; background: var(--gold); }
+  .blog-featured-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300; line-height: 1.2;
+    color: white; margin-bottom: 1.2rem;
+  }
+  .blog-featured-title em { font-style: italic; color: var(--gold); }
+  .blog-featured-excerpt {
+    font-size: 0.82rem; color: rgba(255,255,255,0.65);
+    line-height: 1.9; margin-bottom: 1.8rem;
+  }
+  .blog-featured-meta {
+    font-size: 0.65rem; color: rgba(255,255,255,0.4);
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .read-more-link {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); text-decoration: none; font-weight: 600;
+    transition: gap 0.3s;
+  }
+  .read-more-link:hover { gap: 1rem; }
+  .read-more-link::after { content: '→'; }
+  .blog-main-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-bottom: 1.5px;
+  }
+  .blog-card-v2 {
+    background: white; cursor: pointer;
+    transition: transform 0.3s;
+    text-decoration: none; color: inherit;
+    display: block;
+  }
+  .blog-card-v2:hover { transform: translateY(-4px); }
+  .blog-card-v2 .bc-img {
+    height: 220px;
+    background-size: cover; background-position: center;
+    transition: transform 0.5s;
+    overflow: hidden;
+  }
+  .blog-card-v2:hover .bc-img { transform: scale(1.04); }
+  .blog-card-v2 .bc-body { padding: 1.8rem; }
+  .bc-tag {
+    font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--coral); font-weight: 600; margin-bottom: 0.7rem;
+  }
+  .bc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; color: var(--deep);
+    font-weight: 400; line-height: 1.3; margin-bottom: 0.8rem;
+  }
+  .bc-excerpt {
+    font-size: 0.77rem; color: var(--text-muted);
+    line-height: 1.8; margin-bottom: 1rem;
+  }
+  .bc-meta {
+    font-size: 0.65rem; color: var(--text-muted);
+    letter-spacing: 1px; border-top: 1px solid var(--sand-dark);
+    padding-top: 0.8rem; margin-top: 0.8rem;
+  }
+  .news-strip {
+    background: var(--teal);
+    padding: 1rem 8%;
+    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  }
+  .news-strip-label {
+    font-size: 0.58rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); font-weight: 700; white-space: nowrap;
+    background: rgba(201,151,58,0.15); padding: 0.3rem 0.8rem;
+  }
+  .news-strip-items {
+    display: flex; gap: 2rem; flex-wrap: wrap;
+  }
+  .news-strip-item {
+    font-size: 0.72rem; color: rgba(255,255,255,0.8);
+    letter-spacing: 0.5px; text-decoration: none;
+    transition: color 0.3s;
+  }
+  .news-strip-item:hover { color: var(--gold); }
+  .news-strip-item::before { content: '◆ '; font-size: 0.5rem; color: var(--gold); }
+  .newsletter-section {
+    background: var(--sand);
+    padding: 5rem 8%;
+    text-align: center;
+  }
+  .newsletter-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 300;
+    color: var(--deep); margin-bottom: 0.8rem;
+  }
+  .newsletter-section h2 em { font-style: italic; color: var(--teal); }
+  .newsletter-section p {
+    font-size: 0.85rem; color: var(--text-muted);
+    margin-bottom: 2rem; max-width: 460px; margin-left: auto; margin-right: auto;
+  }
+  .newsletter-form {
+    display: flex; gap: 0; max-width: 480px; margin: 0 auto;
+  }
+  .newsletter-form input {
+    flex: 1; padding: 0.9rem 1.2rem;
+    border: 1px solid var(--sand-dark); border-right: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.8rem; background: white;
+    outline: none; color: var(--text);
+  }
+  .newsletter-form button {
+    background: var(--teal); color: white;
+    border: none; padding: 0.9rem 1.8rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; font-weight: 600; transition: background 0.3s;
+  }
+  .newsletter-form button:hover { background: var(--deep); }
+  .blog-section-divider {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .blog-section-divider h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300; color: var(--deep);
+    white-space: nowrap;
+  }
+  .blog-section-divider h3 em { font-style: italic; color: var(--teal); }
+  .blog-section-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--sand-dark);
+  }
+  @media (max-width: 900px) {
+    .blog-featured { grid-template-columns: 1fr; }
+    .blog-featured-img { height: 280px; }
+    .blog-main-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .blog-main-grid { grid-template-columns: 1fr; }
+    .blog-featured-body { padding: 2rem; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form input { border-right: 1px solid var(--sand-dark); border-bottom: none; }
+  }
+</style>
 </head>
 <body>
 
@@ -20,7 +202,7 @@
     <li><a href="destinations.html">Destinations</a></li>
     <li><a href="packages.html">Packages</a></li>
     <li><a href="plan-trip.html">Plan Trip</a></li>
-    <li><a href="blog.html">Blog</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
     <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMobile()">
@@ -38,47 +220,252 @@
 </div>
 
 <div class="page-hero">
-  <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span> Travel Journal <span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span></div>
-  <h1>Stories & <em>Travel Guides</em></h1>
-  <p>Inspiration, tips, and insider knowledge to help you discover the best of Sri Lanka.</p>
+  <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:30px;display:inline-block;margin-right:0.8rem"></span> Travel Journal <span style="background:var(--gold);height:1px;width:30px;display:inline-block;margin-left:0.8rem"></span></div>
+  <h1>Stories, Guides &amp; <em>Insider Knowledge</em></h1>
+  <p>Everything you need to know to discover the real Sri Lanka — from ancient ruins and misty highlands to golden beaches and sizzling street food.</p>
 </div>
 
-  <!-- BLOG -->
-  <section id="blog">
-    <div class="section-header reveal">
-      <div class="eyebrow">Travel Guides</div>
-      <h2 class="section-title">Stories & <em>Tips</em> from Sri Lanka</h2>
-    </div>
-    <div class="blog-grid reveal">
-      <div class="blog-card">
-        <div style="overflow:hidden"><div class="blog-img" style="background-image:url('images/tea-plantation.jpg'); background-size:cover; background-position:center; height:320px;"></div></div>
-        <div class="blog-body">
-          <div class="blog-tag">Travel Tips</div>
-          <div class="blog-title">Best Time to Visit Sri Lanka — A Month-by-Month Guide</div>
-          <p class="blog-excerpt">Understanding Sri Lanka's two monsoon seasons is the key to planning a perfect trip. Here's everything you need to know about weather windows, festivals, and peak season pricing...</p>
-          <div class="blog-meta">March 15, 2025 · 8 min read</div>
+<!-- BREAKING NEWS STRIP -->
+<div class="news-strip">
+  <span class="news-strip-label">Latest</span>
+  <div class="news-strip-items">
+    <a href="blog-tourism-news-2025.html" class="news-strip-item">Sri Lanka surpasses 2 million tourist arrivals in 2024</a>
+    <a href="blog-tourism-news-2025.html" class="news-strip-item">New e-visa system launches for 50+ countries</a>
+    <a href="blog-tourism-news-2025.html" class="news-strip-item">Mirissa named Top 5 Whale Watching Destination globally</a>
+    <a href="blog-tourism-news-2025.html" class="news-strip-item">New luxury eco-resorts open in Wilpattu NP</a>
+  </div>
+</div>
+
+<section id="blog" style="padding-bottom:2rem">
+  <!-- CATEGORY FILTER -->
+  <div class="blog-filter-bar" id="filterBar">
+    <button class="filter-btn active" onclick="filterBlog('all', this)">All Articles</button>
+    <button class="filter-btn" onclick="filterBlog('travel-tips', this)">Travel Tips</button>
+    <button class="filter-btn" onclick="filterBlog('destinations', this)">Destinations</button>
+    <button class="filter-btn" onclick="filterBlog('food-culture', this)">Food &amp; Culture</button>
+    <button class="filter-btn" onclick="filterBlog('wildlife', this)">Wildlife</button>
+    <button class="filter-btn" onclick="filterBlog('festivals', this)">Festivals</button>
+    <button class="filter-btn" onclick="filterBlog('news', this)">Latest News</button>
+  </div>
+
+  <!-- FEATURED ARTICLE -->
+  <div class="reveal" data-cat="travel-tips">
+    <a href="blog-best-time-visit.html" style="text-decoration:none;color:inherit">
+      <div class="blog-featured">
+        <div class="blog-featured-img" style="background-image:url('images/tea-plantation.jpg')"></div>
+        <div class="blog-featured-body">
+          <div class="blog-featured-tag">Featured — Travel Tips</div>
+          <div class="blog-featured-title">Best Time to Visit Sri Lanka —<br>A <em>Month-by-Month</em> Guide</div>
+          <p class="blog-featured-excerpt">Sri Lanka has two distinct monsoon seasons that shape when different regions are at their best. Whether you want sun-drenched beaches on the west coast, surf breaks on the east, or misty highland adventures, timing your trip makes all the difference. We break it all down month by month, including festival highlights, crowd levels, and pricing sweet spots.</p>
+          <div class="blog-featured-meta">March 15, 2025 &nbsp;·&nbsp; 10 min read &nbsp;·&nbsp; By Rohan Fernando</div>
+          <span class="read-more-link">Read Full Guide</span>
         </div>
       </div>
-      <div class="blog-card">
-        <div style="overflow:hidden"><div class="blog-img" style="background-image:url('images/galle.jpg'); background-size:cover; background-position:center; height:220px;"></div></div>
-        <div class="blog-body">
-          <div class="blog-tag">Destinations</div>
-          <div class="blog-title">Top 10 Must-See Places in Sri Lanka</div>
-          <p class="blog-excerpt">From the ancient citadel of Sigiriya to the colonial charm of Galle Fort — our curated list of unmissable destinations.</p>
-          <div class="blog-meta">Feb 8, 2025 · 6 min read</div>
-        </div>
+    </a>
+  </div>
+</section>
+
+<!-- MAIN BLOG GRID -->
+<section style="padding-top:1.5rem">
+
+  <div class="blog-section-divider reveal"><h3>Destination <em>Guides</em></h3></div>
+  <div class="blog-main-grid reveal" id="blogGrid">
+
+    <!-- 1 -->
+    <a href="blog-sigiriya-guide.html" class="blog-card-v2" data-cat="destinations">
+      <div class="bc-img" style="background-image:url('images/sigiriya.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Destinations</div>
+        <div class="bc-title">Sigiriya Rock Fortress: The Complete Visitor's Guide</div>
+        <p class="bc-excerpt">Scale the 1,200-year-old Lion Rock, discover the legendary frescoes, and explore the world's oldest landscaped gardens at this UNESCO World Heritage site.</p>
+        <div class="bc-meta">Feb 20, 2025 &nbsp;·&nbsp; 9 min read</div>
       </div>
-      <div class="blog-card">
-        <div style="overflow:hidden"><div class="blog-img" style="background-image:url('images/sri-lanka-food.jpg'); background-size:cover; background-position:center; height:220px;"></div></div>
-        <div class="blog-body">
-          <div class="blog-tag">Culture & Food</div>
-          <div class="blog-title">The Ultimate Guide to Sri Lankan Cuisine</div>
-          <p class="blog-excerpt">Hoppers, kottu roti, and fresh seafood curry — discover why Sri Lanka is a paradise for food lovers.</p>
-          <div class="blog-meta">Jan 22, 2025 · 5 min read</div>
-        </div>
+    </a>
+
+    <!-- 2 -->
+    <a href="blog-galle-fort.html" class="blog-card-v2" data-cat="destinations">
+      <div class="bc-img" style="background-image:url('images/galle.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Destinations</div>
+        <div class="bc-title">Galle Fort: A Walk Through 400 Years of Colonial History</div>
+        <p class="bc-excerpt">Cobblestone streets, Dutch-era ramparts, boutique hotels, and art galleries — Galle Fort is one of Asia's most atmospheric walled cities.</p>
+        <div class="bc-meta">Feb 10, 2025 &nbsp;·&nbsp; 8 min read</div>
       </div>
-    </div>
-  </section>
+    </a>
+
+    <!-- 3 -->
+    <a href="blog-ella-train.html" class="blog-card-v2" data-cat="destinations">
+      <div class="bc-img" style="background-image:url('images/ella.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Destinations</div>
+        <div class="bc-title">The Ella Train Journey: One of the World's Most Scenic Rides</div>
+        <p class="bc-excerpt">The Kandy-to-Ella train winds through emerald tea estates, over the iconic Nine Arches Bridge, and past waterfalls cascading into misty valleys below.</p>
+        <div class="bc-meta">Jan 28, 2025 &nbsp;·&nbsp; 7 min read</div>
+      </div>
+    </a>
+
+    <!-- 4 -->
+    <a href="blog-nuwara-eliya-tea.html" class="blog-card-v2" data-cat="destinations">
+      <div class="bc-img" style="background-image:url('images/tea-plantation.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Destinations</div>
+        <div class="bc-title">Nuwara Eliya & Sri Lanka's Tea Country: The Full Guide</div>
+        <p class="bc-excerpt">Visit working tea estates, sip freshly brewed Ceylon teas, hike to World's End, and discover why the British called this highland town "Little England."</p>
+        <div class="bc-meta">Jan 14, 2025 &nbsp;·&nbsp; 8 min read</div>
+      </div>
+    </a>
+
+    <!-- 5 -->
+    <a href="blog-best-beaches.html" class="blog-card-v2" data-cat="destinations">
+      <div class="bc-img" style="background-image:url('images/beach.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Destinations</div>
+        <div class="bc-title">The Best Beaches in Sri Lanka: From Surf to Serenity</div>
+        <p class="bc-excerpt">From the surf breaks of Arugam Bay to the turquoise shallows of Pasikuda, Sri Lanka's coastline offers a beach experience for every type of traveller.</p>
+        <div class="bc-meta">Dec 18, 2024 &nbsp;·&nbsp; 9 min read</div>
+      </div>
+    </a>
+
+    <!-- 6 -->
+    <a href="blog-top10-places.html" class="blog-card-v2" data-cat="destinations">
+      <div class="bc-img" style="background-image:url('images/about-landscape.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Destinations</div>
+        <div class="bc-title">Top 10 Must-See Places in Sri Lanka</div>
+        <p class="bc-excerpt">From the ancient citadel of Sigiriya to the colonial charm of Galle Fort and the wildlife-rich savannahs of Yala — our definitive list of unmissable destinations.</p>
+        <div class="bc-meta">Feb 8, 2025 &nbsp;·&nbsp; 6 min read</div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="blog-section-divider reveal" style="margin-top:4rem"><h3>Wildlife &amp; <em>Nature</em></h3></div>
+  <div class="blog-main-grid reveal">
+
+    <!-- 7 -->
+    <a href="blog-yala-wildlife.html" class="blog-card-v2" data-cat="wildlife">
+      <div class="bc-img" style="background-image:url('images/yala-leopard.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Wildlife</div>
+        <div class="bc-title">Yala National Park: The Ultimate Safari Guide</div>
+        <p class="bc-excerpt">Home to the world's highest density of wild leopards, Yala also shelters elephants, sloth bears, crocodiles, and over 200 species of birds. Here's everything you need to plan an unforgettable safari.</p>
+        <div class="bc-meta">March 2, 2025 &nbsp;·&nbsp; 10 min read</div>
+      </div>
+    </a>
+
+    <!-- 8 -->
+    <a href="blog-whale-watching.html" class="blog-card-v2" data-cat="wildlife">
+      <div class="bc-img" style="background-image:url('images/romantic-beach.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Wildlife</div>
+        <div class="bc-title">Whale Watching in Mirissa: Blue Whales &amp; Spinner Dolphins</div>
+        <p class="bc-excerpt">Between November and April, the waters off Mirissa become a stage for the ocean's greatest spectacle. Blue whales — the largest animals ever to exist — come to feed just kilometres from shore.</p>
+        <div class="bc-meta">Nov 5, 2024 &nbsp;·&nbsp; 7 min read</div>
+      </div>
+    </a>
+
+    <!-- 9 -->
+    <a href="blog-yala-wildlife.html" class="blog-card-v2" data-cat="wildlife">
+      <div class="bc-img" style="background-image:url('images/elephant.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Wildlife</div>
+        <div class="bc-title">Sri Lanka's Wild Elephants: Where &amp; How to See Them Ethically</div>
+        <p class="bc-excerpt">Sri Lanka has one of Asia's densest elephant populations. From Minneriya's famous "The Gathering" to Kaudulla and Uda Walawe — here's your guide to ethical elephant experiences.</p>
+        <div class="bc-meta">Oct 12, 2024 &nbsp;·&nbsp; 8 min read</div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="blog-section-divider reveal" style="margin-top:4rem"><h3>Food &amp; <em>Culture</em></h3></div>
+  <div class="blog-main-grid reveal">
+
+    <!-- 10 -->
+    <a href="blog-cuisine-guide.html" class="blog-card-v2" data-cat="food-culture">
+      <div class="bc-img" style="background-image:url('images/sri-lanka-food.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Food &amp; Culture</div>
+        <div class="bc-title">The Ultimate Guide to Sri Lankan Cuisine</div>
+        <p class="bc-excerpt">Hoppers, kottu roti, fish ambul thiyal, lamprais, and string hoppers with coconut sambol — Sri Lankan food is a revelation for the senses. Here's what to eat, where to eat it, and why you'll be craving it long after you leave.</p>
+        <div class="bc-meta">Jan 22, 2025 &nbsp;·&nbsp; 8 min read</div>
+      </div>
+    </a>
+
+    <!-- 11 -->
+    <a href="blog-kandy-perahera.html" class="blog-card-v2" data-cat="festivals">
+      <div class="bc-img" style="background-image:url('images/kandy.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Festivals</div>
+        <div class="bc-title">Kandy Esala Perahera: Sri Lanka's Greatest Festival</div>
+        <p class="bc-excerpt">For ten nights every July–August, Kandy transforms into a river of colour, light, and sound. Caparisoned elephants, fire-dancers, whip-crackers, and Kandyan drummers parade the sacred Tooth Relic through the city.</p>
+        <div class="bc-meta">July 3, 2024 &nbsp;·&nbsp; 7 min read</div>
+      </div>
+    </a>
+
+    <!-- 12 -->
+    <a href="blog-cuisine-guide.html" class="blog-card-v2" data-cat="food-culture">
+      <div class="bc-img" style="background-image:url('images/temple.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Culture</div>
+        <div class="bc-title">Ancient Temples of Sri Lanka: Sacred Sites Worth Visiting</div>
+        <p class="bc-excerpt">Sri Lanka's spiritual heartland stretches across the Cultural Triangle — Anuradhapura, Polonnaruwa, and Dambulla offer 2,500 years of Buddhist heritage carved in stone.</p>
+        <div class="bc-meta">Sept 15, 2024 &nbsp;·&nbsp; 9 min read</div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="blog-section-divider reveal" style="margin-top:4rem"><h3>Travel Tips &amp; <em>Latest News</em></h3></div>
+  <div class="blog-main-grid reveal">
+
+    <!-- 13 -->
+    <a href="blog-budget-travel.html" class="blog-card-v2" data-cat="travel-tips">
+      <div class="bc-img" style="background-image:url('images/adventure.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Travel Tips</div>
+        <div class="bc-title">Budget Travel in Sri Lanka: How to See It All Without Overspending</div>
+        <p class="bc-excerpt">Sri Lanka can be done on a shoestring or in luxury — but even budget travellers can eat like royalty and sleep in beautiful guesthouses. Here's how to stretch every rupee.</p>
+        <div class="bc-meta">March 10, 2025 &nbsp;·&nbsp; 7 min read</div>
+      </div>
+    </a>
+
+    <!-- 14 -->
+    <a href="blog-tourism-news-2025.html" class="blog-card-v2" data-cat="news">
+      <div class="bc-img" style="background-image:url('images/about-landscape.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Latest News</div>
+        <div class="bc-title">Sri Lanka Tourism 2025: Milestones, New Routes &amp; What's Changed</div>
+        <p class="bc-excerpt">Sri Lanka's tourism sector is thriving — new direct flight connections, a streamlined e-visa system, record arrivals, and a wave of eco-resorts and boutique hotels opening across the island.</p>
+        <div class="bc-meta">Jan 5, 2025 &nbsp;·&nbsp; 6 min read</div>
+      </div>
+    </a>
+
+    <!-- 15 -->
+    <a href="blog-best-time-visit.html" class="blog-card-v2" data-cat="travel-tips">
+      <div class="bc-img" style="background-image:url('images/family-beach.jpg')"></div>
+      <div class="bc-body">
+        <div class="bc-tag">Travel Tips</div>
+        <div class="bc-title">Sri Lanka with Kids: Family Travel Tips &amp; Best Destinations</div>
+        <p class="bc-excerpt">Elephant encounters, turtle hatcheries, train rides through the highlands, and endless beach days — Sri Lanka is one of the most rewarding family travel destinations in Asia.</p>
+        <div class="bc-meta">Dec 2, 2024 &nbsp;·&nbsp; 8 min read</div>
+      </div>
+    </a>
+
+  </div>
+
+</section>
+
+<!-- NEWSLETTER SECTION -->
+<div class="newsletter-section reveal">
+  <div class="eyebrow">Stay Updated</div>
+  <h2>Get Sri Lanka Travel <em>Inspiration</em></h2>
+  <p>New guides, hidden gems, seasonal travel tips, and exclusive offers — delivered to your inbox every fortnight.</p>
+  <form class="newsletter-form" onsubmit="return subscribeNewsletter(event)">
+    <input type="email" id="nlEmail" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+  <p id="nlMsg" style="margin-top:1rem;font-size:0.75rem;color:var(--teal);display:none">Thank you for subscribing! Your first guide is on its way.</p>
+</div>
 
 <footer>
   <div class="footer-top">
@@ -93,35 +480,35 @@
     </div>
     <div class="footer-col">
       <h4>Destinations</h4>
-      <a href="destinations.html">Sigiriya</a>
-      <a href="destinations.html">Kandy</a>
-      <a href="destinations.html">Ella</a>
-      <a href="destinations.html">Galle</a>
-      <a href="destinations.html">Yala National Park</a>
-      <a href="destinations.html">Nuwara Eliya</a>
-      <a href="destinations.html">Trincomalee</a>
+      <a href="destinations.html#sigiriya">Sigiriya</a>
+      <a href="destinations.html#kandy">Kandy</a>
+      <a href="destinations.html#ella">Ella</a>
+      <a href="destinations.html#galle">Galle</a>
+      <a href="destinations.html#yala">Yala National Park</a>
+      <a href="destinations.html#nuwara">Nuwara Eliya</a>
+      <a href="destinations.html#trincomalee">Trincomalee</a>
     </div>
     <div class="footer-col">
       <h4>Packages</h4>
-      <a href="packages.html">Luxury Tours</a>
-      <a href="packages.html">Adventure Tours</a>
-      <a href="packages.html">Honeymoon Packages</a>
-      <a href="packages.html">Wildlife Safaris</a>
-      <a href="packages.html">Cultural Tours</a>
-      <a href="packages.html">Family Packages</a>
+      <a href="packages.html#luxury">Luxury Tours</a>
+      <a href="packages.html#adventure">Adventure Tours</a>
+      <a href="packages.html#honeymoon">Honeymoon Packages</a>
+      <a href="packages.html#wildlife">Wildlife Safaris</a>
+      <a href="packages.html#cultural">Cultural Tours</a>
+      <a href="packages.html#family">Family Packages</a>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
-      <a href="about.html">About Us</a>
-      <a href="blog.html">Blog & Travel Guides</a>
-      <a href="contact.html">Testimonials</a>
-      <a href="contact.html">FAQ</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms &amp; Conditions</a>
+      <h4>Travel Guides</h4>
+      <a href="blog-best-time-visit.html">Best Time to Visit</a>
+      <a href="blog-top10-places.html">Top 10 Places</a>
+      <a href="blog-cuisine-guide.html">Sri Lankan Cuisine</a>
+      <a href="blog-yala-wildlife.html">Yala Safari Guide</a>
+      <a href="blog-sigiriya-guide.html">Sigiriya Guide</a>
+      <a href="blog-budget-travel.html">Budget Travel Tips</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Serendip Go. All rights reserved. SLTDA Reg. No. SLTDA/SQA/T/0123</span>
+    <span>© 2025 Serendip Go. All rights reserved.</span>
     <span>Designed with ❤️ in Sri Lanka</span>
   </div>
 </footer>
@@ -132,5 +519,24 @@
   <button onclick="sendChat()">Send Message</button>
 </div>
 <script src="script.js"></script>
+<script>
+  function filterBlog(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('[data-cat]').forEach(el => {
+      if (cat === 'all' || el.dataset.cat === cat) {
+        el.style.display = '';
+      } else {
+        el.style.display = 'none';
+      }
+    });
+  }
+  function subscribeNewsletter(e) {
+    e.preventDefault();
+    document.getElementById('nlMsg').style.display = 'block';
+    document.getElementById('nlEmail').value = '';
+    return false;
+  }
+</script>
 </body>
 </html>

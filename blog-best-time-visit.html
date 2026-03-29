@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Time to Visit Sri Lanka — Serendip Go Blog</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .article-featured-img { width:100%; height:500px; background-size:cover; background-position:center; }
+  .article-wrap { max-width:860px; margin:0 auto; padding:4rem 5%; }
+  .article-meta-bar { display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; margin-bottom:2.5rem; padding-bottom:1.5rem; border-bottom:1px solid var(--sand-dark); }
+  .ac-tag { font-size:0.6rem; letter-spacing:2px; text-transform:uppercase; color:var(--coral); font-weight:600; background:rgba(212,96,58,0.08); padding:0.3rem 0.8rem; }
+  .ac-meta { font-size:0.72rem; color:var(--text-muted); letter-spacing:1px; }
+  .article-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:var(--deep); line-height:1.15; margin-bottom:1.5rem; }
+  .article-title em { font-style:italic; color:var(--teal); }
+  .article-lead { font-size:1.05rem; color:var(--text-muted); line-height:1.9; margin-bottom:2rem; font-style:italic; border-left:3px solid var(--gold); padding-left:1.5rem; }
+  .article-body h2 { font-family:'Cormorant Garamond',serif; font-size:1.9rem; color:var(--deep); margin:2.5rem 0 1rem; font-weight:400; }
+  .article-body h3 { font-family:'Cormorant Garamond',serif; font-size:1.35rem; color:var(--teal); margin:1.8rem 0 0.7rem; font-weight:600; }
+  .article-body p { font-size:0.95rem; line-height:1.95; color:var(--text); margin-bottom:1.2rem; }
+  .article-body ul, .article-body ol { padding-left:1.5rem; margin-bottom:1.2rem; }
+  .article-body li { font-size:0.92rem; line-height:1.85; color:var(--text); margin-bottom:0.4rem; }
+  .article-body strong { color:var(--deep); font-weight:600; }
+  .highlight-quote { background:var(--sand); border-left:4px solid var(--gold); padding:1.5rem 2rem; margin:2rem 0; font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--deep); line-height:1.7; font-style:italic; }
+  .tip-box { background:rgba(26,92,74,0.06); border:1px solid rgba(26,92,74,0.2); padding:1.5rem 2rem; margin:2rem 0; }
+  .tip-box h4 { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:0.8rem; font-weight:600; }
+  .tip-box p, .tip-box li { font-size:0.88rem; color:var(--text-muted); line-height:1.8; }
+  .month-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin:2rem 0; }
+  .month-card { padding:1.2rem 1.5rem; border-left:3px solid var(--gold); background:white; }
+  .month-card .month-name { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:0.3rem; }
+  .month-card .month-rating { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--deep); margin-bottom:0.4rem; }
+  .month-card p { font-size:0.78rem; color:var(--text-muted); line-height:1.7; margin:0; }
+  .month-card.off { border-left-color:var(--coral); }
+  .related-section { background:var(--sand); padding:4rem 8%; }
+  .related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:2rem; }
+  .rel-card { background:white; text-decoration:none; color:inherit; transition:transform 0.3s; display:block; }
+  .rel-card:hover { transform:translateY(-3px); }
+  .rel-card .rc-img { height:160px; background-size:cover; background-position:center; }
+  .rel-card .rc-body { padding:1.2rem; }
+  .rc-tag { font-size:0.58rem; letter-spacing:2px; text-transform:uppercase; color:var(--coral); font-weight:600; margin-bottom:0.5rem; }
+  .rc-title { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--deep); line-height:1.3; }
+  .article-cta-section { background:linear-gradient(135deg,var(--deep) 0%,var(--teal) 100%); padding:5rem 8%; text-align:center; color:white; }
+  .article-cta-section h2 { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:300; margin-bottom:1rem; }
+  .article-cta-section h2 em { color:var(--gold); font-style:italic; }
+  .article-cta-section p { color:rgba(255,255,255,0.7); margin-bottom:2rem; font-size:0.9rem; }
+  @media (max-width:768px) { .article-featured-img { height:280px; } .article-wrap { padding:2.5rem 5%; } .month-grid { grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip.html">Plan Trip</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:25px;display:inline-block;margin-right:0.8rem"></span> Travel Tips <span style="background:var(--gold);height:1px;width:25px;display:inline-block;margin-left:0.8rem"></span></div>
+  <h1>Best Time to Visit <em>Sri Lanka</em></h1>
+  <p>March 15, 2025 &nbsp;·&nbsp; 10 min read &nbsp;·&nbsp; By Rohan Fernando</p>
+</div>
+
+<div class="article-featured-img" style="background-image:url('images/tea-plantation.jpg')"></div>
+
+<div class="article-wrap">
+  <div class="article-meta-bar">
+    <span class="ac-tag">Travel Tips</span>
+    <span class="ac-meta">March 15, 2025</span>
+    <span class="ac-meta">10 min read</span>
+    <span class="ac-meta">By Rohan Fernando</span>
+  </div>
+
+  <p class="article-lead">Sri Lanka is a year-round destination — but the monsoons mean that the "best" time depends entirely on which part of the island you plan to visit. Understanding this simple fact unlocks the secret to a perfect trip.</p>
+
+  <div class="article-body">
+    <h2>Understanding Sri Lanka's Two Monsoon Seasons</h2>
+    <p>Sri Lanka sits in the Indian Ocean and receives rainfall from two distinct monsoon systems. The <strong>Southwest Monsoon (Yala)</strong> sweeps across the west coast, south coast, and central highlands from May to September, bringing heavy rains and rough seas. Meanwhile, the <strong>Northeast Monsoon (Maha)</strong> affects the north and east coasts from October to January.</p>
+    <p>This is actually wonderful news for travellers: when one side is wet, the other side is usually dry and sunny. The trick is knowing how to time your circuit.</p>
+
+    <div class="highlight-quote">"In Sri Lanka, there's no bad time to visit — only a wrong plan for the right time."</div>
+
+    <h2>Month-by-Month Guide</h2>
+    <p>Here is a breakdown of what to expect across the island each month of the year:</p>
+
+    <div class="month-grid">
+      <div class="month-card">
+        <div class="month-name">January</div>
+        <div class="month-rating">★★★★★ Peak Season</div>
+        <p>Ideal for west &amp; south coasts. Dry, sunny, perfect beach weather. Festivals: Thai Pongal. Prices at their highest.</p>
+      </div>
+      <div class="month-card">
+        <div class="month-name">February</div>
+        <div class="month-rating">★★★★★ Excellent</div>
+        <p>Best month overall. West coast beaches shine, cultural sites comfortable, wildlife peaks in Yala. Valentine's season.</p>
+      </div>
+      <div class="month-card">
+        <div class="month-name">March</div>
+        <div class="month-rating">★★★★☆ Very Good</div>
+        <p>Still excellent on west/south. Whale watching peaks in Mirissa. Slight heat builds inland. Great value before Easter rush.</p>
+      </div>
+      <div class="month-card">
+        <div class="month-name">April</div>
+        <div class="month-rating">★★★★☆ Good</div>
+        <p>Sinhala &amp; Tamil New Year (April 13–14) — a wonderful cultural experience. Pre-monsoon heat. Some rains begin in the south.</p>
+      </div>
+      <div class="month-card month-off">
+        <div class="month-name">May</div>
+        <div class="month-rating">★★★☆☆ Mixed</div>
+        <p>Southwest monsoon arrives. West/south coasts get rain. Great time for east coast (Trincomalee, Arugam Bay opening up).</p>
+      </div>
+      <div class="month-card month-off">
+        <div class="month-name">June</div>
+        <div class="month-rating">★★★☆☆ Mixed</div>
+        <p>Wet on west. East coast in full swing. Arugam Bay surf season starts. Cheap rates on west-coast accommodation.</p>
+      </div>
+      <div class="month-card month-off">
+        <div class="month-name">July</div>
+        <div class="month-rating">★★★★☆ Good (East)</div>
+        <p>East coast peaks — Trincomalee, Nilaveli, Arugam Bay superb. Kandy Esala Perahera festival (July–Aug). Best surfing.</p>
+      </div>
+      <div class="month-card month-off">
+        <div class="month-name">August</div>
+        <div class="month-rating">★★★★☆ Good (East)</div>
+        <p>Perahera peaks. East coast still excellent. Minneriya Elephant Gathering at its best. Inland cultural circuit fine.</p>
+      </div>
+      <div class="month-card">
+        <div class="month-name">September</div>
+        <div class="month-rating">★★★☆☆ Shoulder</div>
+        <p>Transition month. Rain easing in southwest. End of east coast season. Good deals across the board. Fewer tourists.</p>
+      </div>
+      <div class="month-card">
+        <div class="month-name">October</div>
+        <div class="month-rating">★★★☆☆ Mixed</div>
+        <p>Inter-monsoon period — short but sharp rains island-wide. Deepavali festival. Colombo Fashion Week. Short period of rain.</p>
+      </div>
+      <div class="month-card">
+        <div class="month-name">November</div>
+        <div class="month-rating">★★★★☆ Good</div>
+        <p>West coast clears up fast. Whale watching season opens in Mirissa. Cultural Triangle excellent. Hill country comfortable.</p>
+      </div>
+      <div class="month-card">
+        <div class="month-name">December</div>
+        <div class="month-rating">★★★★★ Peak Season</div>
+        <p>Christmas &amp; New Year surge. West/south coasts perfect. Prices spike. Book well in advance. Magical festive atmosphere.</p>
+      </div>
+    </div>
+
+    <h2>The West &amp; South Coast: November to April</h2>
+    <p>The lion's share of Sri Lanka's famous beaches — Unawatuna, Mirissa, Hikkaduwa, Bentota, Negombo — line the southwest coast. These are at their absolute best from <strong>November through April</strong>, when the Southwest Monsoon has passed and the skies are reliably clear.</p>
+    <p>The sea is calm for swimming and snorkelling, visibility is excellent for scuba diving, and the beaches are at their most photogenic. December and January are the absolute busiest and most expensive months, so if you want beach bliss without the crowds, aim for <strong>November or March–April</strong>.</p>
+
+    <div class="tip-box">
+      <h4>Pro Tip — Shoulder Season</h4>
+      <p>November is arguably the best-value month on the west coast: the monsoon has just ended, hotels have dropped their peak-season rates, and the beaches are gloriously uncrowded. Accommodation prices can be 20–40% lower than January.</p>
+    </div>
+
+    <h2>The East Coast: May to September</h2>
+    <p>While the west coast sleeps through the Southwest Monsoon, the east coast blooms. Trincomalee, Nilaveli, Pasikuda, and Arugam Bay enjoy their dry season from <strong>May to September</strong>, with the clearest waters of the year. Trincomalee's Nilaveli Beach in June–July is a contender for the most beautiful stretch of sand in all of Asia.</p>
+    <p><strong>Arugam Bay</strong>, on the southeast tip, is Sri Lanka's surfing capital and draws wave-hunters from around the world between June and September. The village has excellent point breaks, budget guesthouses, and a laid-back backpacker culture entirely distinct from the west coast.</p>
+
+    <h2>The Hill Country: Year-Round, Best March to May &amp; August to September</h2>
+    <p>Nuwara Eliya, Ella, Haputale, and Kandy are cool enough year-round to be comfortable for hiking and exploring. That said, the highlands receive rainfall from both monsoons — so there is no perfectly dry season. <strong>March to May</strong> and <strong>August to October</strong> tend to be clearer, with lower rainfall and excellent conditions for the famous train journey from Kandy to Ella.</p>
+    <p>The nine-arch bridge at Ella is at its most dramatic when the surrounding tea estates are at their greenest — which, paradoxically, is right after the rains ease off. Early mornings in the hill country are almost always clear regardless of the season.</p>
+
+    <h2>The Cultural Triangle: October to April</h2>
+    <p>Anuradhapura, Polonnaruwa, and Sigiriya lie in the dry zone of Sri Lanka's north-central plains. While they receive some rainfall from the Northeast Monsoon, they are generally accessible year-round. The most comfortable visiting conditions are from <strong>October through April</strong>, when temperatures are moderated and the skies are clearer.</p>
+    <p>Visiting in the dry season also means the ancient tanks (reservoirs) and surrounding forests are at their most atmospheric, and wildlife around the ruins is plentiful.</p>
+
+    <h2>Key Festivals to Plan Around</h2>
+    <p>Sri Lanka has a rich festival calendar that can transform your trip. Here are the highlights:</p>
+    <ul>
+      <li><strong>Thai Pongal</strong> (January) — Tamil harvest festival, celebrated with rice, sugarcane, and kolam (floor art)</li>
+      <li><strong>Sinhala &amp; Tamil New Year</strong> (April 13–14) — The biggest celebration of the year; entire country comes alive</li>
+      <li><strong>Vesak Poya</strong> (May full moon) — Buddha's birth, enlightenment &amp; death — magical lanterns everywhere</li>
+      <li><strong>Kandy Esala Perahera</strong> (July–August) — Sri Lanka's greatest festival procession of elephants and dancers</li>
+      <li><strong>Deepavali</strong> (October/November) — Festival of lights celebrated in Colombo's Little India</li>
+      <li><strong>Christmas &amp; New Year</strong> (December) — Festive beach parties, special events, and family-friendly atmosphere</li>
+    </ul>
+
+    <h2>Peak vs. Off-Season: What to Expect</h2>
+    <p><strong>Peak season (December–March, July–August):</strong> The most reliable weather on both coasts. Hotel prices surge by 30–60% on the west coast in December–January. Booking 3–6 months ahead is essential for popular properties.</p>
+    <p><strong>Shoulder season (April, November):</strong> Excellent weather on the west coast with meaningfully lower prices. One of the best times to visit for value-conscious travellers who don't want to compromise on experience.</p>
+    <p><strong>Off-season (May–June, October):</strong> The southwest monsoon peak. Rates drop significantly, beaches are empty, and Sri Lanka feels far more local and authentic. While you'll get some rain, it often comes in intense afternoon bursts rather than all-day drizzle — mornings are frequently clear and beautiful.</p>
+
+    <div class="tip-box">
+      <h4>Quick Reference — Best Times by Region</h4>
+      <ul>
+        <li><strong>West &amp; South Coasts</strong> — November to April</li>
+        <li><strong>East Coast (Trinco, Arugam Bay)</strong> — May to September</li>
+        <li><strong>Cultural Triangle (Sigiriya, Polonnaruwa)</strong> — October to April</li>
+        <li><strong>Hill Country (Kandy, Ella, Nuwara Eliya)</strong> — March–May, August–October</li>
+        <li><strong>Whale Watching (Mirissa)</strong> — November to April (peak: Feb–March)</li>
+        <li><strong>Yala National Park Safari</strong> — February to July</li>
+      </ul>
+    </div>
+
+    <h2>Our Verdict: The Best Overall Month</h2>
+    <p><strong>February</strong> is arguably Sri Lanka's finest month for most travellers. The west and south coasts are dry and beautiful, the hill country is accessible, the Cultural Triangle is comfortable, whale watching is at its peak in Mirissa, and wildlife at Yala is outstanding as the water sources dry up and animals congregate around the remaining pools. Temperatures are warm but not oppressive, and while it is high season, it hasn't reached the December–January frenzy.</p>
+    <p>That said, if you can be flexible, <strong>November</strong> offers the best combination of good weather, low prices, and that rare feeling of having paradise almost to yourself.</p>
+  </div>
+</div>
+
+<!-- RELATED POSTS -->
+<div class="related-section">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="eyebrow">Keep Reading</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--deep);margin-top:0.5rem">More Travel <em style="font-style:italic;color:var(--teal)">Guides</em></h2>
+    <div class="related-grid">
+      <a href="blog-top10-places.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/about-landscape.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Destinations</div><div class="rc-title">Top 10 Must-See Places in Sri Lanka</div></div>
+      </a>
+      <a href="blog-budget-travel.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/adventure.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Travel Tips</div><div class="rc-title">Budget Travel in Sri Lanka: Tips &amp; Tricks</div></div>
+      </a>
+      <a href="blog-yala-wildlife.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/yala-leopard.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Wildlife</div><div class="rc-title">Yala National Park: The Ultimate Safari Guide</div></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="article-cta-section">
+  <div class="eyebrow" style="color:var(--gold);justify-content:center">Plan Your Trip</div>
+  <h2>Ready to Experience <em>Sri Lanka</em>?</h2>
+  <p>Let our expert team craft the perfect itinerary based on the best time for your chosen destinations and interests.</p>
+  <a href="plan-trip.html" class="btn-primary" style="margin-right:1rem">Plan My Trip</a>
+  <a href="packages.html" class="btn-outline">Browse Packages</a>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003.</p>
+      <div class="social-row" style="margin-top:1.5rem">
+        <a href="#" class="social-btn">📷</a>
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="destinations.html#sigiriya">Sigiriya</a>
+      <a href="destinations.html#kandy">Kandy</a>
+      <a href="destinations.html#ella">Ella</a>
+      <a href="destinations.html#galle">Galle</a>
+      <a href="destinations.html#yala">Yala National Park</a>
+      <a href="destinations.html#nuwara">Nuwara Eliya</a>
+    </div>
+    <div class="footer-col">
+      <h4>Travel Guides</h4>
+      <a href="blog-best-time-visit.html">Best Time to Visit</a>
+      <a href="blog-top10-places.html">Top 10 Places</a>
+      <a href="blog-cuisine-guide.html">Sri Lankan Cuisine</a>
+      <a href="blog-yala-wildlife.html">Yala Safari Guide</a>
+      <a href="blog-sigiriya-guide.html">Sigiriya Guide</a>
+      <a href="blog.html">All Articles</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved.</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 10 Must-See Places in Sri Lanka — Serendip Go Blog</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .article-featured-img{width:100%;height:500px;background-size:cover;background-position:center}
+  .article-wrap{max-width:860px;margin:0 auto;padding:4rem 5%}
+  .article-meta-bar{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--sand-dark)}
+  .ac-tag{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--coral);font-weight:600;background:rgba(212,96,58,.08);padding:.3rem .8rem}
+  .ac-meta{font-size:.72rem;color:var(--text-muted);letter-spacing:1px}
+  .article-lead{font-size:1.05rem;color:var(--text-muted);line-height:1.9;margin-bottom:2rem;font-style:italic;border-left:3px solid var(--gold);padding-left:1.5rem}
+  .article-body h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--deep);margin:2.5rem 0 1rem;font-weight:400}
+  .article-body h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--teal);margin:1.8rem 0 .7rem;font-weight:600}
+  .article-body p{font-size:.95rem;line-height:1.95;color:var(--text);margin-bottom:1.2rem}
+  .article-body ul{padding-left:1.5rem;margin-bottom:1.2rem}
+  .article-body li{font-size:.92rem;line-height:1.85;color:var(--text);margin-bottom:.4rem}
+  .article-body strong{color:var(--deep);font-weight:600}
+  .highlight-quote{background:var(--sand);border-left:4px solid var(--gold);padding:1.5rem 2rem;margin:2rem 0;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--deep);line-height:1.7;font-style:italic}
+  .tip-box{background:rgba(26,92,74,.06);border:1px solid rgba(26,92,74,.2);padding:1.5rem 2rem;margin:2rem 0}
+  .tip-box h4{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.8rem;font-weight:600}
+  .tip-box p,.tip-box li{font-size:.88rem;color:var(--text-muted);line-height:1.8}
+  .place-number{font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--sand-dark);line-height:1;float:left;margin:0 1rem 0.5rem 0;font-weight:600}
+  .place-card{background:white;padding:2rem;margin-bottom:1.5px;border-left:4px solid var(--teal);display:flex;align-items:flex-start;gap:1.5rem}
+  .place-img{width:200px;min-width:200px;height:140px;background-size:cover;background-position:center;flex-shrink:0}
+  .place-content{flex:1}
+  .place-tag{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.4rem}
+  .place-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--deep);margin-bottom:.6rem;font-weight:400}
+  .place-body{font-size:.88rem;color:var(--text-muted);line-height:1.8}
+  .place-details{display:flex;gap:1.5rem;margin-top:.8rem;flex-wrap:wrap}
+  .place-detail{font-size:.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
+  .place-detail strong{color:var(--teal)}
+  .related-section{background:var(--sand);padding:4rem 8%}
+  .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:2rem}
+  .rel-card{background:white;text-decoration:none;color:inherit;transition:transform .3s;display:block}
+  .rel-card:hover{transform:translateY(-3px)}
+  .rel-card .rc-img{height:160px;background-size:cover;background-position:center}
+  .rel-card .rc-body{padding:1.2rem}
+  .rc-tag{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--coral);font-weight:600;margin-bottom:.5rem}
+  .rc-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--deep);line-height:1.3}
+  .article-cta-section{background:linear-gradient(135deg,var(--deep) 0%,var(--teal) 100%);padding:5rem 8%;text-align:center;color:white}
+  .article-cta-section h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;margin-bottom:1rem}
+  .article-cta-section h2 em{color:var(--gold);font-style:italic}
+  .article-cta-section p{color:rgba(255,255,255,.7);margin-bottom:2rem;font-size:.9rem}
+  @media(max-width:768px){.article-featured-img{height:280px}.place-card{flex-direction:column}.place-img{width:100%;min-width:0;height:180px}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip.html">Plan Trip</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:25px;display:inline-block;margin-right:.8rem"></span> Destinations <span style="background:var(--gold);height:1px;width:25px;display:inline-block;margin-left:.8rem"></span></div>
+  <h1>Top 10 Must-See Places <em>in Sri Lanka</em></h1>
+  <p>February 8, 2025 &nbsp;·&nbsp; 12 min read &nbsp;·&nbsp; By Priya Jayawardena</p>
+</div>
+
+<div class="article-featured-img" style="background-image:url('images/about-landscape.jpg')"></div>
+
+<div class="article-wrap">
+  <div class="article-meta-bar">
+    <span class="ac-tag">Destinations</span>
+    <span class="ac-meta">February 8, 2025</span>
+    <span class="ac-meta">12 min read</span>
+    <span class="ac-meta">By Priya Jayawardena</span>
+  </div>
+  <p class="article-lead">Sri Lanka packs an extraordinary diversity of experiences into a small island — ancient ruins older than the Roman Empire, beaches that rival the Maldives, mountains draped in tea estates, and wildlife that has inspired naturalists for centuries. Here are the ten places no visitor should miss.</p>
+
+  <div class="article-body">
+    <p>With a land area roughly the size of Ireland, Sri Lanka is deceptively compact. You can drive from the ancient ruins of Anuradhapura to a sunset on a south-coast beach in five hours. Yet within that small footprint lies an almost embarrassing concentration of wonders. Planning which ten to prioritise is genuinely difficult — but here is our considered list.</p>
+
+    <div style="margin:3rem 0">
+
+      <div class="place-card">
+        <div class="place-img" style="background-image:url('images/sigiriya.jpg')"></div>
+        <div class="place-content">
+          <div class="place-tag">#1 · UNESCO World Heritage Site</div>
+          <div class="place-title">Sigiriya — The Lion Rock Fortress</div>
+          <p class="place-body">Rising 200 metres from the flat plains of the Cultural Triangle, Sigiriya is Sri Lanka's most iconic landmark. Built by King Kassapa in the 5th century AD, this monumental palace-fortress features the world's oldest landscaped garden, remarkable 1,500-year-old frescoes of celestial maidens painted into the rock face, and panoramic views across jungle and reservoir that stop you in your tracks. It's demanding — 1,200 steps — but unforgettable.</p>
+          <div class="place-details">
+            <span class="place-detail"><strong>Best time:</strong> Early morning (opens 7am)</span>
+            <span class="place-detail"><strong>Entry:</strong> USD 30 (foreign visitors)</span>
+            <span class="place-detail"><strong>Allow:</strong> 3–4 hours</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <div class="place-img" style="background-image:url('images/galle.jpg')"></div>
+        <div class="place-content">
+          <div class="place-tag">#2 · UNESCO World Heritage Site</div>
+          <div class="place-title">Galle Fort — Colonial Grandeur by the Sea</div>
+          <p class="place-body">The Dutch built Galle Fort in 1663 on a rocky promontory jutting into the Indian Ocean, and it remains one of Asia's best-preserved colonial fortresses. Within its walls: cobblestone streets, a Dutch Reformed Church, a lighthouse, a mosque, a museum — and a thriving community of boutique hotels, galleries, restaurants, and craft shops that have made Galle one of Sri Lanka's most atmospheric destinations. The sunset walk along the ramparts is unmissable.</p>
+          <div class="place-details">
+            <span class="place-detail"><strong>Best time:</strong> Late afternoon for sunset</span>
+            <span class="place-detail"><strong>Entry:</strong> Free</span>
+            <span class="place-detail"><strong>Allow:</strong> Half day to full day</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <div class="place-img" style="background-image:url('images/kandy.jpg')"></div>
+        <div class="place-content">
+          <div class="place-tag">#3 · Cultural Capital</div>
+          <div class="place-title">Kandy — City of the Sacred Tooth Relic</div>
+          <p class="place-body">The last capital of the Kandyan Kingdom, Kandy sits in a cool highland valley overlooking a picturesque lake. Its centrepiece is the Temple of the Sacred Tooth Relic (Sri Dalada Maligawa) — one of Buddhism's most revered shrines, believed to hold a tooth of the Buddha himself. Every year in July–August the city hosts the Esala Perahera, the most spectacular festival in South Asia, with costumed elephants, fire-dancers, and drummers parading through the streets for ten consecutive nights.</p>
+          <div class="place-details">
+            <span class="place-detail"><strong>Best time:</strong> Evening puja at the temple</span>
+            <span class="place-detail"><strong>Entry:</strong> LKR 1,500</span>
+            <span class="place-detail"><strong>Allow:</strong> 1–2 days</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <div class="place-img" style="background-image:url('images/ella.jpg')"></div>
+        <div class="place-content">
+          <div class="place-tag">#4 · Highland Paradise</div>
+          <div class="place-title">Ella — Tea Estates, Waterfalls &amp; the Nine Arches Bridge</div>
+          <p class="place-body">Ella is a small village in the hill country that has become one of Sri Lanka's most beloved destinations. Surrounded by tea estates and dramatic ridges, it offers extraordinary hiking (Little Adam's Peak, Ella Rock), the iconic Nine Arches Bridge, Ravana Falls, and the most scenic train journey in Asia from Kandy. The village itself has a wonderful mix of guesthouses, rooftop restaurants, and the kind of laid-back energy that makes you extend your stay by several days.</p>
+          <div class="place-details">
+            <span class="place-detail"><strong>Best time:</strong> Year-round; March–April driest</span>
+            <span class="place-detail"><strong>Altitude:</strong> 1,041 m above sea level</span>
+            <span class="place-detail"><strong>Allow:</strong> 2–4 days</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <div class="place-img" style="background-image:url('images/yala-leopard.jpg')"></div>
+        <div class="place-content">
+          <div class="place-tag">#5 · Wildlife</div>
+          <div class="place-title">Yala National Park — Leopards &amp; Wilderness</div>
+          <p class="place-body">Yala is Sri Lanka's most-visited national park and for very good reason: it has the world's highest concentration of wild leopards per square kilometre. A morning jeep safari offers a real chance of sighting these magnificent cats in the wild, alongside hundreds of elephants, sloth bears, mugger crocodiles, and a staggering diversity of birdlife including painted storks, peacocks, and black-necked storks. The landscape — a mosaic of scrub forest, grassland, and ancient tanks — is hauntingly beautiful.</p>
+          <div class="place-details">
+            <span class="place-detail"><strong>Best time:</strong> February–July</span>
+            <span class="place-detail"><strong>Safari:</strong> Half-day (6am or 3pm)</span>
+            <span class="place-detail"><strong>Allow:</strong> 1–2 days</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <div class="place-img" style="background-image:url('images/tea-plantation.jpg')"></div>
+        <div class="place-content">
+          <div class="place-tag">#6 · Tea Country</div>
+          <div class="place-title">Nuwara Eliya — "Little England" in the Clouds</div>
+          <p class="place-body">At 1,868 metres above sea level, Nuwara Eliya is perpetually cool and frequently shrouded in mist. The British colonial planters who built the Ceylon tea industry modelled the town on an English country village — there's a racecourse, a golf club, and mock-Tudor architecture alongside endless rows of manicured tea estates. Visit a working factory to see how Ceylon tea is produced, hike to World's End in Horton Plains for a stunning 880-metre cliff-edge view, and take a boat on Gregory Lake.</p>
+          <div class="place-details">
+            <span class="place-detail"><strong>Best time:</strong> March–May (post-monsoon fresh)</span>
+            <span class="place-detail"><strong>Temperature:</strong> 8–20°C year-round</span>
+            <span class="place-detail"><strong>Allow:</strong> 1–2 days</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <div class="place-img" style="background-image:url('images/beach.jpg')"></div>
+        <div class="place-content">
+          <div class="place-tag">#7 · East Coast Gem</div>
+          <div class="place-title">Trincomalee — Pristine Beaches &amp; Whale Sharks</div>
+          <p class="place-body">Trincomalee on the east coast is home to one of the world's finest natural harbours and some of Sri Lanka's least-visited, most unspoilt beaches. Nilaveli Beach — often called the most beautiful beach on the island — has powder-white sand and crystal-clear water that shifts from pale turquoise to deep blue. Pigeon Island offshore is a marine national park with excellent snorkelling among reef sharks and sea turtles. Whale shark encounters are possible between March and September. Trinco is less developed than the south coast, giving it an authenticity that's rapidly disappearing elsewhere.</p>
+          <div class="place-details">
+            <span class="place-detail"><strong>Best time:</strong> May–September</span>
+            <span class="place-detail"><strong>Highlight:</strong> Pigeon Island snorkelling</span>
+            <span class="place-detail"><strong>Allow:</strong> 2–3 days</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <div class="place-img" style="background-image:url('images/temple.jpg')"></div>
+        <div class="place-content">
+          <div class="place-tag">#8 · UNESCO World Heritage Site</div>
+          <div class="place-title">Polonnaruwa — Ancient City of Kings</div>
+          <p class="place-body">The medieval capital of Sri Lanka from the 11th to 13th centuries, Polonnaruwa is the country's best-preserved ancient city. Unlike Anuradhapura, it's compact enough to explore by bicycle in a single day. The highlights include the Gal Vihara rock temple with its breathtaking 14-metre reclining Buddha carved from a single granite face, the Vatadage circular relic house, and the Royal Palace. The surrounding landscape of forest, ancient reservoirs, and grazing buffalo gives the whole place a timeless atmosphere.</p>
+          <div class="place-details">
+            <span class="place-detail"><strong>Best time:</strong> November–April</span>
+            <span class="place-detail"><strong>Best transport:</strong> Bicycle rental</span>
+            <span class="place-detail"><strong>Allow:</strong> Full day</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <div class="place-img" style="background-image:url('images/elephant.jpg')"></div>
+        <div class="place-content">
+          <div class="place-tag">#9 · Wildlife Spectacle</div>
+          <div class="place-title">Minneriya — The Elephant Gathering</div>
+          <p class="place-body">Between July and October, as the dry season tightens its grip, hundreds of elephants converge on the ancient tank at Minneriya in what is known as "The Gathering" — one of the largest concentrations of Asian elephants on the planet. In peak years, 300–400 elephants can be seen bathing, feeding, and socialising on the same afternoon. It is one of the great wildlife spectacles in Asia, and Sri Lanka doesn't advertise it nearly enough. Kaudulla and Hurulu Eco Park nearby offer similar sightings when Minneriya is closed.</p>
+          <div class="place-details">
+            <span class="place-detail"><strong>Best time:</strong> August–October</span>
+            <span class="place-detail"><strong>Access:</strong> Jeep safari only</span>
+            <span class="place-detail"><strong>Allow:</strong> Half day</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-card">
+        <div class="place-img" style="background-image:url('images/romantic-beach.jpg')"></div>
+        <div class="place-content">
+          <div class="place-tag">#10 · Whale Watching &amp; Beaches</div>
+          <div class="place-title">Mirissa — Whales, Dolphins &amp; Sunsets</div>
+          <p class="place-body">A crescent-shaped beach on the south coast, Mirissa has evolved from a sleepy fishing village into one of Sri Lanka's most popular coastal destinations. From November to April, the waters beyond Dondra Head (the island's southernmost tip) offer some of the world's best whale watching: blue whales — the largest animals ever to exist — are regularly sighted within 10 kilometres of shore, alongside spinner dolphins and occasional sperm and humpback whales. The beach itself is beautiful, the sunset from Parrot Rock is legendary, and the seafood restaurants right on the sand are among the best-value dining experiences in Asia.</p>
+          <div class="place-details">
+            <span class="place-detail"><strong>Best time:</strong> November–April</span>
+            <span class="place-detail"><strong>Highlight:</strong> Blue whale encounters</span>
+            <span class="place-detail"><strong>Allow:</strong> 1–2 days</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>Honourable Mentions</h2>
+    <p>Ten places is never enough. Runners-up that deserve mention include <strong>Anuradhapura</strong> (Sri Lanka's sacred city with stupas dating to 300 BC), <strong>Dambulla Cave Temple</strong> (five cave temples with 157 golden Buddha statues), <strong>Arugam Bay</strong> (Asia's top surf destination), <strong>Jaffna</strong> (the fascinating Tamil cultural capital of the north), and <strong>Horton Plains National Park</strong> (dramatic highland plateau with the stunning World's End precipice).</p>
+
+    <div class="tip-box">
+      <h4>Practical Planning Note</h4>
+      <p>Most of these destinations are easily connected by train, bus, or private car. A 10–14 day itinerary can comfortably cover Colombo, the Cultural Triangle (Sigiriya, Polonnaruwa, Dambulla), the hill country (Kandy, Nuwara Eliya, Ella), the south coast (Mirissa, Galle), and still leave time for a wildlife safari at Yala. Talk to our team and we'll build the perfect circuit.</p>
+    </div>
+  </div>
+</div>
+
+<div class="related-section">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="eyebrow">Keep Reading</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--deep);margin-top:.5rem">More <em style="font-style:italic;color:var(--teal)">Destination Guides</em></h2>
+    <div class="related-grid">
+      <a href="blog-sigiriya-guide.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/sigiriya.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Destinations</div><div class="rc-title">Sigiriya: Complete Visitor's Guide</div></div>
+      </a>
+      <a href="blog-galle-fort.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/galle.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Destinations</div><div class="rc-title">Galle Fort: Colonial History Guide</div></div>
+      </a>
+      <a href="blog-yala-wildlife.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/yala-leopard.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Wildlife</div><div class="rc-title">Yala National Park Safari Guide</div></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="article-cta-section">
+  <div class="eyebrow" style="color:var(--gold);justify-content:center">Plan Your Trip</div>
+  <h2>Ready to Visit All <em>10 Places</em>?</h2>
+  <p>Our expert team will build a custom itinerary covering all the highlights, with the perfect routing and timing for your travel dates.</p>
+  <a href="plan-trip.html" class="btn-primary" style="margin-right:1rem">Plan My Trip</a>
+  <a href="packages.html" class="btn-outline">Browse Packages</a>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003.</p>
+      <div class="social-row" style="margin-top:1.5rem"><a href="#" class="social-btn">📷</a><a href="#" class="social-btn">📘</a><a href="#" class="social-btn">▶️</a></div>
+    </div>
+    <div class="footer-col">
+      <h4>Top Destinations</h4>
+      <a href="destinations.html#sigiriya">Sigiriya</a>
+      <a href="destinations.html#kandy">Kandy</a>
+      <a href="destinations.html#ella">Ella</a>
+      <a href="destinations.html#galle">Galle</a>
+      <a href="destinations.html#yala">Yala National Park</a>
+      <a href="destinations.html#nuwara">Nuwara Eliya</a>
+    </div>
+    <div class="footer-col">
+      <h4>Travel Guides</h4>
+      <a href="blog-best-time-visit.html">Best Time to Visit</a>
+      <a href="blog-cuisine-guide.html">Sri Lankan Cuisine</a>
+      <a href="blog-yala-wildlife.html">Yala Safari Guide</a>
+      <a href="blog-ella-train.html">Ella Train Journey</a>
+      <a href="blog-budget-travel.html">Budget Travel Tips</a>
+      <a href="blog.html">All Articles</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved.</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

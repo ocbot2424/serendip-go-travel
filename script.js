@@ -2,10 +2,10 @@
 //  EMAILJS CONFIG
 //  Fill these in after creating your free account at emailjs.com
 // ════════════════════════════════════════
-const EMAILJS_PUBLIC_KEY      = 'YOUR_PUBLIC_KEY';       // Account → API Keys
-const EMAILJS_SERVICE_ID      = 'YOUR_SERVICE_ID';       // Email Services tab
-const EMAILJS_CONTACT_TMPL    = 'YOUR_CONTACT_TEMPLATE_ID';  // Email Templates tab
-const EMAILJS_PLANNER_TMPL    = 'YOUR_PLANNER_TEMPLATE_ID';  // Email Templates tab
+const EMAILJS_PUBLIC_KEY      = 'pcqLKvzFwoYDwDa8i';
+const EMAILJS_SERVICE_ID      = 'service_to5ypwc';
+const EMAILJS_CONTACT_TMPL    = 'template_3987oxg';
+const EMAILJS_PLANNER_TMPL    = 'template_wha3i6l';
 
 // ─── NAVIGATION ───
 window.addEventListener('scroll', () => {

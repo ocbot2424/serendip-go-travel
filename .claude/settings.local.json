@@ -8,7 +8,14 @@
       "Bash(curl -sL -o ella.jpg \"https://images.unsplash.com/photo-3R50kTNBKiE?auto=format&fit=crop&w=900&q=80\")",
       "Bash(curl -sL -o galle.jpg \"https://images.unsplash.com/photo-EBxsNaN0mig?auto=format&fit=crop&w=900&q=80\")",
       "Bash(curl -sL -o yala-leopard.jpg \"https://images.unsplash.com/photo-3TwThGdEUZA?auto=format&fit=crop&w=900&q=80\")",
-      "Bash(curl -sI \"https://unsplash.com/photos/r-vUs1jhhLA/download\")"
+      "Bash(curl -sI \"https://unsplash.com/photos/r-vUs1jhhLA/download\")",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(perl -i -0pe ':*)",
+      "Bash(echo \"Updated $f\")",
+      "Bash(done)",
+      "Bash(\"c:\\\\Users\\\\sades\\\\Desktop\\\\Travel -:*)",
+      "WebFetch(domain:www.tourradar.com)"
     ]
   }
 }
