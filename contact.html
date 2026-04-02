@@ -8,6 +8,287 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* Contact Page Redesign - Matching Plan Trip aesthetic */
+  .contact-hero {
+    background: linear-gradient(135deg, #0d2b1f 0%, #0d0500 100%);
+    padding: 10rem 8% 5rem;
+    text-align: center;
+    position: relative;
+  }
+  .contact-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect fill="rgba(201,151,58,0.02)" width="1" height="1"/></svg>');
+    background-size: 50px 50px;
+  }
+  .contact-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .contact-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+  .contact-eyebrow::before, .contact-eyebrow::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 36px;
+    background: var(--gold);
+  }
+  .contact-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: white;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+  .contact-hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .contact-hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Split Layout */
+  .contact-split {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    min-height: 80vh;
+  }
+
+  /* Left Panel - Contact Info */
+  .contact-left {
+    background: #0d0500;
+    border-right: 1px solid rgba(201,151,58,0.1);
+    padding: 3rem 2.5rem;
+  }
+  .contact-left h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  .contact-left p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(201,151,58,0.08);
+  }
+  .contact-item:last-of-type {
+    border-bottom: none;
+  }
+  .contact-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(201,151,58,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .contact-detail strong {
+    display: block;
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .contact-detail {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .contact-detail a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .contact-detail a:hover {
+    color: var(--gold);
+  }
+
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #25D366;
+    color: white;
+    padding: 0.9rem 1.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    transition: all 0.3s;
+  }
+  .wa-btn:hover {
+    background: #20b558;
+    transform: translateY(-2px);
+  }
+
+  .social-row {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+  .social-btn {
+    width: 38px;
+    height: 38px;
+    background: rgba(201,151,58,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
+  .social-btn:hover {
+    background: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  /* Right Panel - Contact Form */
+  .contact-right {
+    background: var(--cream);
+    padding: 3rem 4rem;
+  }
+  .contact-form-header {
+    margin-bottom: 2.5rem;
+  }
+  .contact-form-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--deep);
+    margin-bottom: 0.8rem;
+  }
+  .contact-form-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .field-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.95rem 1.2rem;
+    border: 1px solid var(--sand-dark);
+    background: white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,151,58,0.1);
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 140px;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  .contact-form select {
+    cursor: pointer;
+  }
+  .field-error {
+    color: #d4603a;
+    font-size: 0.7rem;
+    margin-top: 0.4rem;
+    display: none;
+  }
+  .btn-contact-submit {
+    background: var(--deep);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+    margin-top: 1rem;
+  }
+  .btn-contact-submit:hover {
+    background: var(--gold);
+    color: var(--deep);
+    transform: translateY(-2px);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 1024px) {
+    .contact-split {
+      grid-template-columns: 1fr;
+    }
+    .contact-left {
+      border-right: none;
+      border-bottom: 1px solid rgba(201,151,58,0.1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-hero {
+      padding: 8rem 5% 4rem;
+    }
+    .contact-left,
+    .contact-right {
+      padding: 2rem 1.5rem;
+    }
+    .form-row-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -28,7 +309,7 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <parameter>home" onclick="toggleMobile()">Home</a>
   <a href="about.html" onclick="toggleMobile()">About Us</a>
   <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
   <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
@@ -37,232 +318,215 @@
   <a href="contact.html" onclick="toggleMobile()">Contact</a>
 </div>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-header reveal">
-      <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span> Get In Touch <span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span></div>
-      <h2 class="section-title">Start Your <em>Journey</em> Today</h2>
-      <p class="section-sub" style="color:rgba(255,255,255,0.5)">Our travel specialists are ready to create your dream Sri Lanka experience.</p>
-    </div>
-    <div class="contact-layout reveal">
-      <div class="contact-info">
-        <h3>We're here to help you explore paradise.</h3>
-        <div class="contact-item">
-          <div class="contact-icon">📞</div>
-          <div class="contact-detail">
-            <strong>Phone</strong>
-            +94 76 896 7441<br>
-            +94 74 369 1831
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">✉️</div>
-          <div class="contact-detail">
-            <strong>Email</strong>
-            hello@serendipgo.com
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <div class="contact-detail">
-            <strong>Office Address</strong>
-            42 Galle Road, Colombo 03<br>
-            Sri Lanka, 00300
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">🕐</div>
-          <div class="contact-detail">
-            <strong>Business Hours</strong>
-            Mon–Sat: 8:00 AM – 6:00 PM (IST)<br>
-            Sunday: 9:00 AM – 2:00 PM
-          </div>
-        </div>
-        <a href="https://wa.me/94768967441" class="wa-btn" target="_blank">
-          💬 Chat on WhatsApp
-        </a>
-        <div class="social-row">
-          <a href="#" class="social-btn" title="Instagram">📷</a>
-          <a href="#" class="social-btn" title="Facebook">📘</a>
-          <a href="#" class="social-btn" title="YouTube">▶️</a>
-          <a href="#" class="social-btn" title="TripAdvisor">🔍</a>
-        </div>
-      </div>
-      <div>
-        <div class="contact-form">
-          <div class="form-row-2">
-            <div class="field-wrap">
-              <input type="text" id="contactName" placeholder="Your Full Name" autocomplete="name" maxlength="100">
-              <span class="field-error" id="contactNameErr"></span>
-            </div>
-            <div class="field-wrap">
-              <input type="email" id="contactEmail" placeholder="Email Address" autocomplete="email" maxlength="254">
-              <span class="field-error" id="contactEmailErr"></span>
-            </div>
-          </div>
-          <div class="form-row-2">
-            <div class="field-wrap">
-              <input type="tel" id="contactPhone" placeholder="Phone (with country code)" autocomplete="tel" maxlength="25">
-              <span class="field-error" id="contactPhoneErr"></span>
-            </div>
-            <div class="field-wrap">
-              <select id="contactEnquiry">
-                <option value="">Enquiry Type</option>
-                <option value="custom">Custom Tour Planning</option>
-                <option value="package">Package Booking</option>
-                <option value="honeymoon">Honeymoon Package</option>
-                <option value="group">Group Tours</option>
-                <option value="general">General Enquiry</option>
-              </select>
-              <span class="field-error" id="contactEnquiryErr"></span>
-            </div>
-          </div>
-          <div class="field-wrap">
-            <input type="text" id="contactDates" placeholder="Approx. Travel Dates (e.g. March 2026)" maxlength="80">
-            <span class="field-error" id="contactDatesErr"></span>
-          </div>
-          <div class="field-wrap">
-            <textarea id="contactMessage" placeholder="Tell us about your dream Sri Lanka trip — number of travellers, interests, budget, special requests..." maxlength="2000"></textarea>
-            <span class="field-error" id="contactMessageErr"></span>
-          </div>
-          <button class="btn-primary" style="width:100%;text-align:center;" onclick="submitContact()">Send Enquiry →</button>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- HERO SECTION -->
+<section class="contact-hero">
+  <div class="contact-hero-content">
+    <div class="contact-eyebrow">GET IN TOUCH</div>
+    <h1>Start Your <em>Journey</em> Today</h1>
+    <p class="contact-hero-sub">Our travel specialists are ready to create your dream Sri Lanka experience. Reach out and let's plan something extraordinary.</p>
+  </div>
+</section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <div class="section-header reveal">
-      <div class="eyebrow">Traveller Stories</div>
-      <h2 class="section-title">Words from Our <em>Happy</em> Guests</h2>
-    </div>
-    <div class="testi-grid reveal">
-      <div class="testi-card">
-        <div class="testi-quote">"</div>
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">Serendip Go completely transformed our honeymoon. Every detail was perfect — from the cliffside hotel in Ella to the private whale-watching at dawn. Truly an unforgettable journey.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">S</div>
-          <div>
-            <div class="testi-name">Sophie & James H.</div>
-            <div class="testi-country">🇬🇧 United Kingdom</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-quote">"</div>
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">The wildlife safari was beyond anything I could have imagined. Spotted four leopards in one morning at Yala! Our guide Nimal was incredibly knowledgeable and passionate.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">M</div>
-          <div>
-            <div class="testi-name">Michael T.</div>
-            <div class="testi-country">🇺🇸 United States</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-quote">"</div>
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">Travelling with three kids can be stressful, but Serendip Go made it magical. The family package was perfectly paced — the elephant orphanage and the train through the hills were highlights!</p>
-        <div class="testi-author">
-          <div class="testi-avatar">A</div>
-          <div>
-            <div class="testi-name">Anita & Family</div>
-            <div class="testi-country">🇦🇺 Australia</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- SPLIT LAYOUT -->
+<div class="contact-split">
+  <!-- LEFT PANEL - Contact Info -->
+  <div class="contact-left">
+    <h3>Let's Connect</h3>
+    <p>We're here to help you explore paradise. Contact us through any of these channels.</p>
 
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="section-header reveal">
-      <div class="eyebrow">FAQ</div>
-      <h2 class="section-title">Common <em>Questions</em></h2>
-    </div>
-    <div class="faq-list reveal">
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Do I need a visa to visit Sri Lanka? <span>+</span></div>
-        <div class="faq-a">Most nationalities require an Electronic Travel Authorization (ETA) which can be obtained online before arrival. It typically costs USD 35 for tourists and allows a 30-day stay. We're happy to guide you through the process.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">When is the best time to visit Sri Lanka? <span>+</span></div>
-        <div class="faq-a">Sri Lanka is a year-round destination. The west and south coast (Galle, Mirissa) are best from November to April. The east coast (Trincomalee, Arugam Bay) shines from May to September. The hill country is pleasant year-round. We'll tailor your itinerary to the optimal time.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">What's included in your tour packages? <span>+</span></div>
-        <div class="faq-a">Most packages include accommodation, all transfers in an air-conditioned vehicle, an English-speaking guide, entrance fees, and breakfast. Flights are not included but we can recommend and assist with booking. Full details are provided for each specific package.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Can you customize the itinerary to our preferences? <span>+</span></div>
-        <div class="faq-a">Absolutely — customization is at the heart of what we do. Our itineraries are starting points. We adjust pace, accommodation style, activities, and destinations completely to your wishes. Use our trip planner above or contact us directly.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Is Sri Lanka safe for tourists? <span>+</span></div>
-        <div class="faq-a">Yes, Sri Lanka is generally very safe for tourists and is known for its warm hospitality. The local people are incredibly welcoming. Like any travel destination, standard precautions apply, and our team is always available to advise on safe areas and practices.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">What is your cancellation policy? <span>+</span></div>
-        <div class="faq-a">We offer flexible cancellation options. Cancellations made 60+ days before departure receive a full refund less a small admin fee. 30–60 days: 50% refund. Under 30 days: non-refundable but fully transferable to a future date within 12 months. Full details are in our booking terms.</div>
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div class="contact-detail">
+        <strong>Phone</strong>
+        <a href="tel:+94768967441">+94 76 896 7441</a><br>
+        <a href="tel:+94743691831">+94 74 369 1831</a>
       </div>
     </div>
-  </section>
 
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div class="contact-detail">
+        <strong>Email</strong>
+        <a href="mailto:hello@serendipgo.com">hello@serendipgo.com</a>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div class="contact-detail">
+        <strong>Office Address</strong>
+        42 Galle Road, Colombo 03<br>
+        Sri Lanka, 00300
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">🕐</div>
+      <div class="contact-detail">
+        <strong>Business Hours</strong>
+        Mon–Sat: 8:00 AM – 6:00 PM (IST)<br>
+        Sunday: 9:00 AM – 2:00 PM
+      </div>
+    </div>
+
+    <a href="https://wa.me/94768967441" class="wa-btn" target="_blank">
+      💬 Chat on WhatsApp
+    </a>
+
+    <div class="social-row">
+      <a href="#" class="social-btn" title="Instagram">📷</a>
+      <a href="#" class="social-btn" title="Facebook">📘</a>
+      <a href="#" class="social-btn" title="YouTube">▶️</a>
+      <a href="#" class="social-btn" title="TripAdvisor">🔍</a>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL - Contact Form -->
+  <div class="contact-right">
+    <div class="contact-form-header">
+      <h2>Send Us a Message</h2>
+      <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+    </div>
+
+    <form class="contact-form" id="contactForm" onsubmit="return submitContact(event)">
+      <div class="form-row-2">
+        <div class="field-wrap">
+          <input type="text" id="contactName" placeholder="Your Full Name *" autocomplete="name" required>
+          <span class="field-error" id="contactNameErr"></span>
+        </div>
+        <div class="field-wrap">
+          <input type="email" id="contactEmail" placeholder="Email Address *" autocomplete="email" required>
+          <span class="field-error" id="contactEmailErr"></span>
+        </div>
+      </div>
+
+      <div class="form-row-2">
+        <div class="field-wrap">
+          <input type="tel" id="contactPhone" placeholder="Phone Number" autocomplete="tel">
+          <span class="field-error" id="contactPhoneErr"></span>
+        </div>
+        <div class="field-wrap">
+          <select id="contactInterest">
+            <option value="">I'm interested in...</option>
+            <option value="packages">Tour Packages</option>
+            <option value="custom">Custom Itinerary</option>
+            <option value="group">Group Travel</option>
+            <option value="honeymoon">Honeymoon Package</option>
+            <option value="adventure">Adventure Tours</option>
+            <option value="wildlife">Wildlife Safari</option>
+            <option value="cultural">Cultural Tours</option>
+            <option value="beach">Beach Holidays</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-wrap" style="margin-bottom: 1.2rem;">
+        <textarea id="contactMessage" placeholder="Tell us about your dream trip... *" required></textarea>
+        <span class="field-error" id="contactMessageErr"></span>
+      </div>
+
+      <button type="submit" class="btn-contact-submit">Send Message</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">Serendip Go</a>
-      <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
-      <div class="social-row" style="margin-top:1.5rem">
-        <a href="#" class="social-btn">📷</a>
-        <a href="#" class="social-btn">📘</a>
-        <a href="#" class="social-btn">▶️</a>
-      </div>
+  <div class="footer-grid">
+    <div class="footer-block">
+      <div class="footer-logo">Serendip Go</div>
+      <p style="line-height:1.7;margin-top:0.8rem;color:rgba(255,255,255,0.6);">Crafting unforgettable Sri Lankan journeys since 2003. Locally owned, globally trusted.</p>
     </div>
-    <div class="footer-col">
-      <h4>Destinations</h4>
-      <a href="destinations.html#sigiriya">Sigiriya</a>
-      <a href="destinations.html#kandy">Kandy</a>
-      <a href="destinations.html#ella">Ella</a>
-      <a href="destinations.html#galle">Galle</a>
-      <a href="destinations.html#yala">Yala National Park</a>
-      <a href="destinations.html#nuwara">Nuwara Eliya</a>
-      <a href="destinations.html#trincomalee">Trincomalee</a>
-    </div>
-    <div class="footer-col">
-      <h4>Packages</h4>
-      <a href="packages.html#luxury">Luxury Tours</a>
-      <a href="packages.html#adventure">Adventure Tours</a>
-      <a href="packages.html#honeymoon">Honeymoon Packages</a>
-      <a href="packages.html#wildlife">Wildlife Safaris</a>
-      <a href="packages.html#cultural">Cultural Tours</a>
-      <a href="packages.html#family">Family Packages</a>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
+    <div class="footer-block">
+      <div class="footer-heading">Quick Links</div>
       <a href="about.html">About Us</a>
-      <a href="blog.html">Blog & Travel Guides</a>
-      <a href="testimonials.html">Testimonials</a>
+      <a href="destinations.html">Destinations</a>
+      <a href="packages.html">Tour Packages</a>
+      <a href="blog.html">Travel Blog</a>
+    </div>
+    <div class="footer-block">
+      <div class="footer-heading">Support</div>
       <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="terms.html">Terms & Conditions</a>
       <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+    <div class="footer-block">
+      <div class="footer-heading">Contact</div>
+      <p style="line-height:1.8;margin:0;color:rgba(255,255,255,0.7);">
+        Email: <a href="mailto:hello@serendipgo.com" style="color:var(--gold)">hello@serendipgo.com</a><br>
+        Phone: +94 11 234 5678<br>
+        Colombo, Sri Lanka
+      </p>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Serendip Go. All rights reserved.</span>
-    <span>Designed with ❤️ in Sri Lanka</span>
+    <p style="color:rgba(255,255,255,0.3);margin:0">© 2025 Serendip Go Travel. All rights reserved.</p>
   </div>
 </footer>
-<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
-<div class="chat-bubble" id="chatBubble">
-  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
-  <input type="text" placeholder="Type your message...">
-  <button onclick="sendChat()">Send Message</button>
+
+<!-- LIVE CHAT -->
+<div class="chat-bubble" id="chatBubble" onclick="toggleChat()">💬</div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <span>Chat with us</span>
+    <button onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg chat-msg-them">Hello! How can we help you plan your Sri Lanka adventure?</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Type your message...">
+    <button onclick="sendChat()">Send</button>
+  </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script src="script.js"></script>
+<script>
+function submitContact(e) {
+  e.preventDefault();
+  
+  // Clear previous errors
+  document.querySelectorAll('.field-error').forEach(el => el.style.display = 'none');
+  
+  // Get values
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const message = document.getElementById('contactMessage').value.trim();
+  
+  let isValid = true;
+  
+  // Validate name
+  if (name.length < 2) {
+    document.getElementById('contactNameErr').textContent = 'Please enter your full name';
+    document.getElementById('contactNameErr').style.display = 'block';
+    isValid = false;
+  }
+  
+  // Validate email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    document.getElementById('contactEmailErr').textContent = 'Please enter a valid email';
+    document.getElementById('contactEmailErr').style.display = 'block';
+    isValid = false;
+  }
+  
+  // Validate message
+  if (message.length < 10) {
+    document.getElementById('contactMessageErr').textContent = 'Please tell us more (at least 10 characters)';
+    document.getElementById('contactMessageErr').style.display = 'block';
+    isValid = false;
+  }
+  
+  if (isValid) {
+    alert('Thank you! Your message has been sent. We\'ll get back to you within 24 hours.');
+    document.getElementById('contactForm').reset();
+  }
+  
+  return false;
+}
+</script>
+
 </body>
 </html>
