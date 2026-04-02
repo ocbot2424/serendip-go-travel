@@ -43,9 +43,15 @@
     font-family: 'Dancing Script', cursive;
     font-size: 2rem;
     font-weight: 700;
-    color: #2bbfa0;
+    color: var(--gold);
     letter-spacing: 0.5px;
     text-decoration: none;
+    border-bottom: none;
+  }
+  nav.scrolled .logo {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: none;
   }
   .logo span { color: var(--gold); }
   .nav-links {

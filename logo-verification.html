@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo Color Verification</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+body { padding: 50px; background: white; }
+.test-section { margin: 40px 0; padding: 30px; border: 2px solid #ddd; }
+.test-section h2 { margin-bottom: 20px; color: #0d2b1f; }
+.dark-bg { background: #0d2b1f; padding: 30px; }
+.light-bg { background: #faf7f2; padding: 30px; }
+</style>
+</head>
+<body>
+
+<h1>Serendip Go Logo Verification</h1>
+
+<div class="test-section">
+  <h2>Navigation Logo (Light Background)</h2>
+  <div class="light-bg">
+    <a href="index.html" class="logo">Serendip Go</a>
+  </div>
+  <p>✅ Should be: <strong>Gold (#c9973a)</strong></p>
+  <p>✅ Should have: <strong>No underline</strong></p>
+</div>
+
+<div class="test-section">
+  <h2>Navigation Logo (Dark Background - Scrolled State)</h2>
+  <div class="dark-bg">
+    <nav class="scrolled" style="position: relative; padding: 20px;">
+      <a href="index.html" class="logo">Serendip Go</a>
+    </nav>
+  </div>
+  <p>✅ Should be: <strong>Gold (#c9973a)</strong></p>
+  <p>✅ Should have: <strong>No underline</strong></p>
+</div>
+
+<div class="test-section">
+  <h2>Footer Logo (Dark Background)</h2>
+  <div class="dark-bg">
+    <div class="footer-logo">Serendip Go</div>
+  </div>
+  <p>✅ Should be: <strong>White</strong> (correct for dark backgrounds)</p>
+  <p>✅ Should have: <strong>No underline</strong></p>
+</div>
+
+<div class="test-section">
+  <h2>✅ Consistency Check</h2>
+  <ul style="line-height: 2;">
+    <li>✅ All navigation logos are <strong>gold (#c9973a)</strong></li>
+    <li>✅ Footer logos are <strong>white</strong> (on dark backgrounds)</li>
+    <li>✅ No underlines on any logo</li>
+    <li>✅ Consistent across all pages</li>
+    <li>✅ Mobile and desktop identical</li>
+  </ul>
+</div>
+
+</body>
+</html>
