@@ -3,7 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plan Your Trip — Serendip Go</title>
+<title>Plan Your Custom Sri Lanka Trip | Personalized Itinerary Builder</title>
+
+<meta name="description" content="Create your perfect Sri Lanka itinerary with our custom trip planner. Choose your interests, duration & style. Get a personalized quote within 24 hours.">
+<meta name="keywords" content="custom Sri Lanka trip, personalized tour Sri Lanka, trip planner, tailor-made tours">
+<meta name="author" content="Serendip Go Travel">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://serendipgo.com/plan-trip.html">
+<meta property="og:title" content="Plan Your Custom Sri Lanka Trip | Personalized Itinerary Builder">
+<meta property="og:description" content="Create your perfect Sri Lanka itinerary with our custom trip planner. Choose your interests, duration & style. Get a personalized quote within 24 hours.">
+<meta property="og:image" content="https://serendipgo.com/images/og-image.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://serendipgo.com/plan-trip.html">
+<meta property="twitter:title" content="Plan Your Custom Sri Lanka Trip | Personalized Itinerary Builder">
+<meta property="twitter:description" content="Create your perfect Sri Lanka itinerary with our custom trip planner. Choose your interests, duration & style. Get a personalized quote within 24 hours.">
+<meta property="twitter:image" content="https://serendipgo.com/images/og-image.jpg">
+
+<!-- Additional SEO -->
+<link rel="canonical" href="https://serendipgo.com/plan-trip.html">
+
 <link rel="icon" type="image/png" href="images/fav.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
@@ -784,6 +807,7 @@
   }
 </script>
 <div class="progress" id="progress"></div>
+<header>
 <nav id="navbar">
   <a href="index.html" class="logo">Serendip Go</a>
   <ul class="nav-links">
@@ -799,6 +823,7 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
+</header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="toggleMobile()">Home</a>
   <a href="about.html" onclick="toggleMobile()">About Us</a>
@@ -986,16 +1011,16 @@
         <div class="pr-section">
           <span class="pr-section-label">Travel Interests <span class="int-hint">— select all that apply</span></span>
           <div class="interests-grid" id="intGrid">
-            <div class="int-tile" data-interest="beaches" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/beach.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🏖️</span><span class="int-name">Beaches</span></div><div class="int-check">✓</div></div>
-            <div class="int-tile" data-interest="wildlife" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/yala-leopard.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🦁</span><span class="int-name">Wildlife</span></div><div class="int-check">✓</div></div>
-            <div class="int-tile" data-interest="culture" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/sigiriya.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🏛️</span><span class="int-name">Culture</span></div><div class="int-check">✓</div></div>
-            <div class="int-tile" data-interest="hiking" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/about-landscape.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🏔️</span><span class="int-name">Hiking</span></div><div class="int-check">✓</div></div>
-            <div class="int-tile" data-interest="food" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/sri-lanka-food.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🍛</span><span class="int-name">Food &amp; Cuisine</span></div><div class="int-check">✓</div></div>
-            <div class="int-tile" data-interest="wellness" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/kandy.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🧘</span><span class="int-name">Wellness</span></div><div class="int-check">✓</div></div>
-            <div class="int-tile" data-interest="tea" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/tea-plantation.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🌿</span><span class="int-name">Tea Plantations</span></div><div class="int-check">✓</div></div>
-            <div class="int-tile" data-interest="watersports" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/family-beach.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🚣</span><span class="int-name">Water Sports</span></div><div class="int-check">✓</div></div>
-            <div class="int-tile" data-interest="elephants" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/elephant.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">🐘</span><span class="int-name">Elephants</span></div><div class="int-check">✓</div></div>
-            <div class="int-tile" data-interest="romance" onclick="toggleInt(this)"><div class="int-tile-bg" style="background-image:url('images/romantic-beach.jpg')"></div><div class="int-tile-shade"><span class="int-emoji">💑</span><span class="int-name">Romance</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="beaches" onclick="toggleInt(this)"><div class="int-tile-bg" data-bg="images/beach.jpg"></div><div class="int-tile-shade"><span class="int-emoji">🏖️</span><span class="int-name">Beaches</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="wildlife" onclick="toggleInt(this)"><div class="int-tile-bg" data-bg="images/yala-leopard.jpg"></div><div class="int-tile-shade"><span class="int-emoji">🦁</span><span class="int-name">Wildlife</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="culture" onclick="toggleInt(this)"><div class="int-tile-bg" data-bg="images/sigiriya.jpg"></div><div class="int-tile-shade"><span class="int-emoji">🏛️</span><span class="int-name">Culture</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="hiking" onclick="toggleInt(this)"><div class="int-tile-bg" data-bg="images/about-landscape.jpg"></div><div class="int-tile-shade"><span class="int-emoji">🏔️</span><span class="int-name">Hiking</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="food" onclick="toggleInt(this)"><div class="int-tile-bg" data-bg="images/sri-lanka-food.jpg"></div><div class="int-tile-shade"><span class="int-emoji">🍛</span><span class="int-name">Food &amp; Cuisine</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="wellness" onclick="toggleInt(this)"><div class="int-tile-bg" data-bg="images/kandy.jpg"></div><div class="int-tile-shade"><span class="int-emoji">🧘</span><span class="int-name">Wellness</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="tea" onclick="toggleInt(this)"><div class="int-tile-bg" data-bg="images/tea-plantation.jpg"></div><div class="int-tile-shade"><span class="int-emoji">🌿</span><span class="int-name">Tea Plantations</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="watersports" onclick="toggleInt(this)"><div class="int-tile-bg" data-bg="images/family-beach.jpg"></div><div class="int-tile-shade"><span class="int-emoji">🚣</span><span class="int-name">Water Sports</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="elephants" onclick="toggleInt(this)"><div class="int-tile-bg" data-bg="images/elephant.jpg"></div><div class="int-tile-shade"><span class="int-emoji">🐘</span><span class="int-name">Elephants</span></div><div class="int-check">✓</div></div>
+            <div class="int-tile" data-interest="romance" onclick="toggleInt(this)"><div class="int-tile-bg" data-bg="images/romantic-beach.jpg"></div><div class="int-tile-shade"><span class="int-emoji">💑</span><span class="int-name">Romance</span></div><div class="int-check">✓</div></div>
           </div>
         </div>
 
@@ -1123,9 +1148,9 @@
       <a href="index.html" class="logo">Serendip Go</a>
       <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
       <div class="social-row" style="margin-top:1.5rem">
-        <a href="#" class="social-btn">📷</a>
-        <a href="#" class="social-btn">📘</a>
-        <a href="#" class="social-btn">▶️</a>
+        <!-- <a href="#" class="social-btn">📷</a> -->
+        <!-- <a href="#" class="social-btn">📘</a> -->
+        <!-- <a href="#" class="social-btn">▶️</a> -->
       </div>
     </div>
     <div class="footer-col">
@@ -1740,5 +1765,6 @@ function buildItinerary() {
     <div class="icb-row"><div class="icb-icon">✦</div><div class="icb-text">This is a complimentary preview. <strong>No payment or commitment required.</strong></div></div>`;
 }
 </script>
+<script src="lazy-load-bg.js"></script>
 </body>
 </html>

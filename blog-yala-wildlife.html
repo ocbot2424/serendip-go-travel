@@ -51,6 +51,7 @@
 </head>
 <body>
 <div class="progress" id="progress"></div>
+<header>
 <nav id="navbar">
   <a href="index.html" class="logo">Serendip Go</a>
   <ul class="nav-links">
@@ -64,6 +65,7 @@
   </ul>
   <div class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
 </nav>
+</header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="toggleMobile()">Home</a>
   <a href="about.html" onclick="toggleMobile()">About Us</a>
@@ -80,7 +82,7 @@
   <p>March 2, 2025 &nbsp;·&nbsp; 10 min read &nbsp;·&nbsp; By Nimal Senanayake</p>
 </div>
 
-<div class="article-featured-img" style="background-image:url('images/yala-leopard.jpg')"></div>
+<div class="article-featured-img" data-bg="images/yala-leopard.jpg"></div>
 
 <div class="article-wrap">
   <div class="article-meta-bar">
@@ -198,15 +200,15 @@
     <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--deep);margin-top:.5rem">More <em style="font-style:italic;color:var(--teal)">Wildlife Guides</em></h2>
     <div class="related-grid">
       <a href="blog-top10-places.html" class="rel-card">
-        <div class="rc-img" style="background-image:url('images/about-landscape.jpg')"></div>
+        <div class="rc-img" data-bg="images/about-landscape.jpg"></div>
         <div class="rc-body"><div class="rc-tag">Destinations</div><div class="rc-title">Top 10 Must-See Places in Sri Lanka</div></div>
       </a>
       <a href="blog-cuisine-guide.html" class="rel-card">
-        <div class="rc-img" style="background-image:url('images/sri-lanka-food.jpg')"></div>
+        <div class="rc-img" data-bg="images/sri-lanka-food.jpg"></div>
         <div class="rc-body"><div class="rc-tag">Food &amp; Culture</div><div class="rc-title">The Ultimate Guide to Sri Lankan Cuisine</div></div>
       </a>
       <a href="blog-best-time-visit.html" class="rel-card">
-        <div class="rc-img" style="background-image:url('images/tea-plantation.jpg')"></div>
+        <div class="rc-img" data-bg="images/tea-plantation.jpg"></div>
         <div class="rc-body"><div class="rc-tag">Travel Tips</div><div class="rc-title">Best Time to Visit Sri Lanka</div></div>
       </a>
     </div>
@@ -226,7 +228,7 @@
     <div class="footer-brand">
       <a href="index.html" class="logo">Serendip Go</a>
       <p>Crafting extraordinary journeys through Sri Lanka since 2003.</p>
-      <div class="social-row" style="margin-top:1.5rem"><a href="#" class="social-btn">📷</a><a href="#" class="social-btn">📘</a><a href="#" class="social-btn">▶️</a></div>
+      <div class="social-row" style="margin-top:1.5rem"><!-- <a href="#" class="social-btn">📷</a> --><!-- <a href="#" class="social-btn">📘</a> --><!-- <a href="#" class="social-btn">▶️</a> --></div>
     </div>
     <div class="footer-col">
       <h4>Destinations</h4>
@@ -266,5 +268,6 @@
   <button onclick="sendChat()">Send Message</button>
 </div>
 <script src="script.js"></script>
+<script src="lazy-load-bg.js"></script>
 </body>
 </html>

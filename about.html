@@ -3,7 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us — Serendip Go</title>
+<title>About Serendip Go - Your Trusted Sri Lanka Travel Experts Since 2003</title>
+
+<meta name="description" content="Learn about Serendip Go Travel - locally owned, expert guides, authentic experiences. Trusted by thousands of travelers worldwide since 2003.">
+<meta name="keywords" content="about Serendip Go, Sri Lanka travel company, local tour operator Sri Lanka, trusted travel agency">
+<meta name="author" content="Serendip Go Travel">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://serendipgo.com/about.html">
+<meta property="og:title" content="About Serendip Go - Your Trusted Sri Lanka Travel Experts Since 2003">
+<meta property="og:description" content="Learn about Serendip Go Travel - locally owned, expert guides, authentic experiences. Trusted by thousands of travelers worldwide since 2003.">
+<meta property="og:image" content="https://serendipgo.com/images/og-image.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://serendipgo.com/about.html">
+<meta property="twitter:title" content="About Serendip Go - Your Trusted Sri Lanka Travel Experts Since 2003">
+<meta property="twitter:description" content="Learn about Serendip Go Travel - locally owned, expert guides, authentic experiences. Trusted by thousands of travelers worldwide since 2003.">
+<meta property="twitter:image" content="https://serendipgo.com/images/og-image.jpg">
+
+<!-- Additional SEO -->
+<link rel="canonical" href="https://serendipgo.com/about.html">
+
 <link rel="icon" type="image/png" href="images/fav.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
@@ -12,6 +35,7 @@
 <body>
 
 <div class="progress" id="progress"></div>
+<header>
 <nav id="navbar">
   <a href="index.html" class="logo">Serendip Go</a>
   <ul class="nav-links">
@@ -27,6 +51,7 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
+</header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="toggleMobile()">Home</a>
   <a href="about.html" onclick="toggleMobile()">About Us</a>
@@ -53,8 +78,8 @@
       <a href="contact.html" class="btn-primary">Plan Your Journey</a>
     </div>
     <div class="about-visual">
-      <div style="width:75%;height:380px;background-image:url('images/about-landscape.jpg');background-size:cover;background-position:center;position:absolute;right:0;top:0;"></div>
-      <div style="width:50%;height:220px;background-image:url('images/sigiriya.jpg');background-size:cover;background-position:center;position:absolute;left:0;bottom:0;border:6px solid var(--cream);"></div>
+      <div data-bg="images/about-landscape.jpg" style="width:75%;height:380px;background-size:cover;background-position:center;position:absolute;right:0;top:0;"></div>
+      <div data-bg="images/sigiriya.jpg" style="width:50%;height:220px;background-size:cover;background-position:center;position:absolute;left:0;bottom:0;border:6px solid var(--cream);"></div>
       <div class="about-badge">
         <div class="num">20+</div>
         <div class="lbl">Years of Excellence</div>
@@ -128,6 +153,7 @@
       </div>
     </div>
   </section>
+</main>
 
 <footer>
   <div class="footer-top">
@@ -135,9 +161,9 @@
       <a href="index.html" class="logo">Serendip Go</a>
       <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
       <div class="social-row" style="margin-top:1.5rem">
-        <a href="#" class="social-btn">📷</a>
-        <a href="#" class="social-btn">📘</a>
-        <a href="#" class="social-btn">▶️</a>
+        <!-- <a href="#" class="social-btn">📷</a> -->
+        <!-- <a href="#" class="social-btn">📘</a> -->
+        <!-- <a href="#" class="social-btn">▶️</a> -->
       </div>
     </div>
     <div class="footer-col">
@@ -181,5 +207,6 @@
   <button onclick="sendChat()">Send Message</button>
 </div>
 <script src="script.js"></script>
+<script src="lazy-load-bg.js"></script>
 </body>
 </html>

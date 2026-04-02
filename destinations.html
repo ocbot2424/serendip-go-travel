@@ -3,7 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Destinations — Serendip Go</title>
+<title>Top Sri Lanka Destinations - Places to Visit | Serendip Go Travel</title>
+
+<meta name="description" content="Discover the best destinations in Sri Lanka: Sigiriya Rock Fortress, Kandy Temple, Yala National Park, Galle Fort, Ella & pristine beaches. Plan your perfect itinerary.">
+<meta name="keywords" content="Sri Lanka destinations, places to visit Sri Lanka, Sigiriya, Kandy, Yala National Park, Galle Fort, Ella, Sri Lanka beaches">
+<meta name="author" content="Serendip Go Travel">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://serendipgo.com/destinations.html">
+<meta property="og:title" content="Top Sri Lanka Destinations - Places to Visit | Serendip Go Travel">
+<meta property="og:description" content="Discover the best destinations in Sri Lanka: Sigiriya Rock Fortress, Kandy Temple, Yala National Park, Galle Fort, Ella & pristine beaches. Plan your perfect itinerary.">
+<meta property="og:image" content="https://serendipgo.com/images/og-image.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://serendipgo.com/destinations.html">
+<meta property="twitter:title" content="Top Sri Lanka Destinations - Places to Visit | Serendip Go Travel">
+<meta property="twitter:description" content="Discover the best destinations in Sri Lanka: Sigiriya Rock Fortress, Kandy Temple, Yala National Park, Galle Fort, Ella & pristine beaches. Plan your perfect itinerary.">
+<meta property="twitter:image" content="https://serendipgo.com/images/og-image.jpg">
+
+<!-- Additional SEO -->
+<link rel="canonical" href="https://serendipgo.com/destinations.html">
+
 <link rel="icon" type="image/png" href="images/fav.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
@@ -147,6 +170,7 @@
 <body>
 
 <div class="progress" id="progress"></div>
+<header>
 <nav id="navbar">
   <a href="index.html" class="logo">Serendip Go</a>
   <ul class="nav-links">
@@ -162,6 +186,7 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
+</header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="toggleMobile()">Home</a>
   <a href="about.html" onclick="toggleMobile()">About Us</a>
@@ -186,7 +211,7 @@
   </div>
   <div class="dest-grid reveal">
     <div id="dest-sigiriya" class="dest-card" onclick="openDest('sigiriya')" style="cursor:pointer;">
-      <div class="dest-card-bg" style="background-image:url('images/sigiriya.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-card-bg" data-bg="images/sigiriya.jpg" style="background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
         <div class="dest-name">Sigiriya</div>
@@ -194,7 +219,7 @@
       </div>
     </div>
     <div id="dest-kandy" class="dest-card" onclick="openDest('kandy')" style="cursor:pointer;">
-      <div class="dest-card-bg" style="background-image:url('images/kandy.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-card-bg" data-bg="images/kandy.jpg" style="background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
         <div class="dest-name">Kandy</div>
@@ -202,7 +227,7 @@
       </div>
     </div>
     <div id="dest-ella" class="dest-card" onclick="openDest('ella')" style="cursor:pointer;">
-      <div class="dest-card-bg" style="background-image:url('images/ella.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-card-bg" data-bg="images/ella.jpg" style="background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
         <div class="dest-name">Ella</div>
@@ -210,7 +235,7 @@
       </div>
     </div>
     <div id="dest-galle" class="dest-card" onclick="openDest('galle')" style="cursor:pointer;">
-      <div class="dest-card-bg" style="background-image:url('images/galle.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-card-bg" data-bg="images/galle.jpg" style="background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
         <div class="dest-name">Galle</div>
@@ -218,7 +243,7 @@
       </div>
     </div>
     <div id="dest-yala" class="dest-card" onclick="openDest('yala')" style="cursor:pointer;">
-      <div class="dest-card-bg" style="background-image:url('images/yala-leopard.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-card-bg" data-bg="images/yala-leopard.jpg" style="background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
         <div class="dest-name">Yala National Park</div>
@@ -226,7 +251,7 @@
       </div>
     </div>
     <div id="dest-nuwara-eliya" class="dest-card" onclick="openDest('nuwara')" style="cursor:pointer;">
-      <div class="dest-card-bg" style="background-image:url('images/tea-plantation.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-card-bg" data-bg="images/tea-plantation.jpg" style="background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
         <div class="dest-name">Nuwara Eliya</div>
@@ -234,7 +259,7 @@
       </div>
     </div>
     <div id="dest-trincomalee" class="dest-card" onclick="openDest('trincomalee')" style="cursor:pointer;">
-      <div class="dest-card-bg" style="background-image:url('images/beach.jpg'); background-size:cover; background-position:center;"></div>
+      <div class="dest-card-bg" data-bg="images/beach.jpg" style="background-size:cover; background-position:center;"></div>
       <div class="dest-explore">→</div>
       <div class="dest-info">
         <div class="dest-name">Trincomalee</div>
@@ -246,7 +271,7 @@
   <!-- MOBILE ONLY CARDS -->
   <div class="mobile-dest-list">
     <div class="mobile-dest-card" onclick="openDest('sigiriya')">
-      <img src="images/sigiriya.jpg" alt="Sigiriya">
+      <img src="images/sigiriya.jpg" alt="Sigiriya" loading="lazy">
       <div class="mobile-dest-overlay">
         <div class="mobile-dest-name">Sigiriya</div>
         <div class="mobile-dest-sub">Rock Fortress · Frescoes · Panoramic Views</div>
@@ -254,7 +279,7 @@
       </div>
     </div>
     <div class="mobile-dest-card" onclick="openDest('kandy')">
-      <img src="images/kandy.jpg" alt="Kandy">
+      <img src="images/kandy.jpg" alt="Kandy" loading="lazy">
       <div class="mobile-dest-overlay">
         <div class="mobile-dest-name">Kandy</div>
         <div class="mobile-dest-sub">Temple of Tooth · Cultural Shows · Peradeniya Gardens</div>
@@ -262,7 +287,7 @@
       </div>
     </div>
     <div class="mobile-dest-card" onclick="openDest('ella')">
-      <img src="images/ella.jpg" alt="Ella">
+      <img src="images/ella.jpg" alt="Ella" loading="lazy">
       <div class="mobile-dest-overlay">
         <div class="mobile-dest-name">Ella</div>
         <div class="mobile-dest-sub">Nine Arch Bridge · Tea Trails · Hikes</div>
@@ -270,7 +295,7 @@
       </div>
     </div>
     <div class="mobile-dest-card" onclick="openDest('galle')">
-      <img src="images/galle.jpg" alt="Galle">
+      <img src="images/galle.jpg" alt="Galle" loading="lazy">
       <div class="mobile-dest-overlay">
         <div class="mobile-dest-name">Galle</div>
         <div class="mobile-dest-sub">Dutch Fort · Boutique Hotels · Sea Turtles</div>
@@ -278,7 +303,7 @@
       </div>
     </div>
     <div class="mobile-dest-card" onclick="openDest('yala')">
-      <img src="images/yala-leopard.jpg" alt="Yala">
+      <img src="images/yala-leopard.jpg" alt="Yala" loading="lazy">
       <div class="mobile-dest-overlay">
         <div class="mobile-dest-name">Yala National Park</div>
         <div class="mobile-dest-sub">Leopard Safari · Elephants · Birding</div>
@@ -286,7 +311,7 @@
       </div>
     </div>
     <div class="mobile-dest-card" onclick="openDest('nuwara')">
-      <img src="images/tea-plantation.jpg" alt="Nuwara Eliya">
+      <img src="images/tea-plantation.jpg" alt="Nuwara Eliya" loading="lazy">
       <div class="mobile-dest-overlay">
         <div class="mobile-dest-name">Nuwara Eliya</div>
         <div class="mobile-dest-sub">Tea Estates · Colonial Charm · Misty Highlands</div>
@@ -294,7 +319,7 @@
       </div>
     </div>
     <div class="mobile-dest-card" onclick="openDest('trincomalee')">
-      <img src="images/beach.jpg" alt="Trincomalee">
+      <img src="images/beach.jpg" alt="Trincomalee" loading="lazy">
       <div class="mobile-dest-overlay">
         <div class="mobile-dest-name">Trincomalee</div>
         <div class="mobile-dest-sub">Pristine Beaches · Whale Watching · Ancient Temples</div>
@@ -333,9 +358,9 @@
       <a href="index.html" class="logo">Serendip Go</a>
       <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
       <div class="social-row" style="margin-top:1.5rem">
-        <a href="#" class="social-btn">📷</a>
-        <a href="#" class="social-btn">📘</a>
-        <a href="#" class="social-btn">▶️</a>
+        <!-- <a href="#" class="social-btn">📷</a> -->
+        <!-- <a href="#" class="social-btn">📘</a> -->
+        <!-- <a href="#" class="social-btn">▶️</a> -->
       </div>
     </div>
     <div class="footer-col">
@@ -507,5 +532,6 @@ window.addEventListener('load', () => {
   }
 });
 </script>
+<script src="lazy-load-bg.js"></script>
 </body>
 </html>

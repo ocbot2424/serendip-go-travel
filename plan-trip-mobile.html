@@ -964,6 +964,7 @@ body {
 <body>
 
 <div class="progress" id="progress"></div>
+<header>
 <nav id="navbar">
   <a href="index.html" class="logo">Serendip Go</a>
   <ul class="nav-links">
@@ -979,6 +980,7 @@ body {
     <span></span><span></span><span></span>
   </div>
 </nav>
+</header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="toggleMobile()">Home</a>
   <a href="about.html" onclick="toggleMobile()">About Us</a>
@@ -1130,52 +1132,52 @@ body {
         <div class="mph-card-title">Travel Interests</div>
         <div class="mph-int-grid" id="mphIntGrid">
           <div class="mph-int-tile" data-interest="beaches" onclick="mphToggleInt(this)">
-            <div class="mph-int-tile-bg" style="background-image:url('images/beach.jpg')"></div>
+            <div class="mph-int-tile-bg" data-bg="images/beach.jpg"></div>
             <div class="mph-int-shade"><span class="mph-int-emoji">🏖️</span><span class="mph-int-name">Beaches</span></div>
             <div class="mph-int-check">✓</div>
           </div>
           <div class="mph-int-tile" data-interest="wildlife" onclick="mphToggleInt(this)">
-            <div class="mph-int-tile-bg" style="background-image:url('images/yala-leopard.jpg')"></div>
+            <div class="mph-int-tile-bg" data-bg="images/yala-leopard.jpg"></div>
             <div class="mph-int-shade"><span class="mph-int-emoji">🦁</span><span class="mph-int-name">Wildlife</span></div>
             <div class="mph-int-check">✓</div>
           </div>
           <div class="mph-int-tile" data-interest="culture" onclick="mphToggleInt(this)">
-            <div class="mph-int-tile-bg" style="background-image:url('images/sigiriya.jpg')"></div>
+            <div class="mph-int-tile-bg" data-bg="images/sigiriya.jpg"></div>
             <div class="mph-int-shade"><span class="mph-int-emoji">🏛️</span><span class="mph-int-name">Culture</span></div>
             <div class="mph-int-check">✓</div>
           </div>
           <div class="mph-int-tile" data-interest="hiking" onclick="mphToggleInt(this)">
-            <div class="mph-int-tile-bg" style="background-image:url('images/about-landscape.jpg')"></div>
+            <div class="mph-int-tile-bg" data-bg="images/about-landscape.jpg"></div>
             <div class="mph-int-shade"><span class="mph-int-emoji">🏔️</span><span class="mph-int-name">Hiking</span></div>
             <div class="mph-int-check">✓</div>
           </div>
           <div class="mph-int-tile" data-interest="food" onclick="mphToggleInt(this)">
-            <div class="mph-int-tile-bg" style="background-image:url('images/sri-lanka-food.jpg')"></div>
+            <div class="mph-int-tile-bg" data-bg="images/sri-lanka-food.jpg"></div>
             <div class="mph-int-shade"><span class="mph-int-emoji">🍛</span><span class="mph-int-name">Food &amp; Cuisine</span></div>
             <div class="mph-int-check">✓</div>
           </div>
           <div class="mph-int-tile" data-interest="wellness" onclick="mphToggleInt(this)">
-            <div class="mph-int-tile-bg" style="background-image:url('images/kandy.jpg')"></div>
+            <div class="mph-int-tile-bg" data-bg="images/kandy.jpg"></div>
             <div class="mph-int-shade"><span class="mph-int-emoji">🧘</span><span class="mph-int-name">Wellness</span></div>
             <div class="mph-int-check">✓</div>
           </div>
           <div class="mph-int-tile" data-interest="tea" onclick="mphToggleInt(this)">
-            <div class="mph-int-tile-bg" style="background-image:url('images/tea-plantation.jpg')"></div>
+            <div class="mph-int-tile-bg" data-bg="images/tea-plantation.jpg"></div>
             <div class="mph-int-shade"><span class="mph-int-emoji">🌿</span><span class="mph-int-name">Tea Plantations</span></div>
             <div class="mph-int-check">✓</div>
           </div>
           <div class="mph-int-tile" data-interest="watersports" onclick="mphToggleInt(this)">
-            <div class="mph-int-tile-bg" style="background-image:url('images/family-beach.jpg')"></div>
+            <div class="mph-int-tile-bg" data-bg="images/family-beach.jpg"></div>
             <div class="mph-int-shade"><span class="mph-int-emoji">🚣</span><span class="mph-int-name">Water Sports</span></div>
             <div class="mph-int-check">✓</div>
           </div>
           <div class="mph-int-tile" data-interest="elephants" onclick="mphToggleInt(this)">
-            <div class="mph-int-tile-bg" style="background-image:url('images/elephant.jpg')"></div>
+            <div class="mph-int-tile-bg" data-bg="images/elephant.jpg"></div>
             <div class="mph-int-shade"><span class="mph-int-emoji">🐘</span><span class="mph-int-name">Elephants</span></div>
             <div class="mph-int-check">✓</div>
           </div>
           <div class="mph-int-tile" data-interest="romance" onclick="mphToggleInt(this)">
-            <div class="mph-int-tile-bg" style="background-image:url('images/romantic-beach.jpg')"></div>
+            <div class="mph-int-tile-bg" data-bg="images/romantic-beach.jpg"></div>
             <div class="mph-int-shade"><span class="mph-int-emoji">💑</span><span class="mph-int-name">Romance</span></div>
             <div class="mph-int-check">✓</div>
           </div>
@@ -1821,5 +1823,6 @@ function mphBuildItinerary() {
     <div class="mph-icb-row"><div class="mph-icb-icon">✦</div><div class="mph-icb-text">No obligation — this is your personalised preview</div></div>`;
 }
 </script>
+<script src="lazy-load-bg.js"></script>
 </body>
 </html>

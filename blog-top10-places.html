@@ -52,6 +52,7 @@
 </head>
 <body>
 <div class="progress" id="progress"></div>
+<header>
 <nav id="navbar">
   <a href="index.html" class="logo">Serendip Go</a>
   <ul class="nav-links">
@@ -65,6 +66,7 @@
   </ul>
   <div class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
 </nav>
+</header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="toggleMobile()">Home</a>
   <a href="about.html" onclick="toggleMobile()">About Us</a>
@@ -81,7 +83,7 @@
   <p>February 8, 2025 &nbsp;·&nbsp; 12 min read &nbsp;·&nbsp; By Priya Jayawardena</p>
 </div>
 
-<div class="article-featured-img" style="background-image:url('images/about-landscape.jpg')"></div>
+<div class="article-featured-img" data-bg="images/about-landscape.jpg"></div>
 
 <div class="article-wrap">
   <div class="article-meta-bar">
@@ -98,7 +100,7 @@
     <div style="margin:3rem 0">
 
       <div class="place-card">
-        <div class="place-img" style="background-image:url('images/sigiriya.jpg')"></div>
+        <div class="place-img" data-bg="images/sigiriya.jpg"></div>
         <div class="place-content">
           <div class="place-tag">#1 · UNESCO World Heritage Site</div>
           <div class="place-title">Sigiriya — The Lion Rock Fortress</div>
@@ -112,7 +114,7 @@
       </div>
 
       <div class="place-card">
-        <div class="place-img" style="background-image:url('images/galle.jpg')"></div>
+        <div class="place-img" data-bg="images/galle.jpg"></div>
         <div class="place-content">
           <div class="place-tag">#2 · UNESCO World Heritage Site</div>
           <div class="place-title">Galle Fort — Colonial Grandeur by the Sea</div>
@@ -126,7 +128,7 @@
       </div>
 
       <div class="place-card">
-        <div class="place-img" style="background-image:url('images/kandy.jpg')"></div>
+        <div class="place-img" data-bg="images/kandy.jpg"></div>
         <div class="place-content">
           <div class="place-tag">#3 · Cultural Capital</div>
           <div class="place-title">Kandy — City of the Sacred Tooth Relic</div>
@@ -140,7 +142,7 @@
       </div>
 
       <div class="place-card">
-        <div class="place-img" style="background-image:url('images/ella.jpg')"></div>
+        <div class="place-img" data-bg="images/ella.jpg"></div>
         <div class="place-content">
           <div class="place-tag">#4 · Highland Paradise</div>
           <div class="place-title">Ella — Tea Estates, Waterfalls &amp; the Nine Arches Bridge</div>
@@ -154,7 +156,7 @@
       </div>
 
       <div class="place-card">
-        <div class="place-img" style="background-image:url('images/yala-leopard.jpg')"></div>
+        <div class="place-img" data-bg="images/yala-leopard.jpg"></div>
         <div class="place-content">
           <div class="place-tag">#5 · Wildlife</div>
           <div class="place-title">Yala National Park — Leopards &amp; Wilderness</div>
@@ -168,7 +170,7 @@
       </div>
 
       <div class="place-card">
-        <div class="place-img" style="background-image:url('images/tea-plantation.jpg')"></div>
+        <div class="place-img" data-bg="images/tea-plantation.jpg"></div>
         <div class="place-content">
           <div class="place-tag">#6 · Tea Country</div>
           <div class="place-title">Nuwara Eliya — "Little England" in the Clouds</div>
@@ -182,7 +184,7 @@
       </div>
 
       <div class="place-card">
-        <div class="place-img" style="background-image:url('images/beach.jpg')"></div>
+        <div class="place-img" data-bg="images/beach.jpg"></div>
         <div class="place-content">
           <div class="place-tag">#7 · East Coast Gem</div>
           <div class="place-title">Trincomalee — Pristine Beaches &amp; Whale Sharks</div>
@@ -196,7 +198,7 @@
       </div>
 
       <div class="place-card">
-        <div class="place-img" style="background-image:url('images/temple.jpg')"></div>
+        <div class="place-img" data-bg="images/temple.jpg"></div>
         <div class="place-content">
           <div class="place-tag">#8 · UNESCO World Heritage Site</div>
           <div class="place-title">Polonnaruwa — Ancient City of Kings</div>
@@ -210,7 +212,7 @@
       </div>
 
       <div class="place-card">
-        <div class="place-img" style="background-image:url('images/elephant.jpg')"></div>
+        <div class="place-img" data-bg="images/elephant.jpg"></div>
         <div class="place-content">
           <div class="place-tag">#9 · Wildlife Spectacle</div>
           <div class="place-title">Minneriya — The Elephant Gathering</div>
@@ -224,7 +226,7 @@
       </div>
 
       <div class="place-card">
-        <div class="place-img" style="background-image:url('images/romantic-beach.jpg')"></div>
+        <div class="place-img" data-bg="images/romantic-beach.jpg"></div>
         <div class="place-content">
           <div class="place-tag">#10 · Whale Watching &amp; Beaches</div>
           <div class="place-title">Mirissa — Whales, Dolphins &amp; Sunsets</div>
@@ -255,15 +257,15 @@
     <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--deep);margin-top:.5rem">More <em style="font-style:italic;color:var(--teal)">Destination Guides</em></h2>
     <div class="related-grid">
       <a href="blog-yala-wildlife.html" class="rel-card">
-        <div class="rc-img" style="background-image:url('images/yala-leopard.jpg')"></div>
+        <div class="rc-img" data-bg="images/yala-leopard.jpg"></div>
         <div class="rc-body"><div class="rc-tag">Wildlife</div><div class="rc-title">Yala National Park: The Ultimate Safari Guide</div></div>
       </a>
       <a href="blog-cuisine-guide.html" class="rel-card">
-        <div class="rc-img" style="background-image:url('images/sri-lanka-food.jpg')"></div>
+        <div class="rc-img" data-bg="images/sri-lanka-food.jpg"></div>
         <div class="rc-body"><div class="rc-tag">Food &amp; Culture</div><div class="rc-title">The Ultimate Guide to Sri Lankan Cuisine</div></div>
       </a>
       <a href="blog-yala-wildlife.html" class="rel-card">
-        <div class="rc-img" style="background-image:url('images/yala-leopard.jpg')"></div>
+        <div class="rc-img" data-bg="images/yala-leopard.jpg"></div>
         <div class="rc-body"><div class="rc-tag">Wildlife</div><div class="rc-title">Yala National Park Safari Guide</div></div>
       </a>
     </div>
@@ -283,7 +285,7 @@
     <div class="footer-brand">
       <a href="index.html" class="logo">Serendip Go</a>
       <p>Crafting extraordinary journeys through Sri Lanka since 2003.</p>
-      <div class="social-row" style="margin-top:1.5rem"><a href="#" class="social-btn">📷</a><a href="#" class="social-btn">📘</a><a href="#" class="social-btn">▶️</a></div>
+      <div class="social-row" style="margin-top:1.5rem"><!-- <a href="#" class="social-btn">📷</a> --><!-- <a href="#" class="social-btn">📘</a> --><!-- <a href="#" class="social-btn">▶️</a> --></div>
     </div>
     <div class="footer-col">
       <h4>Top Destinations</h4>
@@ -324,5 +326,6 @@
   <button onclick="sendChat()">Send Message</button>
 </div>
 <script src="script.js"></script>
+<script src="lazy-load-bg.js"></script>
 </body>
 </html>
