@@ -240,15 +240,28 @@ function openPackageModal(packageId) {
     return;
   }
   
+  // Set hero background image
+  const heroImg = document.getElementById('modalHeroImg');
+  heroImg.style.backgroundImage = `url('${modalData.image}')`;
+  
   // Update modal content
   document.getElementById('modalCategory').textContent = modalData.category;
   document.getElementById('modalTitle').textContent = modalData.title;
   document.getElementById('modalDuration').textContent = modalData.duration;
   document.getElementById('modalDesc').textContent = modalData.description;
   
+  // Update package details
+  document.getElementById('modalDetailDuration').textContent = modalData.duration;
+  document.getElementById('modalAccommodation').textContent = modalData.accommodation;
+  document.getElementById('modalGroupSize').textContent = modalData.groupSize;
+  document.getElementById('modalActivityLevel').textContent = modalData.activityLevel;
+  
   // Update highlights
   const highlightsList = document.getElementById('modalHighlights');
   highlightsList.innerHTML = modalData.highlights.map(h => `<li>${h}</li>`).join('');
+  
+  // Update perfect for section
+  document.getElementById('modalPerfectFor').textContent = modalData.perfectFor;
   
   // Show modal with animation
   modal.style.display = 'flex';
@@ -285,3 +298,73 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// Enhanced package metadata
+const packageImages = {
+  'quick-escape': 'images/sigiriya.jpg',
+  'week-adventure': 'images/tea-plantation.jpg',
+  'extended-tour': 'images/galle.jpg',
+  'grand-tour': 'images/beach.jpg',
+  'ultimate-journey': 'images/ella.jpg',
+  'cultural-heritage': 'images/temple.jpg',
+  'wildlife-nature': 'images/yala-leopard.jpg',
+  'beach-relaxation': 'images/romantic-beach.jpg',
+  'adventure-activities': 'images/adventure.jpg',
+  'spiritual-wellness': 'images/temple.jpg',
+  'family-friendly': 'images/family-beach.jpg',
+  'couples-romance': 'images/romantic-beach.jpg',
+  'solo-travelers': 'images/ella.jpg',
+  'luxury-escapes': 'images/beach.jpg',
+  'group-adventures': 'images/sigiriya.jpg'
+};
+
+const packageMetadata = {
+  'quick-escape': { accommodation: '3-4 Star Hotels', groupSize: 'Private or Small Group', activityLevel: 'Moderate' },
+  'week-adventure': { accommodation: '3-4 Star Hotels', groupSize: '2-12 People', activityLevel: 'Moderate' },
+  'extended-tour': { accommodation: '4 Star Hotels', groupSize: '2-10 People', activityLevel: 'Moderate to Active' },
+  'grand-tour': { accommodation: '4-5 Star Hotels', groupSize: '2-8 People', activityLevel: 'Moderate' },
+  'ultimate-journey': { accommodation: '4-5 Star Boutique', groupSize: 'Private Tours', activityLevel: 'Flexible' },
+  'cultural-heritage': { accommodation: '3-4 Star Heritage', groupSize: '2-12 People', activityLevel: 'Light to Moderate' },
+  'wildlife-nature': { accommodation: '4 Star Eco-Lodges', groupSize: '2-8 People', activityLevel: 'Moderate' },
+  'beach-relaxation': { accommodation: '4-5 Star Beach Resorts', groupSize: 'Couples & Families', activityLevel: 'Light' },
+  'adventure-activities': { accommodation: '3-4 Star Adventure Lodges', groupSize: '4-12 People', activityLevel: 'High' },
+  'spiritual-wellness': { accommodation: '4-5 Star Wellness Retreats', groupSize: 'Private or Small Group', activityLevel: 'Light' },
+  'family-friendly': { accommodation: '4 Star Family Hotels', groupSize: 'Families (4-6)', activityLevel: 'Moderate' },
+  'couples-romance': { accommodation: '5 Star Boutique Resorts', groupSize: 'Couples Only', activityLevel: 'Light to Moderate' },
+  'solo-travelers': { accommodation: '3-4 Star Hotels/Hostels', groupSize: 'Solo Friendly', activityLevel: 'Flexible' },
+  'luxury-escapes': { accommodation: '5 Star Luxury Resorts', groupSize: 'Private Tours', activityLevel: 'Customizable' },
+  'group-adventures': { accommodation: '3-4 Star Hotels', groupSize: 'Max 12 People', activityLevel: 'Moderate' }
+};
+
+const perfectForDescriptions = {
+  'quick-escape': 'Perfect for travelers with limited time who still want to experience the highlights of Sri Lankan culture and heritage. Ideal for first-time visitors, business travelers extending their trip, or anyone seeking a quick but comprehensive introduction to the island.',
+  'week-adventure': 'Ideal for travelers who want a well-rounded Sri Lankan experience covering cultural heritage and natural beauty. Perfect for first-time visitors, couples, and small groups looking for a comprehensive one-week adventure.',
+  'extended-tour': 'Perfect for those who want to see it all without rushing. This comprehensive tour is ideal for travelers seeking a complete Sri Lankan experience, covering culture, wildlife, nature, and beaches in one immersive journey.',
+  'grand-tour': 'Designed for travelers who want to fully immerse themselves in Sri Lankan culture and nature. Perfect for those with flexible schedules who appreciate taking time to truly experience each destination.',
+  'ultimate-journey': 'The ultimate choice for travelers who want to discover both popular destinations and hidden gems at a leisurely pace. Perfect for retirees, sabbatical travelers, or anyone seeking deep cultural immersion.',
+  'cultural-heritage': 'Ideal for history enthusiasts, archaeology lovers, and anyone fascinated by ancient civilizations. Perfect for photographers, cultural explorers, and those interested in Buddhist heritage.',
+  'wildlife-nature': 'Perfect for nature lovers, wildlife photographers, and animal enthusiasts. Ideal for families with older children, couples, and anyone seeking authentic safari experiences in stunning natural settings.',
+  'beach-relaxation': 'Designed for beach lovers, honeymooners, and anyone seeking pure relaxation by the ocean. Perfect for those recovering from stress or looking to unwind in tropical paradise.',
+  'adventure-activities': 'Ideal for thrill-seekers, active travelers, and adventure enthusiasts. Perfect for solo adventurers, groups of friends, and anyone who prefers adrenaline over sightseeing.',
+  'spiritual-wellness': 'Perfect for yoga practitioners, meditation enthusiasts, and anyone seeking spiritual renewal. Ideal for wellness-focused travelers, those recovering from burnout, or individuals on a self-discovery journey.',
+  'family-friendly': 'Designed specifically for families with children of all ages. Perfect for creating lasting memories with activities that engage both kids and adults, with comfortable pacing and family-oriented accommodations.',
+  'couples-romance': 'Ideal for honeymooners, anniversary celebrations, or couples seeking romantic getaways. Perfect for creating intimate moments in beautiful settings with personalized service.',
+  'solo-travelers': 'Perfect for independent explorers who want flexibility while still having structure. Ideal for digital nomads, gap year travelers, and anyone seeking solo adventure with opportunities to meet others.',
+  'luxury-escapes': 'Designed for discerning travelers who appreciate the finest experiences. Perfect for special occasions, milestone celebrations, or those who simply expect the best in accommodation, service, and exclusivity.',
+  'group-adventures': 'Ideal for small groups of friends, special interest groups, or solo travelers who enjoy meeting new people. Perfect for creating shared experiences and lasting friendships.'
+};
+
+// Enhance package details with image and metadata
+for (let pkgId in packageDetails) {
+  if (!packageDetails[pkgId].image) {
+    packageDetails[pkgId].image = packageImages[pkgId] || 'images/sigiriya.jpg';
+  }
+  if (!packageDetails[pkgId].accommodation && packageMetadata[pkgId]) {
+    packageDetails[pkgId].accommodation = packageMetadata[pkgId].accommodation;
+    packageDetails[pkgId].groupSize = packageMetadata[pkgId].groupSize;
+    packageDetails[pkgId].activityLevel = packageMetadata[pkgId].activityLevel;
+  }
+  if (!packageDetails[pkgId].perfectFor && perfectForDescriptions[pkgId]) {
+    packageDetails[pkgId].perfectFor = perfectForDescriptions[pkgId];
+  }
+}

@@ -109,12 +109,28 @@
 .pkg-modal-overlay.active .pkg-modal {
   transform: scale(1);
 }
-.pkg-modal-header {
+.pkg-modal-hero {
   position: relative;
-  padding: 2.5rem 2.5rem 2rem;
-  background: var(--deep);
-  color: white;
+  height: 320px;
+  background-size: cover;
+  background-position: center;
   border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: flex-end;
+}
+.pkg-modal-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,43,31,0.95) 0%, rgba(13,43,31,0.4) 50%, rgba(13,43,31,0.2) 100%);
+  border-radius: 8px 8px 0 0;
+}
+.pkg-modal-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 2.5rem;
+  color: white;
+  width: 100%;
 }
 .pkg-modal-close {
   position: absolute; top: 1rem; right: 1rem;
@@ -170,6 +186,44 @@
 }
 .pkg-modal-highlights li:last-child {
   border-bottom: none;
+}
+.pkg-modal-details-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.pkg-detail-item {
+  text-align: center;
+  padding: 1.2rem;
+  background: var(--sand);
+  border-radius: 4px;
+}
+.pkg-detail-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.pkg-detail-label {
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+.pkg-detail-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--deep);
+}
+.pkg-modal-perfect-for {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.7;
+  font-style: italic;
+  background: var(--sand);
+  padding: 1.2rem 1.5rem;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 4px 4px 0;
 }
 .pkg-modal-cta {
   background: var(--sand);
@@ -236,8 +290,15 @@
     width: 95%;
     max-height: 90vh;
   }
-  .pkg-modal-header {
+  .pkg-modal-hero {
+    height: 250px;
+  }
+  .pkg-modal-hero-content {
     padding: 2rem 1.5rem 1.5rem;
+  }
+  .pkg-modal-details-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
   .pkg-modal-body {
     padding: 1.5rem;
@@ -707,23 +768,57 @@
 <!-- PACKAGE DETAILS MODAL -->
 <div class="pkg-modal-overlay" id="packageModal">
   <div class="pkg-modal">
-    <div class="pkg-modal-header">
+    <div class="pkg-modal-hero" id="modalHeroImg">
       <button class="pkg-modal-close" onclick="closePackageModal()">&times;</button>
-      <div class="pkg-modal-category" id="modalCategory">Category</div>
-      <h2 class="pkg-modal-title" id="modalTitle">Package Title</h2>
-      <div class="pkg-modal-duration" id="modalDuration">Duration</div>
+      <div class="pkg-modal-hero-content">
+        <div class="pkg-modal-category" id="modalCategory">Category</div>
+        <h2 class="pkg-modal-title" id="modalTitle">Package Title</h2>
+        <div class="pkg-modal-duration" id="modalDuration">Duration</div>
+      </div>
     </div>
     <div class="pkg-modal-body">
       <div class="pkg-modal-section">
-        <h3 class="pkg-modal-section-title">About This Journey</h3>
+        <h3 class="pkg-modal-section-title">Journey Overview</h3>
         <p class="pkg-modal-desc" id="modalDesc">Package description goes here...</p>
       </div>
+      
+      <div class="pkg-modal-section">
+        <h3 class="pkg-modal-section-title">Package Details</h3>
+        <div class="pkg-modal-details-grid">
+          <div class="pkg-detail-item">
+            <div class="pkg-detail-icon">📅</div>
+            <div class="pkg-detail-label">Duration</div>
+            <div class="pkg-detail-value" id="modalDetailDuration">-</div>
+          </div>
+          <div class="pkg-detail-item">
+            <div class="pkg-detail-icon">🏨</div>
+            <div class="pkg-detail-label">Accommodation</div>
+            <div class="pkg-detail-value" id="modalAccommodation">-</div>
+          </div>
+          <div class="pkg-detail-item">
+            <div class="pkg-detail-icon">👥</div>
+            <div class="pkg-detail-label">Group Size</div>
+            <div class="pkg-detail-value" id="modalGroupSize">-</div>
+          </div>
+          <div class="pkg-detail-item">
+            <div class="pkg-detail-icon">⚡</div>
+            <div class="pkg-detail-label">Activity Level</div>
+            <div class="pkg-detail-value" id="modalActivityLevel">-</div>
+          </div>
+        </div>
+      </div>
+      
       <div class="pkg-modal-section">
         <h3 class="pkg-modal-section-title">What's Included</h3>
         <ul class="pkg-modal-highlights" id="modalHighlights">
           <li>Highlight 1</li>
           <li>Highlight 2</li>
         </ul>
+      </div>
+      
+      <div class="pkg-modal-section">
+        <h3 class="pkg-modal-section-title">Perfect For</h3>
+        <p class="pkg-modal-perfect-for" id="modalPerfectFor">This package is ideal for...</p>
       </div>
     </div>
     <div class="pkg-modal-cta">
