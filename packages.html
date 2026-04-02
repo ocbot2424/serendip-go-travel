@@ -9,26 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-/* ─── PACKAGE TIER BADGES ─── */
-.pkg-tier {
-  display: inline-block;
-  font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase;
-  font-weight: 700; padding: 0.25rem 0.7rem; margin-bottom: 0.5rem;
-  border-radius: 2px;
-}
-.tier-budget    { background: #e8f5e9; color: #2e7d32; }
-.tier-midrange  { background: #e3f2fd; color: #1565c0; }
-.tier-luxury    { background: #fff8e1; color: #b7791f; }
-.tier-ultra     { background: #1a0a00; color: #c9973a; border: 1px solid #c9973a; }
-
-.pkg-badge-popular {
-  position: absolute; top: 1rem; right: 1rem;
-  background: var(--gold); color: #1a0a00;
-  font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
-  font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 2px;
-  z-index: 2;
-}
-
 /* ─── PACKAGE CARDS ─── */
 .pkg-card {
   background: white;
@@ -36,91 +16,83 @@
   display: flex; flex-direction: column;
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 4px;
+  overflow: hidden;
 }
 .pkg-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 .pkg-img {
-  width: 100%; height: 220px;
+  width: 100%; height: 240px;
   background-size: cover; background-position: center;
   flex-shrink: 0;
+  position: relative;
+}
+.pkg-duration-badge {
+  position: absolute; top: 1rem; left: 1rem;
+  background: rgba(13,43,31,0.9); color: var(--gold);
+  font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase;
+  font-weight: 600; padding: 0.4rem 0.9rem; border-radius: 2px;
+  z-index: 2;
 }
 .pkg-body {
-  padding: 1.8rem 1.8rem 1.5rem;
+  padding: 2rem 2rem 1.8rem;
   display: flex; flex-direction: column; flex: 1;
 }
 .pkg-category {
   font-size: 0.65rem; letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--gold); font-weight: 600; margin-bottom: 0.4rem;
+  color: var(--gold); font-weight: 600; margin-bottom: 0.6rem;
 }
 .pkg-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem; font-weight: 600; color: var(--deep);
-  line-height: 1.2; margin-bottom: 0.8rem;
+  font-size: 1.6rem; font-weight: 600; color: var(--deep);
+  line-height: 1.2; margin-bottom: 1rem;
 }
-.pkg-meta {
-  display: flex; flex-wrap: wrap; gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-.pkg-meta span {
-  font-size: 0.7rem; color: var(--text-muted);
-  background: var(--sand); padding: 0.3rem 0.7rem;
-  letter-spacing: 0.3px;
+.pkg-desc {
+  font-size: 0.85rem; color: var(--text-muted);
+  line-height: 1.6; margin-bottom: 1.2rem;
 }
 .pkg-highlights {
-  list-style: none; margin: 0 0 1.2rem; padding: 0; flex: 1;
+  list-style: none; margin: 0 0 1.5rem; padding: 0; flex: 1;
 }
 .pkg-highlights li {
-  font-size: 0.78rem; color: var(--text-muted);
-  padding: 0.35rem 0; border-bottom: 1px solid var(--sand);
-  display: flex; align-items: flex-start; gap: 0.5rem;
+  font-size: 0.8rem; color: var(--text);
+  padding: 0.4rem 0; border-bottom: 1px solid var(--sand);
+  display: flex; align-items: flex-start; gap: 0.6rem;
 }
 .pkg-highlights li::before {
-  content: '✓'; color: var(--gold); font-weight: 700;
-  flex-shrink: 0; margin-top: 0.05rem;
+  content: '◆'; color: var(--gold); font-size: 0.6rem;
+  flex-shrink: 0; margin-top: 0.3rem;
 }
 .pkg-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 1rem; border-top: 1px solid var(--sand);
-  gap: 0.8rem; flex-wrap: wrap;
+  padding-top: 1.2rem; border-top: 1px solid var(--sand);
 }
-.pkg-price {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem; font-weight: 600; color: var(--deep);
-}
-.pkg-price small { font-size: 0.7rem; color: var(--text-muted); font-family: 'Josefin Sans', sans-serif; font-weight: 300; }
-.pkg-price .from-label { font-size: 0.6rem; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; display: block; font-family: 'Josefin Sans', sans-serif; }
-.pkg-footer-btns { display: flex; gap: 0.5rem; }
-.pkg-btn {
+.pkg-btn-contact {
   background: var(--deep); color: white;
-  border: none; padding: 0.6rem 1.2rem;
+  border: none; padding: 0.75rem 1.5rem;
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
-  cursor: pointer; transition: background 0.2s;
+  font-size: 0.7rem; letter-spacing: 1.8px; text-transform: uppercase;
+  cursor: pointer; transition: background 0.3s ease;
+  width: 100%; text-align: center;
+  display: inline-block;
+  text-decoration: none;
 }
-.pkg-btn:hover { background: var(--gold); }
-.pkg-btn-outline {
-  background: transparent; color: var(--deep);
-  border: 1px solid var(--sand-dark); padding: 0.6rem 1rem;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
-  cursor: pointer; transition: all 0.2s;
-}
-.pkg-btn-outline:hover { background: var(--sand); }
+.pkg-btn-contact:hover { background: var(--gold); color: var(--deep); }
 
 /* ─── FILTERS ─── */
 .pkg-filters {
-  display: flex; flex-wrap: wrap; gap: 0.6rem;
-  justify-content: center; margin-bottom: 3rem;
+  display: flex; flex-wrap: wrap; gap: 0.7rem;
+  justify-content: center; margin-bottom: 3.5rem;
 }
 .pkg-filter {
   background: transparent; color: var(--text-muted);
   border: 1px solid rgba(201,151,58,0.3);
-  padding: 0.55rem 1.4rem;
+  padding: 0.6rem 1.5rem;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
-  cursor: pointer; transition: all 0.2s;
+  cursor: pointer; transition: all 0.25s ease;
+  border-radius: 2px;
 }
 .pkg-filter:hover, .pkg-filter.active {
   background: var(--deep); color: var(--gold); border-color: var(--deep);
@@ -130,163 +102,22 @@
 .pkg-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 1200px; margin: 0 auto;
+  gap: 2.5rem;
+  max-width: 1250px; margin: 0 auto;
 }
 
-/* ─── PACKAGE MODAL ─── */
-.pkg-modal-overlay {
-  position: fixed; inset: 0; z-index: 2000;
-  background: rgba(0,0,0,0.8);
-  display: flex; align-items: flex-end; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-.pkg-modal-overlay.open { opacity: 1; pointer-events: all; }
-.pkg-modal {
-  background: var(--cream);
-  width: 100%; max-width: 900px;
-  max-height: 92vh; overflow-y: auto;
-  transform: translateY(60px);
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-  border-radius: 4px 4px 0 0;
-}
-.pkg-modal-overlay.open .pkg-modal { transform: translateY(0); }
-.pkg-modal-hero {
-  width: 100%; height: 300px;
-  background-size: cover; background-position: center;
-  position: relative;
-}
-.pkg-modal-hero::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(13,43,31,0.7) 0%, transparent 60%);
-}
-.pkg-modal-close {
-  position: absolute; top: 1.2rem; right: 1.2rem; z-index: 10;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(0,0,0,0.5); color: white;
-  border: none; font-size: 1.2rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-}
-.pkg-modal-close:hover { background: rgba(0,0,0,0.8); }
-.pkg-modal-hero-text {
-  position: absolute; bottom: 1.5rem; left: 2rem; z-index: 5;
-}
-.pkg-modal-hero-tag {
-  font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 0.3rem;
-}
-.pkg-modal-hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2rem; color: white; font-weight: 400; line-height: 1.1;
-}
-.pkg-modal-body { padding: 2rem 2.5rem 3rem; }
-
-/* Price bar */
-.pkg-modal-price-bar {
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 1rem;
-  background: var(--deep); color: white;
-  padding: 1.2rem 2.5rem; margin-bottom: 0;
-}
-.pkg-modal-price-main {
-  font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600;
-}
-.pkg-modal-price-main small { font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 300; color: rgba(255,255,255,0.6); }
-.pkg-modal-price-btns { display: flex; gap: 0.8rem; }
-.pkg-modal-price-btns a {
-  display: inline-block; padding: 0.65rem 1.5rem;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
-  cursor: pointer; text-decoration: none;
-}
-.pkg-modal-price-btns .btn-gold { background: var(--gold); color: #1a0a00; }
-.pkg-modal-price-btns .btn-wht { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.4); }
-
-/* Stats strip */
-.pkg-modal-stats {
-  display: flex; flex-wrap: wrap; gap: 0;
-  border-bottom: 1px solid var(--sand-dark);
-  margin-bottom: 2rem;
-}
-.pkg-modal-stat {
-  flex: 1; min-width: 120px;
-  padding: 1rem 1.2rem;
-  border-right: 1px solid var(--sand-dark);
-  text-align: center;
-}
-.pkg-modal-stat:last-child { border-right: none; }
-.pkg-modal-stat-icon { font-size: 1.2rem; margin-bottom: 0.3rem; }
-.pkg-modal-stat-val { font-size: 0.8rem; color: var(--deep); font-weight: 600; }
-.pkg-modal-stat-lbl { font-size: 0.58rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
-
-/* Itinerary */
-.pkg-modal-section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem; color: var(--deep); margin-bottom: 1rem;
-  padding-bottom: 0.5rem; border-bottom: 1px solid var(--sand-dark);
-}
-.itin-day {
-  border-left: 2px solid var(--gold);
-  padding: 0.8rem 0 0.8rem 1.2rem;
-  margin-bottom: 0.8rem;
-}
-.itin-day-title {
-  font-size: 0.78rem; font-weight: 600; color: var(--deep);
-  letter-spacing: 0.5px; margin-bottom: 0.3rem;
-}
-.itin-day-content { font-size: 0.78rem; color: var(--text-muted); line-height: 1.7; }
-
-/* Included/not included */
-.pkg-modal-two-col {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
-  margin-bottom: 2rem;
-}
-.incl-list { list-style: none; padding: 0; margin: 0; }
-.incl-list li {
-  font-size: 0.76rem; color: var(--text-muted);
-  padding: 0.35rem 0; display: flex; align-items: flex-start; gap: 0.5rem;
-  border-bottom: 1px solid var(--sand);
-}
-.incl-list li.yes::before { content: '✓'; color: #2e7d32; font-weight: 700; flex-shrink: 0; }
-.incl-list li.no::before  { content: '✕'; color: #c0392b; font-weight: 700; flex-shrink: 0; }
-
-/* Highlights chips */
-.pkg-modal-chips {
-  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;
-}
-.pkg-modal-chip {
-  background: white; border: 1px solid var(--sand-dark);
-  padding: 0.4rem 0.9rem;
-  font-size: 0.72rem; color: var(--text-muted);
-}
-
-/* Accommodation */
-.accomm-text {
-  font-size: 0.78rem; color: var(--text-muted); line-height: 1.9;
-  background: var(--sand); padding: 1.2rem 1.4rem; margin-bottom: 2rem;
-}
-.best-for {
-  font-size: 0.75rem; color: var(--gold);
-  letter-spacing: 1.5px; text-transform: uppercase;
-  font-weight: 600;
-}
-
-/* Mobile */
+/* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
-  .pkg-grid { grid-template-columns: 1fr 1fr; }
+  .pkg-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 }
-@media (max-width: 640px) {
-  .pkg-grid { grid-template-columns: 1fr; }
-  .pkg-modal-two-col { grid-template-columns: 1fr; gap: 1rem; }
-  .pkg-modal-body { padding: 1.5rem 1.2rem 2rem; }
-  .pkg-modal-price-bar { padding: 1rem 1.2rem; flex-direction: column; align-items: flex-start; }
-  .pkg-modal-hero { height: 200px; }
-  .pkg-modal-hero-title { font-size: 1.5rem; }
-  .pkg-modal-stats { gap: 0; }
-  .pkg-modal-stat { min-width: 80px; padding: 0.8rem; }
-  .pkg-modal-price-btns { flex-direction: column; width: 100%; }
-  .pkg-modal-price-btns a { text-align: center; }
+
+@media (max-width: 768px) {
+  .pkg-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .pkg-img { height: 220px; }
+  .pkg-body { padding: 1.5rem; }
+  .pkg-title { font-size: 1.4rem; }
+  .pkg-filters { gap: 0.5rem; }
+  .pkg-filter { padding: 0.5rem 1.2rem; font-size: 0.65rem; }
 }
 </style>
 </head>
@@ -320,645 +151,430 @@
 
 <div class="page-hero">
   <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span> Tour Packages <span style="background:var(--gold);height:1px;width:30px;display:inline-block"></span></div>
-  <h1>Crafted <em>Itineraries</em> for Every Traveller</h1>
-  <p>From budget escapes to ultra-luxury private journeys — every package is crafted by local experts who know Sri Lanka intimately.</p>
+  <h1>Curated <em>Journeys</em> for Every Traveller</h1>
+  <p>From quick escapes to grand adventures — explore Sri Lanka your way with packages designed by local experts.</p>
 </div>
 
 <!-- PACKAGES -->
-<section id="packages" style="background:var(--cream); padding: 4rem 5%;">
+<section id="packages" style="background:var(--cream); padding: 4.5rem 5%;">
 
   <div class="pkg-filters reveal">
     <button class="pkg-filter active" onclick="filterPkg('all',this)">All Packages</button>
-    <button class="pkg-filter" onclick="filterPkg('luxury',this)">Luxury Tours</button>
-    <button class="pkg-filter" onclick="filterPkg('adventure',this)">Adventure Tours</button>
-    <button class="pkg-filter" onclick="filterPkg('honeymoon',this)">Honeymoon</button>
-    <button class="pkg-filter" onclick="filterPkg('wildlife',this)">Wildlife Safaris</button>
-    <button class="pkg-filter" onclick="filterPkg('cultural',this)">Cultural Tours</button>
-    <button class="pkg-filter" onclick="filterPkg('family',this)">Family Packages</button>
-    <button class="pkg-filter" onclick="filterPkg('budget',this)">Budget</button>
-    <button class="pkg-filter" onclick="filterPkg('shortStay',this)">Short Stays</button>
+    <button class="pkg-filter" onclick="filterPkg('duration',this)">By Duration</button>
+    <button class="pkg-filter" onclick="filterPkg('experience',this)">By Experience</button>
+    <button class="pkg-filter" onclick="filterPkg('style',this)">By Travel Style</button>
   </div>
 
   <div class="pkg-grid reveal" id="pkgGrid">
 
-    <!-- 1. BUDGET: Sri Lanka Short Escape -->
-    <div class="pkg-card" data-cat="budget adventure">
-      <div class="pkg-img" style="background-image:url('images/sigiriya.jpg');"></div>
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- BY DURATION PACKAGES -->
+    <!-- ═══════════════════════════════════════════════════ -->
+
+    <!-- 1. Quick Escapes (3-4 Days) -->
+    <div class="pkg-card" data-cat="duration">
+      <div class="pkg-img" style="background-image:url('images/sigiriya.jpg');">
+        <div class="pkg-duration-badge">3-4 Days</div>
+      </div>
       <div class="pkg-body">
-        <span class="pkg-tier tier-budget">Budget</span>
-        <div class="pkg-category">Essential Highlights</div>
-        <div class="pkg-title">Sri Lanka Short Escape</div>
-        <div class="pkg-meta">
-          <span>📅 5 Days</span>
-          <span>👥 1–8 People</span>
-          <span>🏨 3-Star</span>
-          <span>🚗 Private Guide</span>
-        </div>
+        <div class="pkg-category">Quick Escape</div>
+        <div class="pkg-title">Highlights of Sri Lanka</div>
+        <p class="pkg-desc">Perfect for a quick getaway. Experience the essence of Sri Lanka with must-see landmarks and cultural treasures.</p>
         <ul class="pkg-highlights">
-          <li>Sunrise climb of Sigiriya Lion Rock (UNESCO)</li>
-          <li>Minneriya elephant safari</li>
-          <li>Temple of the Tooth Relic, Kandy</li>
-          <li>Iconic Kandy–Ella mountain train</li>
-          <li>Nine Arch Bridge, Ella</li>
+          <li>Sigiriya Rock Fortress (UNESCO)</li>
+          <li>Temple of the Sacred Tooth Relic, Kandy</li>
+          <li>Traditional Kandyan dance performance</li>
+          <li>Royal Botanical Gardens</li>
+          <li>Spice garden tour</li>
         </ul>
         <div class="pkg-footer">
-          <div class="pkg-footer-btns">
-            <button class="pkg-btn-outline" onclick="openPkg('escape')">Details</button>
-            <button class="pkg-btn" onclick="window.location='plan-trip.html'">Book Now</button>
-          </div>
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
         </div>
       </div>
     </div>
 
-    <!-- 2. MID-RANGE: Classic Island Explorer (Most Popular) -->
-    <div class="pkg-card" data-cat="midrange adventure" style="position:relative;">
-      <div class="pkg-badge-popular">Most Popular</div>
-      <div class="pkg-img" style="background-image:url('images/tea-plantation.jpg');"></div>
+    <!-- 2. Week Adventures (7-8 Days) -->
+    <div class="pkg-card" data-cat="duration">
+      <div class="pkg-img" style="background-image:url('images/tea-plantation.jpg');">
+        <div class="pkg-duration-badge">7-8 Days</div>
+      </div>
       <div class="pkg-body">
-        <span class="pkg-tier tier-midrange">Mid-Range</span>
-        <div class="pkg-category">Full Island Loop</div>
-        <div class="pkg-title">Classic Island Explorer</div>
-        <div class="pkg-meta">
-          <span>📅 10 Days</span>
-          <span>👥 2–10 People</span>
-          <span>🏨 3–4 Star</span>
-          <span>🦁 2 Game Drives</span>
-        </div>
+        <div class="pkg-category">Week Adventure</div>
+        <div class="pkg-title">Cultural Triangle & Hill Country</div>
+        <p class="pkg-desc">One week exploring ancient cities, tea plantations, and scenic hill stations. The perfect introduction to Sri Lanka.</p>
         <ul class="pkg-highlights">
-          <li>Pinnawala Elephant Orphanage</li>
-          <li>Sigiriya, Polonnaruwa & Anuradhapura (UNESCO)</li>
-          <li>Tea factory tour & Nuwara Eliya</li>
-          <li>Yala leopard safari ×2</li>
-          <li>Galle Fort (UNESCO) + south coast beach</li>
+          <li>Dambulla Cave Temple (UNESCO)</li>
+          <li>Polonnaruwa ancient ruins</li>
+          <li>Nuwara Eliya tea factory tour</li>
+          <li>Scenic train journey through hills</li>
+          <li>Ella's Nine Arch Bridge</li>
         </ul>
         <div class="pkg-footer">
-          <div class="pkg-footer-btns">
-            <button class="pkg-btn-outline" onclick="openPkg('classic')">Details</button>
-            <button class="pkg-btn" onclick="window.location='plan-trip.html'">Book Now</button>
-          </div>
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
         </div>
       </div>
     </div>
 
-    <!-- 3. MID-RANGE: Family Island Adventure -->
-    <div class="pkg-card" data-cat="midrange family adventure">
-      <div class="pkg-img" style="background-image:url('images/elephant.jpg');"></div>
+    <!-- 3. Extended Tours (10-12 Days) -->
+    <div class="pkg-card" data-cat="duration">
+      <div class="pkg-img" style="background-image:url('images/galle.jpg');">
+        <div class="pkg-duration-badge">10-12 Days</div>
+      </div>
       <div class="pkg-body">
-        <span class="pkg-tier tier-midrange">Mid-Range · Family</span>
-        <div class="pkg-category">Kid-Friendly Wonders</div>
+        <div class="pkg-category">Extended Tour</div>
+        <div class="pkg-title">Complete Island Explorer</div>
+        <p class="pkg-desc">A comprehensive journey covering cultural sites, wildlife, tea country, and pristine beaches across the island.</p>
+        <ul class="pkg-highlights">
+          <li>Cultural Triangle (Sigiriya, Polonnaruwa, Anuradhapura)</li>
+          <li>Yala National Park wildlife safari</li>
+          <li>Tea country & scenic train ride</li>
+          <li>Galle Fort (UNESCO) colonial heritage</li>
+          <li>South coast beach relaxation</li>
+        </ul>
+        <div class="pkg-footer">
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Grand Tours (14-16 Days) -->
+    <div class="pkg-card" data-cat="duration">
+      <div class="pkg-img" style="background-image:url('images/beach.jpg');">
+        <div class="pkg-duration-badge">14-16 Days</div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-category">Grand Tour</div>
+        <div class="pkg-title">Ultimate Sri Lanka Discovery</div>
+        <p class="pkg-desc">Two weeks of immersive exploration covering every corner of the island from ancient kingdoms to tropical beaches.</p>
+        <ul class="pkg-highlights">
+          <li>All UNESCO World Heritage Sites</li>
+          <li>Multiple wildlife safaris (Yala, Minneriya, Udawalawe)</li>
+          <li>Hill country & tea estates</li>
+          <li>East & South coast beaches</li>
+          <li>Traditional village experiences</li>
+        </ul>
+        <div class="pkg-footer">
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Ultimate Journey (19-21 Days) -->
+    <div class="pkg-card" data-cat="duration">
+      <div class="pkg-img" style="background-image:url('images/ella.jpg');">
+        <div class="pkg-duration-badge">19-21 Days</div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-category">Ultimate Journey</div>
+        <div class="pkg-title">Grand Sri Lanka Odyssey</div>
+        <p class="pkg-desc">The ultimate deep-dive into Sri Lankan culture, nature, and adventure with extended stays in each region.</p>
+        <ul class="pkg-highlights">
+          <li>Complete cultural heritage circuit</li>
+          <li>Extended wildlife experiences</li>
+          <li>Off-the-beaten-path destinations</li>
+          <li>Local community immersion</li>
+          <li>Both coasts & highlands exploration</li>
+        </ul>
+        <div class="pkg-footer">
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- BY EXPERIENCE PACKAGES -->
+    <!-- ═══════════════════════════════════════════════════ -->
+
+    <!-- 6. Cultural & Heritage -->
+    <div class="pkg-card" data-cat="experience">
+      <div class="pkg-img" style="background-image:url('images/temple.jpg');">
+        <div class="pkg-duration-badge">8 Days</div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-category">Cultural & Heritage</div>
+        <div class="pkg-title">Ancient Kingdoms Trail</div>
+        <p class="pkg-desc">Journey through 2,500 years of history exploring UNESCO sites and sacred Buddhist temples.</p>
+        <ul class="pkg-highlights">
+          <li>Anuradhapura sacred city</li>
+          <li>Polonnaruwa medieval capital</li>
+          <li>Sigiriya & Dambulla (UNESCO)</li>
+          <li>Kandy Temple of the Tooth</li>
+          <li>Traditional craft workshops</li>
+        </ul>
+        <div class="pkg-footer">
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Wildlife & Nature -->
+    <div class="pkg-card" data-cat="experience">
+      <div class="pkg-img" style="background-image:url('images/yala-leopard.jpg');">
+        <div class="pkg-duration-badge">7 Days</div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-category">Wildlife & Nature</div>
+        <div class="pkg-title">Safari & Wildlife Adventure</div>
+        <p class="pkg-desc">Encounter leopards, elephants, and exotic birds in their natural habitats across Sri Lanka's premier national parks.</p>
+        <ul class="pkg-highlights">
+          <li>Yala leopard safari</li>
+          <li>Minneriya elephant gathering</li>
+          <li>Udawalawe elephant transit home</li>
+          <li>Whale watching in Mirissa</li>
+          <li>Bird watching in wetlands</li>
+        </ul>
+        <div class="pkg-footer">
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Beach & Relaxation -->
+    <div class="pkg-card" data-cat="experience">
+      <div class="pkg-img" style="background-image:url('images/romantic-beach.jpg');">
+        <div class="pkg-duration-badge">6 Days</div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-category">Beach & Relaxation</div>
+        <div class="pkg-title">Tropical Paradise Escape</div>
+        <p class="pkg-desc">Unwind on pristine beaches with turquoise waters, swaying palms, and luxury coastal accommodations.</p>
+        <ul class="pkg-highlights">
+          <li>South coast beach resorts</li>
+          <li>Galle Fort sunset walk</li>
+          <li>Snorkeling & water sports</li>
+          <li>Ayurvedic spa treatments</li>
+          <li>Fresh seafood dining</li>
+        </ul>
+        <div class="pkg-footer">
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Adventure & Activities -->
+    <div class="pkg-card" data-cat="experience">
+      <div class="pkg-img" style="background-image:url('images/adventure.jpg');">
+        <div class="pkg-duration-badge">9 Days</div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-category">Adventure & Activities</div>
+        <div class="pkg-title">Thrills & Trails Adventure</div>
+        <p class="pkg-desc">Adrenaline-pumping activities from white-water rafting to mountain trekking for adventure enthusiasts.</p>
+        <ul class="pkg-highlights">
+          <li>White-water rafting in Kitulgala</li>
+          <li>Hiking Adam's Peak or Knuckles Range</li>
+          <li>Rock climbing & zip-lining</li>
+          <li>Mountain biking through villages</li>
+          <li>Surfing in Arugam Bay</li>
+        </ul>
+        <div class="pkg-footer">
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Spiritual & Wellness -->
+    <div class="pkg-card" data-cat="experience">
+      <div class="pkg-img" style="background-image:url('images/temple.jpg');">
+        <div class="pkg-duration-badge">10 Days</div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-category">Spiritual & Wellness</div>
+        <div class="pkg-title">Mindfulness & Ayurveda Retreat</div>
+        <p class="pkg-desc">Rejuvenate mind, body, and spirit with authentic Ayurvedic treatments, yoga, and meditation in serene settings.</p>
+        <ul class="pkg-highlights">
+          <li>Traditional Ayurveda consultations</li>
+          <li>Daily yoga & meditation sessions</li>
+          <li>Temple blessings & spiritual tours</li>
+          <li>Herbal spa treatments</li>
+          <li>Organic wellness cuisine</li>
+        </ul>
+        <div class="pkg-footer">
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- BY TRAVEL STYLE PACKAGES -->
+    <!-- ═══════════════════════════════════════════════════ -->
+
+    <!-- 11. Family Friendly -->
+    <div class="pkg-card" data-cat="style">
+      <div class="pkg-img" style="background-image:url('images/family-beach.jpg');">
+        <div class="pkg-duration-badge">10 Days</div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-category">Family Friendly</div>
         <div class="pkg-title">Family Island Adventure</div>
-        <div class="pkg-meta">
-          <span>📅 10 Days</span>
-          <span>👨‍👩‍👧‍👦 Families (up to 6)</span>
-          <span>🏨 3–4 Star</span>
-          <span>🚐 Private Minivan</span>
-        </div>
+        <p class="pkg-desc">Kid-friendly activities and cultural experiences designed for families with comfortable pacing and fun for all ages.</p>
         <ul class="pkg-highlights">
-          <li>Pinnawala elephant feeding experience</li>
-          <li>Minneriya elephant gathering safari</li>
-          <li>Scenic mountain train through tea country</li>
-          <li>Baby sea turtle release on the beach</li>
-          <li>Hikkaduwa coral reef snorkelling</li>
+          <li>Elephant orphanage visit</li>
+          <li>Easy wildlife safaris</li>
+          <li>Beach days with water activities</li>
+          <li>Turtle hatchery experience</li>
+          <li>Interactive cultural workshops</li>
         </ul>
         <div class="pkg-footer">
-          <div class="pkg-footer-btns">
-            <button class="pkg-btn-outline" onclick="openPkg('family')">Details</button>
-            <button class="pkg-btn" onclick="window.location='plan-trip.html'">Book Now</button>
-          </div>
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
         </div>
       </div>
     </div>
 
-    <!-- 4. LUXURY: Wild Sri Lanka Safari -->
-    <div class="pkg-card" data-cat="luxury wildlife adventure">
-      <div class="pkg-img" style="background-image:url('images/yala-leopard.jpg');"></div>
+    <!-- 12. Couples & Romance -->
+    <div class="pkg-card" data-cat="style">
+      <div class="pkg-img" style="background-image:url('images/romantic-beach.jpg');">
+        <div class="pkg-duration-badge">7 Days</div>
+      </div>
       <div class="pkg-body">
-        <span class="pkg-tier tier-luxury">Luxury · Wildlife</span>
-        <div class="pkg-category">Private Naturalist</div>
-        <div class="pkg-title">Wild Sri Lanka Safari</div>
-        <div class="pkg-meta">
-          <span>📅 8 Days</span>
-          <span>👥 2–8 People</span>
-          <span>🏨 4–5 Star Eco-Lodges</span>
-          <span>🔭 5 Game Drives</span>
-        </div>
+        <div class="pkg-category">Couples & Romance</div>
+        <div class="pkg-title">Romantic Honeymoon Escape</div>
+        <p class="pkg-desc">Intimate experiences for couples including private dinners, luxury stays, and breathtaking romantic settings.</p>
         <ul class="pkg-highlights">
-          <li>Wilpattu leopard tracking with private naturalist</li>
-          <li>The Elephant Gathering — up to 400 wild elephants</li>
-          <li>Yala — world's highest leopard density</li>
-          <li>Private whale-watching charter off Mirissa</li>
-          <li>5 national parks, dedicated private jeeps</li>
+          <li>Private candlelit beach dinners</li>
+          <li>Couples spa treatments</li>
+          <li>Scenic train journey for two</li>
+          <li>Boutique hotel stays</li>
+          <li>Sunset viewing points</li>
         </ul>
         <div class="pkg-footer">
-          <div class="pkg-footer-btns">
-            <button class="pkg-btn-outline" onclick="openPkg('safari')">Details</button>
-            <button class="pkg-btn" onclick="window.location='plan-trip.html'">Book Now</button>
-          </div>
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
         </div>
       </div>
     </div>
 
-    <!-- 5. LUXURY: Romantic Isle Retreat -->
-    <div class="pkg-card" data-cat="luxury honeymoon">
-      <div class="pkg-img" style="background-image:url('images/romantic-beach.jpg');"></div>
+    <!-- 13. Solo Travelers -->
+    <div class="pkg-card" data-cat="style">
+      <div class="pkg-img" style="background-image:url('images/ella.jpg');">
+        <div class="pkg-duration-badge">8 Days</div>
+      </div>
       <div class="pkg-body">
-        <span class="pkg-tier tier-luxury">Luxury · Honeymoon</span>
-        <div class="pkg-category">Romance Included</div>
-        <div class="pkg-title">Romantic Isle Retreat</div>
-        <div class="pkg-meta">
-          <span>📅 12 Days</span>
-          <span>💑 Couples Only</span>
-          <span>🏨 Boutique 5-Star</span>
-          <span>🌹 Romance Add-ons</span>
-        </div>
+        <div class="pkg-category">Solo Travelers</div>
+        <div class="pkg-title">Independent Explorer Journey</div>
+        <p class="pkg-desc">Flexible itinerary with opportunities to meet fellow travelers while maintaining independence and freedom.</p>
         <ul class="pkg-highlights">
-          <li>Boutique heritage stay inside Galle Fort (UNESCO)</li>
-          <li>Private whale-watching charter at dawn</li>
-          <li>Cliff-top villa in Ella with terrace dinner</li>
-          <li>Private colonial tea estate bungalow</li>
-          <li>2× couples spa + sunset catamaran cruise</li>
+          <li>Safe, solo-friendly accommodations</li>
+          <li>Mix of guided tours & free time</li>
+          <li>Local community experiences</li>
+          <li>Budget-conscious options</li>
+          <li>Easy public transport routes</li>
         </ul>
         <div class="pkg-footer">
-          <div class="pkg-footer-btns">
-            <button class="pkg-btn-outline" onclick="openPkg('romantic')">Details</button>
-            <button class="pkg-btn" onclick="window.location='plan-trip.html'">Book Now</button>
-          </div>
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
         </div>
       </div>
     </div>
 
-    <!-- 6. LUXURY: Sacred Heritage Circuit -->
-    <div class="pkg-card" data-cat="luxury cultural">
-      <div class="pkg-img" style="background-image:url('images/temple.jpg');"></div>
+    <!-- 14. Luxury Escapes -->
+    <div class="pkg-card" data-cat="style">
+      <div class="pkg-img" style="background-image:url('images/beach.jpg');">
+        <div class="pkg-duration-badge">12 Days</div>
+      </div>
       <div class="pkg-body">
-        <span class="pkg-tier tier-luxury">Luxury · Cultural</span>
-        <div class="pkg-category">6 UNESCO Sites</div>
-        <div class="pkg-title">Sacred Heritage Circuit</div>
-        <div class="pkg-meta">
-          <span>📅 9 Days</span>
-          <span>👥 2–10 People</span>
-          <span>🏨 4-Star Heritage</span>
-          <span>👨‍🏫 Cultural Expert</span>
-        </div>
+        <div class="pkg-category">Luxury Escapes</div>
+        <div class="pkg-title">Ultra-Luxury Sri Lanka</div>
+        <p class="pkg-desc">Indulge in 5-star boutique resorts, private guides, exclusive experiences, and personalized service throughout.</p>
         <ul class="pkg-highlights">
-          <li>6 UNESCO World Heritage Sites in 9 days</li>
-          <li>Sacred Bodhi Tree — 2,300 years old</li>
-          <li>Sigiriya royal frescoes & water gardens</li>
-          <li>Cooking class with a local Kandyan family</li>
-          <li>Sinharaja Rainforest trek (UNESCO Biosphere)</li>
+          <li>5-star boutique accommodations</li>
+          <li>Private chauffeur & expert guide</li>
+          <li>Helicopter transfers available</li>
+          <li>VIP cultural site access</li>
+          <li>Michelin-level dining experiences</li>
         </ul>
         <div class="pkg-footer">
-          <div class="pkg-footer-btns">
-            <button class="pkg-btn-outline" onclick="openPkg('heritage')">Details</button>
-            <button class="pkg-btn" onclick="window.location='plan-trip.html'">Book Now</button>
-          </div>
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
         </div>
       </div>
     </div>
 
-    <!-- 7. ULTRA-LUXURY: Golden Ceylon -->
-    <div class="pkg-card" data-cat="ultra luxury" style="grid-column: 1 / -1; max-width: 700px; margin: 0 auto; width: 100%;">
-      <div class="pkg-img" style="background-image:url('images/beach.jpg'); height: 280px;"></div>
+    <!-- 15. Group Adventures -->
+    <div class="pkg-card" data-cat="style">
+      <div class="pkg-img" style="background-image:url('images/sigiriya.jpg');">
+        <div class="pkg-duration-badge">9 Days</div>
+      </div>
       <div class="pkg-body">
-        <span class="pkg-tier tier-ultra">Ultra-Luxury · Signature</span>
-        <div class="pkg-category">Private Butler · All-Inclusive · Nothing Off the Table</div>
-        <div class="pkg-title">Golden Ceylon — The Ultimate Journey</div>
-        <div class="pkg-meta">
-          <span>📅 14 Days</span>
-          <span>👥 2–6 People</span>
-          <span>🏰 Private 5-Star Villas</span>
-          <span>🛎️ Personal Butler</span>
-          <span>🍽️ All Meals Included</span>
-          <span>🚁 Helicopter Available</span>
-        </div>
+        <div class="pkg-category">Group Adventures</div>
+        <div class="pkg-title">Small Group Discovery</div>
+        <p class="pkg-desc">Join like-minded travelers in small groups (max 12) for shared experiences and new friendships.</p>
         <ul class="pkg-highlights">
-          <li>Personal butler throughout the entire journey</li>
-          <li>Private whale-watching yacht (not a shared boat)</li>
-          <li>After-hours exclusive UNESCO site tours</li>
-          <li>Private Kandyan dance performance for your group</li>
-          <li>5 exclusive private safaris with dedicated naturalist</li>
-          <li>All meals, all drinks, all spa sessions included</li>
+          <li>Maximum 12 travelers per group</li>
+          <li>Shared transport & activities</li>
+          <li>Group dining experiences</li>
+          <li>English-speaking tour leader</li>
+          <li>Cost-effective pricing</li>
         </ul>
         <div class="pkg-footer">
-          <div class="pkg-footer-btns">
-            <button class="pkg-btn-outline" onclick="openPkg('golden')">View Full Details</button>
-            <button class="pkg-btn" onclick="window.location='contact.html'">Enquire Now</button>
-          </div>
+          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
         </div>
       </div>
     </div>
 
+  </div><!-- pkg-grid -->
+
+</section>
+
+<!-- CTA SECTION -->
+<section style="background:var(--deep);color:white;padding:4rem 8%;text-align:center;">
+  <div class="section-header" style="max-width:700px;margin:0 auto;">
+    <span class="eyebrow" style="color:var(--gold)">Can't Find What You're Looking For?</span>
+    <h2 class="section-title" style="color:white;">Custom Tailored Packages</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.7);">Every traveler is unique. Tell us your interests, budget, and dream destinations — we'll craft a personalized itinerary just for you.</p>
+    <a href="plan-trip.html" class="btn-primary" style="margin-top:2rem;">Plan My Custom Trip</a>
   </div>
 </section>
 
-<!-- ─── PACKAGE DETAIL MODAL ─── -->
-<div class="pkg-modal-overlay" id="pkgModal" onclick="closePkgOnOverlay(event)">
-  <div class="pkg-modal" id="pkgModalBox">
-    <div class="pkg-modal-hero" id="pkgModalHero">
-      <button class="pkg-modal-close" onclick="closePkg()">✕</button>
-      <div class="pkg-modal-hero-text">
-        <div class="pkg-modal-hero-tag" id="pkgModalTag"></div>
-        <div class="pkg-modal-hero-title" id="pkgModalTitle"></div>
-      </div>
-    </div>
-    <div class="pkg-modal-price-bar">
-      <div class="pkg-modal-price-btns">
-        <a href="contact.html" class="btn-wht">Customise ↗</a>
-        <a href="plan-trip.html" class="btn-gold">Book Now</a>
-      </div>
-    </div>
-    <div class="pkg-modal-stats" id="pkgModalStats"></div>
-    <div class="pkg-modal-body">
-      <div id="pkgModalDesc" style="font-size:0.88rem;color:var(--text-muted);line-height:2;margin-bottom:2rem;max-width:720px;"></div>
-
-      <div class="pkg-modal-section-title">Highlights</div>
-      <div class="pkg-modal-chips" id="pkgModalChips"></div>
-
-      <div class="pkg-modal-section-title">Day-by-Day Itinerary</div>
-      <div id="pkgModalItinerary" style="margin-bottom:2rem;"></div>
-
-      <div class="pkg-modal-two-col">
-        <div>
-          <div class="pkg-modal-section-title">What's Included</div>
-          <ul class="incl-list" id="pkgModalIncluded"></ul>
-        </div>
-        <div>
-          <div class="pkg-modal-section-title">Not Included</div>
-          <ul class="incl-list" id="pkgModalExcluded"></ul>
-        </div>
-      </div>
-
-      <div class="pkg-modal-section-title">Accommodation</div>
-      <div class="accomm-text" id="pkgModalAccomm"></div>
-
-      <div class="best-for" id="pkgModalBestFor"></div>
-    </div>
-  </div>
-</div>
-
+<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">Serendip Go</a>
-      <p>Crafting extraordinary journeys through Sri Lanka since 2003. Your trusted partner for tailor-made travel experiences across the Pearl of the Indian Ocean.</p>
-      <div class="social-row" style="margin-top:1.5rem">
-        <a href="#" class="social-btn">📷</a>
-        <a href="#" class="social-btn">📘</a>
-        <a href="#" class="social-btn">▶️</a>
-      </div>
+  <div class="footer-grid">
+    <div class="footer-block">
+      <div class="footer-logo">Serendip Go</div>
+      <p style="line-height:1.7;margin-top:0.8rem;color:rgba(255,255,255,0.6);">Crafting unforgettable Sri Lankan journeys since 2003. Locally owned, globally trusted.</p>
     </div>
-    <div class="footer-col">
-      <h4>Destinations</h4>
-      <a href="destinations.html#sigiriya">Sigiriya</a>
-      <a href="destinations.html#kandy">Kandy</a>
-      <a href="destinations.html#ella">Ella</a>
-      <a href="destinations.html#galle">Galle</a>
-      <a href="destinations.html#yala">Yala National Park</a>
-      <a href="destinations.html#nuwara">Nuwara Eliya</a>
-      <a href="destinations.html#trincomalee">Trincomalee</a>
-    </div>
-    <div class="footer-col">
-      <h4>Packages</h4>
-      <a href="packages.html">Budget Escapes</a>
-      <a href="packages.html">Mid-Range Tours</a>
-      <a href="packages.html">Luxury Journeys</a>
-      <a href="packages.html#honeymoon">Honeymoon Packages</a>
-      <a href="packages.html#wildlife">Wildlife Safaris</a>
-      <a href="packages.html#family">Family Packages</a>
-      <a href="packages.html">Golden Ceylon</a>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
+    <div class="footer-block">
+      <div class="footer-heading">Quick Links</div>
       <a href="about.html">About Us</a>
-      <a href="blog.html">Blog & Travel Guides</a>
-      <a href="testimonials.html">Testimonials</a>
+      <a href="destinations.html">Destinations</a>
+      <a href="packages.html">Tour Packages</a>
+      <a href="blog.html">Travel Blog</a>
+    </div>
+    <div class="footer-block">
+      <div class="footer-heading">Support</div>
       <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="terms.html">Terms & Conditions</a>
       <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+    <div class="footer-block">
+      <div class="footer-heading">Contact</div>
+      <p style="line-height:1.8;margin:0;color:rgba(255,255,255,0.7);">
+        Email: <a href="mailto:hello@serendipgo.com" style="color:var(--gold)">hello@serendipgo.com</a><br>
+        Phone: +94 11 234 5678<br>
+        Colombo, Sri Lanka
+      </p>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Serendip Go. All rights reserved.</span>
-    <span>Designed with ❤️ in Sri Lanka</span>
+    <p>&copy; 2026 Serendip Go. All rights reserved.</p>
   </div>
 </footer>
-<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
-<div class="chat-bubble" id="chatBubble">
-  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
-  <input type="text" placeholder="Type your message...">
-  <button onclick="sendChat()">Send Message</button>
+
+<!-- LIVE CHAT -->
+<div class="chat-bubble" id="chatBubble" onclick="toggleChat()">💬</div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <span>Chat with us</span>
+    <button onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg chat-msg-them">Hello! How can we help you plan your Sri Lanka adventure?</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Type your message...">
+    <button onclick="sendChat()">Send</button>
+  </div>
 </div>
+
 <script src="script.js"></script>
-<script>
-// ─── PACKAGE DATA ───
-const PKG_DATA = {
-  escape: {
-    tag: 'Budget · 5 Days',
-    title: 'Sri Lanka Short Escape',
-    image: 'images/sigiriya.jpg',
-    price: '$490',
-    priceLabel: 'From · per person (min 2)',
-    stats: [
-      { icon: '📅', val: '5 Days / 4 Nights', lbl: 'Duration' },
-      { icon: '👥', val: '1–8 People', lbl: 'Group Size' },
-      { icon: '🏨', val: '3-Star Guesthouses', lbl: 'Accommodation' },
-      { icon: '🚗', val: 'Private AC Vehicle', lbl: 'Transport' },
-      { icon: '🗣️', val: 'English Driver-Guide', lbl: 'Guide' },
-    ],
-    desc: 'The essential Sri Lanka highlights in 5 fast-paced days. Perfect for first-time visitors and budget-conscious travellers who want to see the very best of Sri Lanka without compromise. This compact, beautifully paced tour covers the Cultural Triangle\'s ancient wonders, misty highlands and a scenic mountain railway — all with a dedicated private driver-guide.',
-    chips: ['Sigiriya UNESCO Rock', 'Minneriya Elephant Safari', 'Temple of the Tooth Relic', 'Scenic Mountain Train', 'Nine Arch Bridge', 'Dambulla Cave Temples'],
-    itinerary: [
-      { day: 'Day 1', title: 'Arrival → Dambulla', content: 'Airport pickup, drive north. Visit the UNESCO-listed Dambulla Cave Temples with 150 ancient Buddha statues carved into a 160m rock. Overnight Dambulla.' },
-      { day: 'Day 2', title: 'Sigiriya + Minneriya', content: 'Early sunrise climb of the iconic Sigiriya Lion Rock (UNESCO World Heritage). Afternoon jeep safari at Minneriya National Park for the famous Elephant Gathering (best May–Oct). Overnight Sigiriya.' },
-      { day: 'Day 3', title: 'Kandy — Cultural Capital', content: 'Drive through spice gardens. Visit the sacred Temple of the Tooth Relic, Kandy Lake and the vibrant town market. Evening Kandyan cultural dance show. Overnight Kandy.' },
-      { day: 'Day 4', title: 'Scenic Train → Ella', content: 'Board the world-famous Kandy–Ella mountain train through tea plantations and waterfalls. Arrive Ella. Hike to the Nine Arch Bridge. Sunset views from Little Adam\'s Peak. Overnight Ella.' },
-      { day: 'Day 5', title: 'Ella → Colombo Departure', content: 'Morning at leisure in Ella. Stop at Ravana Falls en route. Drive to Colombo airport for departure.' },
-    ],
-    included: ['Airport pick-up & drop-off', 'Private AC vehicle throughout', 'English-speaking driver-guide', '4 nights 3-star accommodation', 'Daily breakfast', 'Jeep safari at Minneriya', 'All entrance fees (Sigiriya, Dambulla, Temple of Tooth)', 'Train tickets (Kandy–Ella)', 'Kandyan dance show tickets', '24/7 WhatsApp support'],
-    excluded: ['International flights', 'Sri Lanka ETA visa (~$35)', 'Lunch & dinner', 'Travel insurance', 'Personal tips & shopping', 'Optional activities'],
-    accomm: 'Dambulla: Pelwehera Village Resort or similar · Sigiriya: Rock Breeze or similar · Kandy: Thilanka Resort or similar · Ella: Ella Flower Garden Resort or similar',
-    bestFor: 'Best for: Solo travellers, couples, first-timers, short holidays',
-  },
-  classic: {
-    tag: 'Mid-Range · Most Popular · 10 Days',
-    title: 'Classic Island Explorer',
-    image: 'images/tea-plantation.jpg',
-    price: '$1,350',
-    priceLabel: 'From · per person (min 2)',
-    stats: [
-      { icon: '📅', val: '10 Days / 9 Nights', lbl: 'Duration' },
-      { icon: '👥', val: '2–10 People', lbl: 'Group Size' },
-      { icon: '🏨', val: '3–4 Star Hotels', lbl: 'Accommodation' },
-      { icon: '🦁', val: '2 Game Drives', lbl: 'Safaris' },
-      { icon: '🗣️', val: 'Driver-Guide', lbl: 'Guide' },
-    ],
-    desc: 'Our most popular package — a comprehensive loop of the island hitting every must-see: ancient rock fortresses, sacred Buddhist temples, rolling tea hills, a leopard safari at Yala, and two days of beach relaxation on the south coast. Comfortable 3–4 star accommodation and a dedicated driver-guide throughout.',
-    chips: ['Pinnawala Elephants', 'Sigiriya & Polonnaruwa UNESCO', 'Anuradhapura Ancient City', 'Tea Factory Tour', 'Yala Leopard Safari ×2', 'Galle Fort UNESCO', 'South Coast Beach'],
-    itinerary: [
-      { day: 'Day 1', title: 'Arrival → Negombo', content: 'Airport welcome and transfer to Negombo. Explore the Dutch canal, colourful fish market, and beachfront. Overnight Negombo.' },
-      { day: 'Day 2', title: 'Pinnawala → Dambulla', content: 'Morning at Pinnawala Elephant Orphanage — see rescued elephants bathing in the river. Drive to Dambulla. Visit the Dambulla Cave Temples (UNESCO). Overnight Dambulla.' },
-      { day: 'Day 3', title: 'Sigiriya + Polonnaruwa', content: 'Sunrise climb of Sigiriya Lion Rock. Afternoon cycle through Polonnaruwa Ancient City (UNESCO) — royal palace ruins, giant Buddha statues, sacred stupas. Overnight Sigiriya.' },
-      { day: 'Day 4', title: 'Anuradhapura', content: 'Full day at Sri Lanka\'s first ancient capital (UNESCO). The 2,300-year-old Sacred Bodhi Tree, Ruwanwelisaya Stupa, Thuparamaya Dagoba. Overnight Anuradhapura or Sigiriya.' },
-      { day: 'Day 5', title: 'Kandy', content: 'Drive via Matale Spice Gardens. Visit the Temple of the Tooth Relic, Royal Botanical Gardens at Peradeniya, and Kandy Lake. Evening Kandyan dance show. Overnight Kandy.' },
-      { day: 'Day 6', title: 'Nuwara Eliya — Tea Country', content: 'Scenic train through the mountains. Guided tour of a working tea factory with tasting. Explore colonial Nuwara Eliya — Victoria Park, the famous racecourse, Hill Club. Overnight Nuwara Eliya.' },
-      { day: 'Day 7', title: 'Ella', content: 'Morning drive to Ella. Hike Ella Rock for panoramic highland views. Visit Ravana Falls. Wander to the iconic Nine Arch Bridge. Overnight Ella.' },
-      { day: 'Day 8', title: 'Yala National Park', content: 'Early drive to Yala. Two jeep safaris — morning and evening game drives — in Sri Lanka\'s premier wildlife reserve. Spot leopards, elephants, sloth bears, crocodiles and exotic birds. Overnight Yala area.' },
-      { day: 'Day 9', title: 'Galle Fort + South Coast Beach', content: 'Drive along the coast. Explore Galle Fort (UNESCO) — Dutch colonial ramparts, boutique shops and ocean views. Transfer to beach hotel in Mirissa or Unawatuna. Overnight beach.' },
-      { day: 'Day 10', title: 'Beach → Colombo Departure', content: 'Leisurely morning on the beach. Drive to Colombo airport via the coastal expressway.' },
-    ],
-    included: ['Airport transfers (arrival & departure)', '9 nights 3–4 star hotels', 'Daily breakfast + 3 lunches', 'Private AC vehicle throughout', 'English-speaking driver-guide', '2 Yala jeep safaris', 'All UNESCO & attraction entrance fees', 'Bicycle hire at Polonnaruwa', 'Kandyan dance show tickets', 'Tea factory guided tour', '24/7 WhatsApp support'],
-    excluded: ['International flights', 'Sri Lanka ETA visa (~$35)', 'Most lunches & all dinners', 'Travel insurance (recommended)', 'Whale watching (optional add-on $45)', 'Personal shopping & tips'],
-    accomm: 'Negombo: Jetwing Beach or similar (4★) · Sigiriya: Deer Park Hotel (4★) · Kandy: Theva Residency (4★) · Nuwara Eliya: Araliya Green Hills (4★) · Ella: 98 Acres Resort (4★) · Yala: Cinnamon Wild (4★) · South Coast: Club Villa or similar (4★)',
-    bestFor: 'Best for: First-timers, couples, solo travellers, all ages',
-  },
-  family: {
-    tag: 'Mid-Range · Family Special · 10 Days',
-    title: 'Family Island Adventure',
-    image: 'images/elephant.jpg',
-    price: '$2,100',
-    priceLabel: 'From · per family of 4',
-    stats: [
-      { icon: '📅', val: '10 Days / 9 Nights', lbl: 'Duration' },
-      { icon: '👨‍👩‍👧‍👦', val: 'Families (up to 6)', lbl: 'Group' },
-      { icon: '🏨', val: '3–4 Star Family Rooms', lbl: 'Accommodation' },
-      { icon: '🚐', val: 'Private Minivan', lbl: 'Transport' },
-      { icon: '👶', val: 'Child-Friendly Guide', lbl: 'Guide' },
-    ],
-    desc: 'Every activity is chosen with children in mind — from hands-on elephant encounters to releasing baby turtles into the sea. The pace is relaxed, hotels have family rooms and pools, and your guide is trained to engage young travellers at every stop. One of our most unforgettable packages for families.',
-    chips: ['Pinnawala Elephant Feeding', 'Minneriya Elephant Gathering', 'Scenic Mountain Train', 'Udawalawe Safari', 'Baby Turtle Release', 'Hikkaduwa Snorkelling', 'Galle Fort'],
-    itinerary: [
-      { day: 'Day 1', title: 'Arrival → Colombo', content: 'Airport welcome and city transfer. Optional evening at Galle Face Green — kite flying and street food by the ocean. Overnight Colombo.' },
-      { day: 'Day 2', title: 'Pinnawala → Dambulla', content: 'Morning at Pinnawala Elephant Orphanage — children can hand-feed and walk alongside rescued elephants. Drive to Dambulla via spice garden visit. Overnight Dambulla.' },
-      { day: 'Day 3', title: 'Sigiriya + Minneriya Safari', content: 'Climb Sigiriya Rock (there\'s a staircase — manageable for most children 8+). Afternoon jeep safari at Minneriya — hundreds of wild elephants gather at the reservoir. Overnight Sigiriya.' },
-      { day: 'Day 4', title: 'Kandy', content: 'Visit the Temple of the Tooth Relic. Afternoon at Peradeniya Botanical Gardens — the kids will love the Giant Javan Fig tree and the flying fox bats at dusk. Evening cultural show. Overnight Kandy.' },
-      { day: 'Day 5', title: 'Scenic Train → Ella', content: 'The world-famous mountain train through tea country — kids can hang from the open doors as mist rolls through the hills. Arrive Ella. Explore Nine Arch Bridge. Overnight Ella.' },
-      { day: 'Day 6', title: 'Ella → Udawalawe', content: 'Morning hike to Little Adam\'s Peak (easy, suitable for children). Drive to Udawalawe National Park. Afternoon safari to see large wild elephant herds up close. Overnight Udawalawe.' },
-      { day: 'Day 7', title: 'Elephant Transit Home + Galle', content: 'Watch baby elephants being bottle-fed at the Elephant Transit Home (9am feeding time). Drive to Galle Fort. Overnight Galle or beach area.' },
-      { day: 'Day 8', title: 'Bentota — Beach & Turtles', content: 'Visit a sea turtle hatchery — children can hold and release baby turtles into the Indian Ocean (seasonal). Afternoon beach time and water sports. Overnight Bentota.' },
-      { day: 'Day 9', title: 'Hikkaduwa — Water Fun', content: 'Snorkelling on the Hikkaduwa coral reef — see sea turtles, tropical fish and corals in shallow water. Glass-bottom boat ride. Beach games and poolside evening. Overnight Hikkaduwa.' },
-      { day: 'Day 10', title: 'Beach → Colombo Departure', content: 'Morning leisure. Drive to Colombo airport. Drop-off with happy memories!' },
-    ],
-    included: ['Airport transfers', '9 nights family-room accommodation', 'Daily breakfast', 'Private minivan throughout', 'Child-friendly English-speaking guide', 'All entrance fees & listed activities', 'Udawalawe jeep safari', 'Minneriya jeep safari', 'Train tickets', 'Turtle hatchery visit', 'Snorkelling gear (Hikkaduwa)', '24/7 WhatsApp support'],
-    excluded: ['International flights', 'Visas / ETA', 'Lunch & dinner', 'Travel insurance', 'Water sports (optional)', 'Tips & personal expenses'],
-    accomm: 'Colombo: Cinnamon Grand (4★) · Sigiriya: Aliya Resort (4★) · Kandy: Thilanka Resort (4★) · Ella: Ella Flower Garden (3★) · Udawalawe: Athgira River Camp (3★) · Bentota: Vivanta Bentota (4★) · Hikkaduwa: Citrus Hikkaduwa (4★)',
-    bestFor: 'Best for: Families with children aged 5+',
-  },
-  safari: {
-    tag: 'Luxury · Wildlife · 8 Days',
-    title: 'Wild Sri Lanka Safari',
-    image: 'images/yala-leopard.jpg',
-    price: '$1,900',
-    priceLabel: 'From · per person (min 2)',
-    stats: [
-      { icon: '📅', val: '8 Days / 7 Nights', lbl: 'Duration' },
-      { icon: '👥', val: '2–8 People', lbl: 'Group Size' },
-      { icon: '🏨', val: '4–5 Star Eco-Lodges', lbl: 'Accommodation' },
-      { icon: '🔭', val: '5 Game Drives', lbl: 'Safaris' },
-      { icon: '🌿', val: 'Private Naturalist', lbl: 'Expert Guide' },
-    ],
-    desc: 'Sri Lanka is one of the world\'s great wildlife destinations — home to the highest density of leopards on earth, massive elephant gatherings, sloth bears and the planet\'s largest animal, the blue whale. This specialist tour visits four national parks with a dedicated wildlife naturalist, staying in carefully chosen eco-lodges inside or adjacent to park boundaries.',
-    chips: ['Wilpattu Leopard Tracking', 'The Elephant Gathering (400+)', 'Udawalawe Elephant Herds', 'Yala Leopard Safaris ×2', 'Blue Whale Watching', 'Private Wildlife Naturalist', '5 National Parks'],
-    itinerary: [
-      { day: 'Day 1', title: 'Arrival → Wilpattu', content: 'Airport welcome. Drive north to Wilpattu National Park — Sri Lanka\'s largest and wildest park, known for leopards and sloth bears among "willus" (natural lakes). Afternoon safari. Overnight eco-lodge.' },
-      { day: 'Day 2', title: 'Wilpattu Full Day', content: 'Two game drives (dawn and dusk) with your private naturalist. Track leopard, spotted deer, water buffalo, endemic purple-faced langur and over 200 bird species. Evening wildlife briefing.' },
-      { day: 'Day 3', title: 'Minneriya / Kaudulla — The Gathering', content: 'Drive east to witness The Gathering — up to 400 wild Asian elephants assembling around the reservoir at Minneriya or Kaudulla (largest elephant congregation on earth). Two safaris. Overnight Habarana.' },
-      { day: 'Day 4', title: 'Sigiriya + Travel to Udawalawe', content: 'Morning climb of Sigiriya Rock. Long scenic drive south to Udawalawe. Evening settling in to the lodge. Overnight Udawalawe.' },
-      { day: 'Day 5', title: 'Udawalawe Full Day', content: 'Dawn and dusk safaris in Udawalawe National Park — famous for large herds of wild elephants in open scrubland. Visit the Elephant Transit Home for the morning feeding. Overnight Udawalawe.' },
-      { day: 'Day 6', title: 'Yala — Leopard Territory', content: 'Drive to Yala National Park. Two game drives with the world\'s highest density of wild leopards. Also spot elephants, crocodiles, jackals and 215 bird species. Overnight Yala eco-lodge.' },
-      { day: 'Day 7', title: 'Yala + Whale Watching', content: 'Morning game drive at Yala. Afternoon coastal drive to Mirissa for a whale-watching boat charter — blue whales and sperm whales are regularly spotted (Nov–Apr). Overnight Mirissa.' },
-      { day: 'Day 8', title: 'Mirissa → Colombo Departure', content: 'Morning at leisure on the beach. Drive to Colombo airport along the coastal highway.' },
-    ],
-    included: ['Airport transfers', '7 nights 4–5 star eco-lodges', 'Daily breakfast & dinner', 'Private naturalist-guide throughout', 'Private AC 4WD vehicle', '5 jeep safaris (dedicated private jeeps)', 'Whale watching boat charter', 'All park entrance & conservation fees', 'Elephant Transit Home visit', 'Sigiriya entrance', '24/7 dedicated concierge support'],
-    excluded: ['International flights', 'Sri Lanka ETA visa', 'Lunch at own discretion', 'Travel insurance', 'Tips for naturalist & staff', 'Camera/binocular hire'],
-    accomm: 'Wilpattu: Mahoora Tented Safari Camp or Chaaya Village (4★) · Habarana: Cinnamon Lodge (5★) · Udawalawe: Athgira River Camp or Kalu\'s Hideaway (4★) · Yala: Cinnamon Wild or Jetwing Yala (5★) · Mirissa: Mirissa Hills (boutique 4★)',
-    bestFor: 'Best for: Wildlife enthusiasts, photographers, nature lovers',
-  },
-  romantic: {
-    tag: 'Luxury · Honeymoon · 12 Days',
-    title: 'Romantic Isle Retreat',
-    image: 'images/romantic-beach.jpg',
-    price: '$3,200',
-    priceLabel: 'From · per couple',
-    stats: [
-      { icon: '📅', val: '12 Days / 11 Nights', lbl: 'Duration' },
-      { icon: '💑', val: 'Couples Only', lbl: 'Group' },
-      { icon: '🏨', val: 'Boutique 5-Star', lbl: 'Accommodation' },
-      { icon: '🌹', val: 'Romance Add-ons', lbl: 'Extras' },
-      { icon: '🚗', val: 'Private Chauffeur', lbl: 'Transport' },
-    ],
-    desc: 'A dreamlike journey through Sri Lanka\'s most romantic settings — from Galle\'s colonial fort at sunset to a private tea estate bungalow in the misty highlands, whale watching at dawn and a private candlelit dinner on a deserted beach. Everything is pre-arranged with romance in mind: rose petals, sunset views and total privacy.',
-    chips: ['Galle Fort UNESCO Stay', 'Private Whale Watching Charter', 'Cliff-Top Villa in Ella', 'Private Tea Estate Bungalow', '2× Couples Spa', 'Sunset Catamaran Cruise', 'Candlelit Beach Dinner'],
-    itinerary: [
-      { day: 'Day 1', title: 'Arrival → Colombo', content: 'VIP airport welcome. Transfer to Colombo heritage hotel. Welcome dinner and champagne arrival in room.' },
-      { day: 'Day 2', title: 'Colombo → Galle Fort', content: 'Private chauffeur drive to the south. Check in to a boutique hotel inside Galle Fort (UNESCO). Sunset walk along the ramparts. Romantic candlelit dinner at a fort restaurant overlooking the Indian Ocean.' },
-      { day: 'Days 3–4', title: 'Galle & South Coast', content: 'Two days to explore Galle Fort\'s cobblestone streets. Couples\' spa treatment at the hotel. Private sunset catamaran cruise. Day trip to Unawatuna and Secret Beach. Overnight Galle ×2.' },
-      { day: 'Day 5', title: 'Whale Watching → Mirissa', content: 'Dawn private whale watching charter from Mirissa — blue whales, sperm whales and spinner dolphins in the warm Indian Ocean (Nov–Apr best). Transfer to beach villa. Overnight Mirissa.' },
-      { day: 'Day 6', title: 'Mirissa Beach Day', content: 'A full day of beach bliss — swimming, sunbathing, and a private beachside dinner at sunset with table in the sand. Overnight Mirissa.' },
-      { day: 'Day 7', title: 'Ella — The Highlands', content: 'Scenic drive inland through the mountains. Check in to a romantic cliff-top villa in Ella. Sunset hike to Ella Rock. Private dinner on your terrace with highland views. Overnight Ella.' },
-      { day: 'Day 8', title: 'Ella at Leisure', content: 'Morning visit to Nine Arch Bridge. Afternoon couples\' spa treatment. Explore Ella\'s charming cafés and viewpoints at your own pace. Overnight Ella.' },
-      { day: 'Day 9', title: 'Nuwara Eliya — Tea Estate', content: 'Scenic mountain train or private drive to Nuwara Eliya. Check in to a private colonial tea estate bungalow. Private tea plucking experience and personal tasting session with the estate sommelier. Overnight tea estate.' },
-      { day: 'Day 10', title: 'Nuwara Eliya at Leisure', content: 'Morning walk through the tea gardens with mist rolling across the hills. Picnic lunch on the estate grounds. Horse riding or golf at the highland course. Overnight tea estate.' },
-      { day: 'Day 11', title: 'Kandy', content: 'Drive to Kandy. Visit the Temple of the Tooth Relic. Private sunset boat ride on Kandy Lake. Farewell dinner at a colonial-era restaurant. Overnight Kandy.' },
-      { day: 'Day 12', title: 'Kandy → Colombo Departure', content: 'Morning at leisure. Transfer to Colombo airport for departure.' },
-    ],
-    included: ['VIP airport welcome & transfers', '11 nights boutique/5-star hotels', 'Daily breakfast & 4 private dinners', 'Private chauffeur throughout', 'Rose petals & champagne on arrival', '2× couples spa treatments (60 min each)', 'Private sunset catamaran cruise', 'Private whale watching charter', 'Tea estate tour & tasting', 'Private beachside candlelit dinner', 'All entrance fees', 'Dedicated honeymoon concierge'],
-    excluded: ['International flights', 'Sri Lanka ETA visa', 'Additional meals & drinks', 'Travel insurance', 'Optional excursions & shopping', 'Tips for staff & chauffeur'],
-    accomm: 'Colombo: Galle Face Hotel (5★ heritage) · Galle: Amangalla or The Fort Bazaar (5★ boutique) · Mirissa: Mirissa Hills or Amarasinghe Guest Villa (5★) · Ella: 98 Acres Cliff Villa (5★) · Nuwara Eliya: Heritance Tea Factory (5★ heritage) · Kandy: The Golden Crown Hotel (4★)',
-    bestFor: 'Best for: Honeymooners, anniversary couples, romantic getaways',
-  },
-  heritage: {
-    tag: 'Luxury · Cultural · 9 Days',
-    title: 'Sacred Heritage Circuit',
-    image: 'images/temple.jpg',
-    price: '$1,750',
-    priceLabel: 'From · per person (min 2)',
-    stats: [
-      { icon: '📅', val: '9 Days / 8 Nights', lbl: 'Duration' },
-      { icon: '👥', val: '2–10 People', lbl: 'Group Size' },
-      { icon: '🏨', val: '4-Star Heritage Hotels', lbl: 'Accommodation' },
-      { icon: '🏛️', val: '6 UNESCO Sites', lbl: 'Highlights' },
-      { icon: '👨‍🏫', val: 'Cultural Expert Guide', lbl: 'Guide' },
-    ],
-    desc: 'Sri Lanka holds 8 UNESCO World Heritage Sites — more per square kilometre than almost anywhere on earth. This immersive cultural circuit explores the ancient kingdoms of the Cultural Triangle, sacred Buddhist pilgrimage sites, colonial Galle and a hands-on cooking class with a local family. Led by a specialist cultural history guide.',
-    chips: ['6 UNESCO World Heritage Sites', 'Sacred Bodhi Tree (2,300 yrs)', 'Sigiriya Royal Frescoes', 'Polonnaruwa Cycle Tour', 'Cooking Class with Local Family', 'Galle Fort Guided Walk', 'Sinharaja Rainforest Trek'],
-    itinerary: [
-      { day: 'Day 1', title: 'Arrival → Colombo', content: 'Airport welcome. Heritage hotel in Colombo. Evening guided walk through the Pettah Bazaar, Dutch Fort district and the Wolfendhal Church (1749). Overnight Colombo.' },
-      { day: 'Day 2', title: 'Anuradhapura (UNESCO)', content: 'Drive to Sri Lanka\'s first great capital (4th century BC). Guided tour: the Sacred Bodhi Tree (grown from the original tree under which Buddha attained enlightenment), Ruwanwelisaya Stupa, Jetavanaramaya Stupa. Overnight Anuradhapura.' },
-      { day: 'Day 3', title: 'Mihintale + Polonnaruwa (UNESCO)', content: 'Morning at Mihintale — the cradle of Buddhism in Sri Lanka, atop 1,840 stone steps. Afternoon drive to Polonnaruwa — the medieval royal city with magnificent 12th-century ruins. Cycle through on heritage bicycles. Overnight Polonnaruwa area.' },
-      { day: 'Day 4', title: 'Dambulla (UNESCO) + Sigiriya (UNESCO)', content: 'Morning at Dambulla Cave Temples — five cave-shrines with vivid frescoes and 153 Buddha statues. Afternoon climb Sigiriya Lion Rock, the 5th-century palace in the sky with its famous celestial maiden frescoes and water gardens. Overnight Sigiriya.' },
-      { day: 'Day 5', title: 'Kandy (UNESCO)', content: 'Drive through spice-scented Matale. Guided visit to the Temple of the Tooth Relic. Visit a traditional gem dealer. Evening Esala Perahera ceremony visit if seasonal (July/Aug). Overnight Kandy.' },
-      { day: 'Day 6', title: 'Kandy — Living Culture Day', content: 'Morning cooking class with a local Kandyan family — learn to make rice & curry, hoppers and coconut sambol from scratch. Afternoon visit to Udawattekele Forest Reserve and a traditional Ayurvedic apothecary. Overnight Kandy.' },
-      { day: 'Day 7', title: 'Kandy → Galle (UNESCO)', content: 'Scenic drive south through the hill country. Arrive Galle Fort — a perfectly preserved 17th-century Dutch colonial fortified town. Guided heritage walk: the Old Town, Dutch Reformed Church, National Maritime Museum, lighthouse. Overnight Galle Fort.' },
-      { day: 'Day 8', title: 'Sinharaja Rainforest (UNESCO)', content: 'Full-day guided trek into Sinharaja — Sri Lanka\'s last remaining primary rainforest and UNESCO Biosphere Reserve. Spot endemic birds, giant squirrels, purple-faced langurs and extraordinary endemic flora. Overnight Galle.' },
-      { day: 'Day 9', title: 'Galle → Colombo Departure', content: 'Morning free to browse Galle Fort\'s art galleries, spice merchants and local crafts. Drive to Colombo airport for departure.' },
-    ],
-    included: ['Airport transfers', '8 nights 4-star heritage hotels', 'Daily breakfast + 2 special dinners', 'Private AC vehicle throughout', 'Specialist cultural historian guide', 'All 6 UNESCO site entrance fees', 'Bicycle hire at Polonnaruwa', 'Cooking class with local family', 'Sinharaja forest trek with ranger', 'Galle Fort heritage walking tour', '24/7 WhatsApp support'],
-    excluded: ['International flights', 'Sri Lanka ETA visa', 'Most lunches & dinners', 'Travel insurance', 'Gem/craft purchases', 'Tips & personal expenses'],
-    accomm: 'Colombo: Cinnamon Grand (5★) · Anuradhapura: Ulagalla by Uga Escapes (5★) · Sigiriya: Aliya Resort & Spa (5★) · Kandy: Amaya Hills (4★) · Galle: The Fort Bazaar (5★ boutique)',
-    bestFor: 'Best for: History lovers, cultural travellers, curious minds',
-  },
-  golden: {
-    tag: 'Ultra-Luxury · Signature · 14 Days',
-    title: 'Golden Ceylon — The Ultimate Journey',
-    image: 'images/beach.jpg',
-    price: '$4,800',
-    priceLabel: 'From · per person (min 2)',
-    stats: [
-      { icon: '📅', val: '14 Days / 13 Nights', lbl: 'Duration' },
-      { icon: '👥', val: '2–6 People', lbl: 'Group Size' },
-      { icon: '🏰', val: '5-Star Private Villas', lbl: 'Accommodation' },
-      { icon: '🛎️', val: 'Personal Butler', lbl: 'Service' },
-      { icon: '🍽️', val: 'All Meals Included', lbl: 'Dining' },
-      { icon: '🚁', val: 'Helicopter Available', lbl: 'Transport' },
-    ],
-    desc: 'The most complete and indulgent Sri Lanka experience we offer. Fourteen days covering every major region of the island — ancient kingdoms, misty highlands, leopard country, blue whale waters and the most beautiful beaches on the Indian Ocean — all in absolute comfort. Private villas, a dedicated personal butler, a specialist guide, all meals and a private whale-watching yacht. This is Sri Lanka without compromise.',
-    chips: ['Personal Butler Throughout', 'Private Whale-Watching Yacht', 'After-Hours UNESCO Tours', 'Private Kandyan Dance Show', '5 Exclusive Private Safaris', 'All Meals & Drinks Included', 'All Spa Sessions Included', 'Private Bush Dinners'],
-    itinerary: [
-      { day: 'Day 1', title: 'VIP Arrival → Colombo', content: 'Private airport reception. Transfer to colonial 5-star heritage hotel. Welcome dinner at Colombo\'s finest restaurant. Butler-prepared suite with personalised welcome gifts.' },
-      { day: 'Day 2', title: 'Colombo City Experience', content: 'Private heritage tour of Colombo — National Museum, the iconic red-domed Jami-Ul-Alfar Mosque, Barefoot Gallery. Tuk-tuk street food tour. Rooftop sundowner.' },
-      { day: 'Day 3', title: 'Anuradhapura — Ancient Kingdom', content: 'Private drive north with stop at Mihintale. Exclusive after-hours guided tour of Anuradhapura (UNESCO) — the ancient city at dusk when the day-trippers have left. Private candlelit dinner in the grounds.' },
-      { day: 'Day 4', title: 'Polonnaruwa + Wilpattu', content: 'Private cycle tour of Polonnaruwa (UNESCO) ruins. Afternoon transfer to Wilpattu National Park for an exclusive private safari — your own jeep, ranger and naturalist.' },
-      { day: 'Day 5', title: 'Wilpattu Full Safari Day', content: 'Two private game drives at Wilpattu — the most exclusive of Sri Lanka\'s parks. Sunset bush dinner in a clearing with lanterns and a private chef.' },
-      { day: 'Day 6', title: 'Sigiriya + Dambulla (UNESCO)', content: 'Private sunrise climb of Sigiriya Lion Rock — arrive before the public opening. Visit Dambulla Cave Temples. Afternoon helicopter scenic flight over the Cultural Triangle (optional upgrade).' },
-      { day: 'Day 7', title: 'Minneriya — The Elephant Gathering', content: 'Private exclusive safari at Minneriya for the Elephant Gathering. Personal naturalist briefing with binoculars and field guides. Private picnic lunch in the park.' },
-      { day: 'Day 8', title: 'Kandy (UNESCO)', content: 'Private guided tour of the Temple of the Tooth Relic with a temple monk. Royal Botanical Gardens exclusive tour. Private Kandyan dance performance arranged for your group.' },
-      { day: 'Day 9', title: 'Nuwara Eliya — Private Tea Estate', content: 'Scenic drive through misty mountains. Check in to an exclusive private tea estate bungalow. Personal tea masterclass with the estate\'s head tea-maker. Private estate dinner by firelight.' },
-      { day: 'Day 10', title: 'Ella — The Highlands', content: 'Scenic drive to Ella with scenic stops. Check into a cliff-edge private villa. Sunset hike to Ella Rock with your guide. Private highland dinner with panoramic views.' },
-      { day: 'Day 11', title: 'Yala — Leopard Safari', content: 'Transfer to Yala. Two exclusive private game drives with personal naturalist — the world\'s best park for leopard encounters. Private bush dinner at dusk.' },
-      { day: 'Day 12', title: 'Mirissa — Private Whale Watching Yacht', content: 'Dawn private yacht charter (not a shared boat) for blue whale and sperm whale watching in the deep Indian Ocean waters off Mirissa. Champagne on the water. Beach villa check-in.' },
-      { day: 'Day 13', title: 'Galle Fort (UNESCO) + Beach', content: 'Private walking tour of Galle Fort with heritage architect. Personal shopper for gems and local crafts. Private sunset dinner on the fort ramparts.' },
-      { day: 'Day 14', title: 'Galle → Colombo Departure', content: 'Leisurely morning. Express highway transfer to Colombo airport. Private lounge access arranged for departure.' },
-    ],
-    included: ['VIP airport welcome & all transfers', '13 nights 5-star villas & hotels', 'All meals (breakfast, lunch & dinner)', 'Personal butler service throughout', 'Specialist private guide', '5 exclusive private safaris', 'Private whale-watching yacht charter', 'Private Kandyan dance performance', 'All UNESCO & park entrance fees', 'All drinks with meals', 'All spa sessions (1 per person per stay)', 'Dedicated 24/7 concierge hotline', 'Lounge access at departure'],
-    excluded: ['International flights', 'Sri Lanka ETA visa', 'Premium alcohol & minibar', 'Travel insurance (strongly advised)', 'Helicopter transfer upgrade ($650+)', 'Gem & jewellery purchases', 'Gratuities for guide & butler'],
-    accomm: 'Colombo: Galle Face Hotel Heritage Wing (5★) · Anuradhapura: Ulagalla by Uga Escapes (5★ villa) · Wilpattu: Mahoora Luxury Tented Camp (glamping) · Sigiriya: Water Garden Sigiriya (5★) · Habarana: Cinnamon Lodge (5★) · Kandy: Kandy House (5★ boutique) · Nuwara Eliya: Heritance Tea Factory private bungalow (5★) · Ella: 98 Acres Clifftop Villa (5★) · Yala: Jetwing Yala (5★) · Mirissa: Mirissa Hills private villa (5★) · Galle: Amangalla (5★ ultra-luxury)',
-    bestFor: 'Best for: Discerning travellers, luxury seekers, milestone celebrations',
-  },
-};
 
-function openPkg(key) {
-  const d = PKG_DATA[key];
-  if (!d) return;
-
-  document.getElementById('pkgModalHero').style.backgroundImage = `url('${d.image}')`;
-  document.getElementById('pkgModalTag').textContent = d.tag;
-  document.getElementById('pkgModalTitle').textContent = d.title;
-  // Stats
-  const statsEl = document.getElementById('pkgModalStats');
-  statsEl.innerHTML = d.stats.map(s =>
-    `<div class="pkg-modal-stat"><div class="pkg-modal-stat-icon">${s.icon}</div><div class="pkg-modal-stat-val">${s.val}</div><div class="pkg-modal-stat-lbl">${s.lbl}</div></div>`
-  ).join('');
-
-  document.getElementById('pkgModalDesc').textContent = d.desc;
-
-  // Chips
-  document.getElementById('pkgModalChips').innerHTML = d.chips.map(c =>
-    `<span class="pkg-modal-chip">${c}</span>`
-  ).join('');
-
-  // Itinerary
-  document.getElementById('pkgModalItinerary').innerHTML = d.itinerary.map(i =>
-    `<div class="itin-day"><div class="itin-day-title">${i.day} — ${i.title}</div><div class="itin-day-content">${i.content}</div></div>`
-  ).join('');
-
-  // Included
-  document.getElementById('pkgModalIncluded').innerHTML = d.included.map(i =>
-    `<li class="yes">${i}</li>`
-  ).join('');
-  document.getElementById('pkgModalExcluded').innerHTML = d.excluded.map(i =>
-    `<li class="no">${i}</li>`
-  ).join('');
-
-  document.getElementById('pkgModalAccomm').textContent = d.accomm;
-  document.getElementById('pkgModalBestFor').textContent = d.bestFor;
-
-  document.getElementById('pkgModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closePkg() {
-  document.getElementById('pkgModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function closePkgOnOverlay(e) {
-  if (e.target === document.getElementById('pkgModal')) closePkg();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closePkg(); });
-
-// Filter by category — supports space-separated multi-category data-cat values
-function filterPkg(cat, btn) {
-  document.querySelectorAll('.pkg-filter').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.pkg-card').forEach(card => {
-    const cats = card.dataset.cat ? card.dataset.cat.split(' ') : [];
-    const show = cat === 'all' || cats.includes(cat);
-    card.style.display = show ? 'flex' : 'none';
-    // Reset grid span first
-    card.style.gridColumn = '';
-    card.style.flexDirection = '';
-    card.style.maxWidth = '';
-  });
-  // Re-handle golden card full-width when visible
-  document.querySelectorAll('.pkg-card').forEach(card => {
-    const cats = card.dataset.cat ? card.dataset.cat.split(' ') : [];
-    if (cats.includes('ultra') && card.style.display !== 'none') {
-      card.style.gridColumn = '1 / -1';
-      card.style.flexDirection = 'row';
-      card.style.maxWidth = '100%';
-    }
-  });
-}
-
-// Auto-filter from URL hash (e.g. packages.html#honeymoon)
-window.addEventListener('load', () => {
-  const hash = window.location.hash.replace('#', '');
-  if (hash && hash !== 'packages') {
-    const btn = document.querySelector(`.pkg-filter[onclick*="'${hash}'"]`);
-    if (btn) filterPkg(hash, btn);
-  }
-});
-</script>
 </body>
 </html>
