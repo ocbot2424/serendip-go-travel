@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block redirect page from being indexed
+Disallow: /srilanka_tourism.html
+
+Sitemap: https://www.serendipgo.com/sitemap.xml

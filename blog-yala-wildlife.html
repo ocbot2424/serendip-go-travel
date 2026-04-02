@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yala National Park: The Ultimate Safari Guide — Serendip Go Blog</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .article-featured-img{width:100%;height:500px;background-size:cover;background-position:center}
+  .article-wrap{max-width:860px;margin:0 auto;padding:4rem 5%}
+  .article-meta-bar{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--sand-dark)}
+  .ac-tag{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--coral);font-weight:600;background:rgba(212,96,58,.08);padding:.3rem .8rem}
+  .ac-meta{font-size:.72rem;color:var(--text-muted);letter-spacing:1px}
+  .article-lead{font-size:1.05rem;color:var(--text-muted);line-height:1.9;margin-bottom:2rem;font-style:italic;border-left:3px solid var(--gold);padding-left:1.5rem}
+  .article-body h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--deep);margin:2.5rem 0 1rem;font-weight:400}
+  .article-body h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--teal);margin:1.8rem 0 .7rem;font-weight:600}
+  .article-body p{font-size:.95rem;line-height:1.95;color:var(--text);margin-bottom:1.2rem}
+  .article-body ul,.article-body ol{padding-left:1.5rem;margin-bottom:1.2rem}
+  .article-body li{font-size:.92rem;line-height:1.85;color:var(--text);margin-bottom:.4rem}
+  .article-body strong{color:var(--deep);font-weight:600}
+  .highlight-quote{background:var(--sand);border-left:4px solid var(--gold);padding:1.5rem 2rem;margin:2rem 0;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--deep);line-height:1.7;font-style:italic}
+  .tip-box{background:rgba(26,92,74,.06);border:1px solid rgba(26,92,74,.2);padding:1.5rem 2rem;margin:2rem 0}
+  .tip-box h4{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.8rem;font-weight:600}
+  .tip-box p,.tip-box li{font-size:.88rem;color:var(--text-muted);line-height:1.8}
+  .wildlife-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin:2rem 0}
+  .wildlife-card{background:white;padding:1.5rem;border-top:3px solid var(--teal);text-align:center}
+  .wildlife-icon{font-size:2.5rem;margin-bottom:.8rem}
+  .wildlife-card h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--deep);margin-bottom:.5rem}
+  .wildlife-card p{font-size:.8rem;color:var(--text-muted);line-height:1.7;margin:0}
+  .info-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin:2rem 0}
+  .info-item{background:var(--sand);padding:1.2rem;text-align:center}
+  .info-label{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:.3rem}
+  .info-value{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--deep);font-weight:600}
+  .related-section{background:var(--sand);padding:4rem 8%}
+  .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:2rem}
+  .rel-card{background:white;text-decoration:none;color:inherit;transition:transform .3s;display:block}
+  .rel-card:hover{transform:translateY(-3px)}
+  .rel-card .rc-img{height:160px;background-size:cover;background-position:center}
+  .rel-card .rc-body{padding:1.2rem}
+  .rc-tag{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--coral);font-weight:600;margin-bottom:.5rem}
+  .rc-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--deep);line-height:1.3}
+  .article-cta-section{background:linear-gradient(135deg,var(--deep) 0%,var(--teal) 100%);padding:5rem 8%;text-align:center;color:white}
+  .article-cta-section h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;margin-bottom:1rem}
+  .article-cta-section h2 em{color:var(--gold);font-style:italic}
+  .article-cta-section p{color:rgba(255,255,255,.7);margin-bottom:2rem;font-size:.9rem}
+  @media(max-width:768px){.article-featured-img{height:280px}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav id="navbar">
+  <a href="index.html" class="logo">Serendip Go</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="plan-trip.html">Plan Trip</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMobile()">Home</a>
+  <a href="about.html" onclick="toggleMobile()">About Us</a>
+  <a href="destinations.html" onclick="toggleMobile()">Destinations</a>
+  <a href="packages.html" onclick="toggleMobile()">Tour Packages</a>
+  <a href="plan-trip.html" onclick="toggleMobile()">Plan My Trip</a>
+  <a href="blog.html" onclick="toggleMobile()">Blog</a>
+  <a href="contact.html" onclick="toggleMobile()">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="eyebrow" style="color:var(--gold)"><span style="background:var(--gold);height:1px;width:25px;display:inline-block;margin-right:.8rem"></span> Wildlife <span style="background:var(--gold);height:1px;width:25px;display:inline-block;margin-left:.8rem"></span></div>
+  <h1>Yala National Park — <em>The Ultimate Safari Guide</em></h1>
+  <p>March 2, 2025 &nbsp;·&nbsp; 10 min read &nbsp;·&nbsp; By Nimal Senanayake</p>
+</div>
+
+<div class="article-featured-img" style="background-image:url('images/yala-leopard.jpg')"></div>
+
+<div class="article-wrap">
+  <div class="article-meta-bar">
+    <span class="ac-tag">Wildlife</span>
+    <span class="ac-meta">March 2, 2025</span>
+    <span class="ac-meta">10 min read</span>
+    <span class="ac-meta">By Nimal Senanayake</span>
+  </div>
+  <p class="article-lead">Yala is one of Asia's great wildlife destinations — a place where you can genuinely spot leopards, elephants, and sloth bears in a single afternoon. Sri Lanka's second-largest national park holds the world's highest density of wild leopards, and a morning safari here is among the most thrilling experiences the island offers.</p>
+
+  <div class="article-body">
+    <p>Covering 979 square kilometres of the southeast coast, Yala National Park is a mosaic of scrub forest, open grassland, coastal lagoons, and ancient Buddhist ruins. It sits where the dry zone of Sri Lanka meets the sea, creating a dramatic landscape of wind-carved rocks, acacia trees, and vast shallow lakes that mirror the sky at dawn.</p>
+    <p>The park has been protected since 1900 and declared a national park in 1938. Today it receives over 500,000 visitors per year — yet its size means that, at the right times and in the right zones, you can still feel the isolation of the wilderness.</p>
+
+    <div class="info-row">
+      <div class="info-item"><div class="info-label">Park Size</div><div class="info-value">979 km²</div></div>
+      <div class="info-item"><div class="info-label">Protected Since</div><div class="info-value">1900</div></div>
+      <div class="info-item"><div class="info-label">Leopard Density</div><div class="info-value">World's Highest</div></div>
+      <div class="info-item"><div class="info-label">Bird Species</div><div class="info-value">200+</div></div>
+      <div class="info-item"><div class="info-label">Best Months</div><div class="info-value">Feb–July</div></div>
+    </div>
+
+    <h2>Wildlife: What You'll See</h2>
+
+    <div class="wildlife-grid">
+      <div class="wildlife-card">
+        <div class="wildlife-icon">🐆</div>
+        <h4>Sri Lankan Leopard</h4>
+        <p>The star of Yala. The leopard density here (up to 1 per 3 km²) makes sighting probability higher than almost anywhere else on Earth. Crepuscular hunters — most active at dawn and dusk.</p>
+      </div>
+      <div class="wildlife-card">
+        <div class="wildlife-icon">🐘</div>
+        <h4>Asian Elephant</h4>
+        <p>Large herds roam Yala year-round. The park holds over 350 elephants. Seeing a bull elephant at close range from a jeep is one of the most moving wildlife encounters possible.</p>
+      </div>
+      <div class="wildlife-card">
+        <div class="wildlife-icon">🐻</div>
+        <h4>Sloth Bear</h4>
+        <p>Nocturnal and elusive, sloth bears are more commonly sighted in Yala than anywhere else in Sri Lanka. Shaggy-furred and surprisingly fast, they're a thrilling unexpected encounter.</p>
+      </div>
+      <div class="wildlife-card">
+        <div class="wildlife-icon">🐊</div>
+        <h4>Mugger Crocodile</h4>
+        <p>Yala's lagoons and tanks are home to large mugger crocodiles, often seen basking on banks or lurking just below the surface. Some individuals exceed 4 metres in length.</p>
+      </div>
+      <div class="wildlife-card">
+        <div class="wildlife-icon">🦚</div>
+        <h4>Indian Peafowl</h4>
+        <p>Sri Lanka's national bird struts freely throughout Yala. Hearing a peacock's cry echo across the scrub at dawn, then seeing a male fan his iridescent tail, is a quintessential Yala moment.</p>
+      </div>
+      <div class="wildlife-card">
+        <div class="wildlife-icon">🦅</div>
+        <h4>Birdlife (200+ species)</h4>
+        <p>Painted storks, grey herons, black-necked storks, paradise flycatchers, and the rare black-backed woodpecker. Yala is a world-class birding destination in its own right.</p>
+      </div>
+    </div>
+
+    <h2>The Five Zones of Yala</h2>
+    <p>Yala is divided into five management blocks. Only Blocks I and V are open to tourism.</p>
+    <h3>Block I (Zone 1) — The Main Safari Area</h3>
+    <p>The most visited and most wildlife-rich zone, covering around 141 km². This is where you'll find the highest leopard concentrations, the accessible lagoons, the famous Sithulpahuwa Buddhist ruins, and the picturesque Yala coastline. Book a 3–4 hour safari (morning 5:30–9am or afternoon 2:30–6pm) for the best results. Morning is marginally better for leopard sightings.</p>
+
+    <h3>Block V — Kumana</h3>
+    <p>Further east along the coast, the Kumana wetlands (Block V) are less visited and spectacularly rich in birdlife — particularly water birds during the breeding season (May–July). If you're a serious birder, Kumana is unmissable. Some travellers include both zones in a two-day Yala experience.</p>
+
+    <div class="highlight-quote">"The moment the jeep engine cuts out and a leopard walks into the clearing thirty metres away is something you carry with you forever."</div>
+
+    <h2>When to Visit</h2>
+    <p>The park is open year-round except for a brief annual closure for maintenance (usually September–October). The <strong>best months for leopard sightings are February through July</strong>, when the dry season reduces vegetation cover and animals concentrate around permanent water sources. Water holes dry up progressively, forcing leopards, elephants, and bears to visit predictable locations — making sightings more reliable.</p>
+    <p>Peak season (December–March) brings more visitors and slightly higher prices but also optimal conditions: cooler temperatures, lush post-monsoon vegetation, and superb birdlife as migratory species arrive from Central Asia.</p>
+
+    <h2>How to Book a Safari</h2>
+    <p>All visitors must enter the park in a registered jeep with a licensed tracker-guide. You cannot walk or drive your own vehicle inside. Options include:</p>
+    <ul>
+      <li><strong>Through your hotel:</strong> Most guesthouses and hotels near Yala (Tissamaharama or Kirinda) can arrange jeep safaris. Quality varies — ask about your guide's experience and the size of the group</li>
+      <li><strong>Through Serendip Go:</strong> We arrange private jeep safaris with experienced tracker-guides who know the park intimately. Private jeeps give you more flexibility, patience, and better wildlife sightings</li>
+      <li><strong>Group jeeps:</strong> Cheaper but you share the jeep with strangers and the guide may rush between sightings</li>
+    </ul>
+    <p>Entry fees for Zone 1: approximately USD 25 per person (foreign visitors) + jeep fee. A private jeep costs around USD 60–80 for a half-day safari.</p>
+
+    <h2>Photography Tips</h2>
+    <p>Yala is one of the best places in Asia to photograph wildlife. Here's what experienced wildlife photographers recommend:</p>
+    <ul>
+      <li>Bring a telephoto lens of at least 300mm — a 400–500mm gives better results for leopard portraits</li>
+      <li>Morning light (6–9am) is dramatically better than midday for warm, golden wildlife photography</li>
+      <li>Ask your guide to position the jeep so the subject is side-lit rather than backlit</li>
+      <li>Keep the jeep engine off when an animal is close — even a slight vibration ruins sharp images</li>
+      <li>Dress in muted colours (greens, khaki, brown) — bright clothing disturbs animals and other visitors</li>
+      <li>Patience is everything: stay at a sighting instead of rushing to the next one</li>
+    </ul>
+
+    <h2>Staying Near Yala</h2>
+    <p>The gateway town is <strong>Tissamaharama</strong> (Tissa), 12km from the park entrance. It has accommodation ranging from simple guesthouses (USD 15–30) to boutique hotels. For a more luxurious experience, <strong>Jetwing Yala</strong> and <strong>Wild Coast Tented Lodge</strong> are outstanding properties just outside the park boundary — watching elephants pass in front of your tent at sunset is a memory for life.</p>
+
+    <div class="tip-box">
+      <h4>Safari Checklist</h4>
+      <ul>
+        <li>Start your safari at opening time (5:30–6am for the best light and freshest animal activity)</li>
+        <li>Bring water and sun protection — open jeeps get very hot by mid-morning</li>
+        <li>Wear insect repellent — mozzies and sandflies at the lagoons are persistent</li>
+        <li>Download iNaturalist or a Sri Lankan bird guide app beforehand</li>
+        <li>Bring binoculars — you'll use them far more than you expect for distant sightings and birdwatching</li>
+        <li>Book accommodation near the park entrance to maximise your safari time</li>
+      </ul>
+    </div>
+
+    <h2>Beyond the Safari: Yala's Cultural Heritage</h2>
+    <p>Yala is not just a wildlife park — it also contains the ancient Buddhist temple of <strong>Sithulpahuwa</strong>, a 2,000-year-old rock monastery where up to 12,000 monks once lived. The rock carvings and inscriptions are extraordinary, and the hilltop location offers panoramic views across the park. Many visitors combine their evening safari with a sunrise visit to the ruins. The <strong>Magul Maha Viharaya</strong> nearby is said to be the site where King Kavantissa married his queen — the ruins and ancient carved moonstones are beautiful.</p>
+  </div>
+</div>
+
+<div class="related-section">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="eyebrow">Keep Reading</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--deep);margin-top:.5rem">More <em style="font-style:italic;color:var(--teal)">Wildlife Guides</em></h2>
+    <div class="related-grid">
+      <a href="blog-top10-places.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/about-landscape.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Destinations</div><div class="rc-title">Top 10 Must-See Places in Sri Lanka</div></div>
+      </a>
+      <a href="blog-cuisine-guide.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/sri-lanka-food.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Food &amp; Culture</div><div class="rc-title">The Ultimate Guide to Sri Lankan Cuisine</div></div>
+      </a>
+      <a href="blog-best-time-visit.html" class="rel-card">
+        <div class="rc-img" style="background-image:url('images/tea-plantation.jpg')"></div>
+        <div class="rc-body"><div class="rc-tag">Travel Tips</div><div class="rc-title">Best Time to Visit Sri Lanka</div></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="article-cta-section">
+  <div class="eyebrow" style="color:var(--gold);justify-content:center">Wildlife Safaris</div>
+  <h2>Book Your <em>Yala Safari</em></h2>
+  <p>Private jeep safaris with experienced trackers. We know the park's best spots and give you the time to really savour every sighting.</p>
+  <a href="packages.html#wildlife" class="btn-primary" style="margin-right:1rem">Wildlife Packages</a>
+  <a href="contact.html" class="btn-outline">Contact Our Team</a>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Serendip Go</a>
+      <p>Crafting extraordinary journeys through Sri Lanka since 2003.</p>
+      <div class="social-row" style="margin-top:1.5rem"><a href="#" class="social-btn">📷</a><a href="#" class="social-btn">📘</a><a href="#" class="social-btn">▶️</a></div>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="destinations.html#sigiriya">Sigiriya</a>
+      <a href="destinations.html#kandy">Kandy</a>
+      <a href="destinations.html#ella">Ella</a>
+      <a href="destinations.html#galle">Galle</a>
+      <a href="destinations.html#yala">Yala</a>
+      <a href="destinations.html#nuwara">Nuwara Eliya</a>
+    </div>
+    <div class="footer-col">
+      <h4>Travel Guides</h4>
+      <a href="blog-best-time-visit.html">Best Time to Visit</a>
+      <a href="blog-top10-places.html">Top 10 Places</a>
+      <a href="blog-cuisine-guide.html">Sri Lankan Cuisine</a>
+      <a href="blog-whale-watching.html">Whale Watching</a>
+      <a href="blog-budget-travel.html">Budget Travel</a>
+      <a href="blog.html">All Articles</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serendip Go. All rights reserved.</span>
+    <span>Designed with ❤️ in Sri Lanka</span>
+  </div>
+</footer>
+<div class="live-chat" onclick="toggleChat()" title="Live Chat">💬</div>
+<div class="chat-bubble" id="chatBubble">
+  <p>👋 Hi there! Planning a Sri Lanka trip? We're here to help!</p>
+  <input type="text" placeholder="Type your message...">
+  <button onclick="sendChat()">Send Message</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

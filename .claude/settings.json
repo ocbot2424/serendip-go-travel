@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:www.exoticca.com)"
+      "WebFetch(domain:www.exoticca.com)",
+      "WebFetch(domain:www.yalawildlife.com)",
+      "WebFetch(domain:www.responsibletravel.com)",
+      "Read(//c/Users/sades/**)",
+      "Bash(command -v openclaw)"
     ]
   }
 }
