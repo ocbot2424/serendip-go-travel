@@ -68,15 +68,127 @@
 .pkg-footer {
   padding-top: 1.2rem; border-top: 1px solid var(--sand);
 }
-.pkg-btn-contact {
-  background: var(--deep); color: white;
-  border: none; padding: 0.75rem 1.5rem;
+.pkg-btn-explore {
+  background: transparent;
+  color: var(--deep);
+  border: 2px solid var(--deep);
+  padding: 0.75rem 1.5rem;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 0.7rem; letter-spacing: 1.8px; text-transform: uppercase;
-  cursor: pointer; transition: background 0.3s ease;
+  cursor: pointer; transition: all 0.3s ease;
   width: 100%; text-align: center;
   display: inline-block;
   text-decoration: none;
+}
+.pkg-btn-explore:hover {
+  background: var(--deep);
+  color: var(--gold);
+  border-color: var(--deep);
+}
+
+/* ─── PACKAGE MODAL ─── */
+.pkg-modal-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.85);
+  display: none; align-items: center; justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.pkg-modal-overlay.active {
+  opacity: 1;
+}
+.pkg-modal {
+  background: var(--cream);
+  width: 90%; max-width: 850px;
+  max-height: 85vh; overflow-y: auto;
+  border-radius: 8px;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+}
+.pkg-modal-overlay.active .pkg-modal {
+  transform: scale(1);
+}
+.pkg-modal-header {
+  position: relative;
+  padding: 2.5rem 2.5rem 2rem;
+  background: var(--deep);
+  color: white;
+  border-radius: 8px 8px 0 0;
+}
+.pkg-modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); color: white;
+  border: none; font-size: 1.3rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+  line-height: 1;
+}
+.pkg-modal-close:hover { background: rgba(255,255,255,0.25); }
+.pkg-modal-category {
+  font-size: 0.65rem; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 0.6rem;
+}
+.pkg-modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; font-weight: 600; color: white;
+  line-height: 1.2; margin-bottom: 0.8rem;
+}
+.pkg-modal-duration {
+  font-size: 0.85rem; color: rgba(255,255,255,0.8);
+  letter-spacing: 1px;
+}
+.pkg-modal-body {
+  padding: 2.5rem;
+}
+.pkg-modal-section {
+  margin-bottom: 2rem;
+}
+.pkg-modal-section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 600; color: var(--deep);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--gold);
+}
+.pkg-modal-desc {
+  font-size: 0.95rem; color: var(--text);
+  line-height: 1.7; margin-bottom: 1.5rem;
+}
+.pkg-modal-highlights {
+  list-style: none; margin: 0; padding: 0;
+}
+.pkg-modal-highlights li {
+  font-size: 0.9rem; color: var(--text);
+  padding: 0.7rem 0; border-bottom: 1px solid var(--sand);
+  display: flex; align-items: flex-start; gap: 0.8rem;
+}
+.pkg-modal-highlights li::before {
+  content: '◆'; color: var(--gold); font-size: 0.7rem;
+  flex-shrink: 0; margin-top: 0.4rem;
+}
+.pkg-modal-highlights li:last-child {
+  border-bottom: none;
+}
+.pkg-modal-cta {
+  background: var(--sand);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 0 0 8px 8px;
+}
+.pkg-modal-cta-text {
+  font-size: 0.95rem; color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+.pkg-btn-contact {
+  background: var(--deep); color: white;
+  border: none; padding: 0.8rem 2rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem; letter-spacing: 1.8px; text-transform: uppercase;
+  cursor: pointer; transition: background 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 .pkg-btn-contact:hover { background: var(--gold); color: var(--deep); }
 
@@ -118,6 +230,24 @@
   .pkg-title { font-size: 1.4rem; }
   .pkg-filters { gap: 0.5rem; }
   .pkg-filter { padding: 0.5rem 1.2rem; font-size: 0.65rem; }
+  
+  /* Modal mobile */
+  .pkg-modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+  .pkg-modal-header {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  .pkg-modal-body {
+    padding: 1.5rem;
+  }
+  .pkg-modal-title {
+    font-size: 1.8rem;
+  }
+  .pkg-modal-cta {
+    padding: 1.5rem;
+  }
 }
 </style>
 </head>
@@ -188,7 +318,7 @@
           <li>Spice garden tour</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('quick-escape')">Learn More</button>
         </div>
       </div>
     </div>
@@ -210,7 +340,7 @@
           <li>Ella's Nine Arch Bridge</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('week-adventure')">Learn More</button>
         </div>
       </div>
     </div>
@@ -232,7 +362,7 @@
           <li>South coast beach relaxation</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('extended-tour')">Learn More</button>
         </div>
       </div>
     </div>
@@ -254,7 +384,7 @@
           <li>Traditional village experiences</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('grand-tour')">Learn More</button>
         </div>
       </div>
     </div>
@@ -276,7 +406,7 @@
           <li>Both coasts & highlands exploration</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('ultimate-journey')">Learn More</button>
         </div>
       </div>
     </div>
@@ -302,7 +432,7 @@
           <li>Traditional craft workshops</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('cultural-heritage')">Learn More</button>
         </div>
       </div>
     </div>
@@ -324,7 +454,7 @@
           <li>Bird watching in wetlands</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('wildlife-nature')">Learn More</button>
         </div>
       </div>
     </div>
@@ -346,7 +476,7 @@
           <li>Fresh seafood dining</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('beach-relaxation')">Learn More</button>
         </div>
       </div>
     </div>
@@ -368,7 +498,7 @@
           <li>Surfing in Arugam Bay</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('adventure-activities')">Learn More</button>
         </div>
       </div>
     </div>
@@ -390,7 +520,7 @@
           <li>Organic wellness cuisine</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('spiritual-wellness')">Learn More</button>
         </div>
       </div>
     </div>
@@ -416,7 +546,7 @@
           <li>Interactive cultural workshops</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('family-friendly')">Learn More</button>
         </div>
       </div>
     </div>
@@ -438,7 +568,7 @@
           <li>Sunset viewing points</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('couples-romance')">Learn More</button>
         </div>
       </div>
     </div>
@@ -460,7 +590,7 @@
           <li>Easy public transport routes</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('solo-travelers')">Learn More</button>
         </div>
       </div>
     </div>
@@ -482,7 +612,7 @@
           <li>Michelin-level dining experiences</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('luxury-escapes')">Learn More</button>
         </div>
       </div>
     </div>
@@ -504,7 +634,7 @@
           <li>Cost-effective pricing</li>
         </ul>
         <div class="pkg-footer">
-          <a href="contact.html" class="pkg-btn-contact">Contact Us</a>
+          <button class="pkg-btn-explore" onclick="openPackageModal('group-adventures')">Learn More</button>
         </div>
       </div>
     </div>
@@ -574,7 +704,37 @@
   </div>
 </div>
 
+<!-- PACKAGE DETAILS MODAL -->
+<div class="pkg-modal-overlay" id="packageModal">
+  <div class="pkg-modal">
+    <div class="pkg-modal-header">
+      <button class="pkg-modal-close" onclick="closePackageModal()">&times;</button>
+      <div class="pkg-modal-category" id="modalCategory">Category</div>
+      <h2 class="pkg-modal-title" id="modalTitle">Package Title</h2>
+      <div class="pkg-modal-duration" id="modalDuration">Duration</div>
+    </div>
+    <div class="pkg-modal-body">
+      <div class="pkg-modal-section">
+        <h3 class="pkg-modal-section-title">About This Journey</h3>
+        <p class="pkg-modal-desc" id="modalDesc">Package description goes here...</p>
+      </div>
+      <div class="pkg-modal-section">
+        <h3 class="pkg-modal-section-title">What's Included</h3>
+        <ul class="pkg-modal-highlights" id="modalHighlights">
+          <li>Highlight 1</li>
+          <li>Highlight 2</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pkg-modal-cta">
+      <p class="pkg-modal-cta-text">Ready to embark on this journey? Get in touch with us for personalized pricing and availability.</p>
+      <a href="contact.html" class="pkg-btn-contact">Contact Us to Book</a>
+    </div>
+  </div>
+</div>
+
 <script src="script.js"></script>
+<script src="packages-modal.js"></script>
 
 </body>
 </html>
