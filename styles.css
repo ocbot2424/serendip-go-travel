@@ -617,6 +617,8 @@
     font-size: 1.8rem;
     color: white;
     margin-bottom: 1rem;
+    text-decoration: none;
+    border-bottom: none;
   }
   .footer-heading {
     color: white;
